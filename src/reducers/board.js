@@ -1,5 +1,10 @@
+const pieces = Array.from({ length: 19 }, () =>
+  Array.from({ length: 19 }, () => ".")
+);
+pieces[5][5] = "w";
+pieces[8][10] = "b";
 const initialState = {
-  pieces: new Array(19).fill(new Array(19).fill(".")),
+  pieces: pieces,
 };
 
 export default function board(state = initialState, action) {
