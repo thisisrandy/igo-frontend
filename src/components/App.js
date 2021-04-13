@@ -1,11 +1,20 @@
 import React from "react";
-import board from "../images/board.png";
+import Board from "./Board";
+import GameControls from "./GameControls";
+import PlayerCard from "./PlayerCard";
+import Clock from "./Clock";
 
 function App() {
   return (
-    <React.Fragment>
-      <img src={board} alt="board" />
-    </React.Fragment>
+    <div>
+      <Board />
+      <GameControls />
+      <div>
+        <PlayerCard color="white" />
+        <PlayerCard color="black" />
+      </div>
+      <Clock />
+    </div>
   );
 }
 
