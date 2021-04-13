@@ -4,16 +4,22 @@ const useStyles = makeStyles(
   () => ({
     App: {
       display: "flex",
+      flexDirection: "row",
+      flexWrap: "wrap",
+      justifyContent: "center",
+    },
+    StatusControlsContainer: {
+      display: "flex",
       flexDirection: "column",
       alignItems: "center",
     },
-    Status: {
-      display: "flex",
-      flexDirection: "row",
+    BoardImage: {
+      maxHeight: "100%",
     },
-    Board: {
-      width: "800px",
-      height: "800px",
+    BoardContainer: {
+      margin: 20,
+      padding: 10,
+      height: 800,
     },
   }),
   // without this, MUI styles override user-specified styles in some cases.

@@ -1,13 +1,14 @@
 import React from "react";
 import { useStyles } from "../hooks/useStyles";
 import board from "../images/board.png";
+import { Paper } from "@material-ui/core";
 
 function Board() {
   const classes = useStyles();
   return (
-    <React.Fragment>
-      <img src={board} alt="board" className={classes.Board} />
-    </React.Fragment>
+    <Paper className={classes.BoardContainer}>
+      <img src={board} alt="board" className={classes.BoardImage} />
+    </Paper>
   );
 }
 

@@ -11,12 +11,12 @@ function App() {
   return (
     <div className={classes.App}>
       <Board />
-      <GameControls />
-      <div className={classes.Status}>
+      <div className={classes.StatusControlsContainer}>
+        <GameControls />
         <PlayerCard color="white" />
         <PlayerCard color="black" />
+        <Clock />
       </div>
-      <Clock />
     </div>
   );
 }
