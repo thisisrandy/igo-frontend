@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 import board from "../images/board.png";
 
 function App() {
