@@ -2,10 +2,23 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/App";
 import reportWebVitals from "./reportWebVitals";
+import { brown } from "@material-ui/core/colors";
+import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
+import { CssBaseline } from "@material-ui/core";
+
+const theme = createMuiTheme({
+  palette: {
+    type: "dark",
+    primary: brown,
+  },
+});
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <MuiThemeProvider theme={theme}>
+      <CssBaseline />
+      <App />
+    </MuiThemeProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
