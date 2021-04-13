@@ -5,6 +5,9 @@ import reportWebVitals from "./reportWebVitals";
 import { brown } from "@material-ui/core/colors";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
 import { CssBaseline } from "@material-ui/core";
+import { Provider } from "react-redux";
+import { createStore } from "redux";
+import rootReducer from "./reducers";
 
 const theme = createMuiTheme({
   palette: {
@@ -13,11 +16,15 @@ const theme = createMuiTheme({
   },
 });
 
+const store = createStore(rootReducer);
+
 ReactDOM.render(
   <React.StrictMode>
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </MuiThemeProvider>
   </React.StrictMode>,
   document.getElementById("root")
