@@ -12,6 +12,7 @@ const useStyles = makeStyles(
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
+      justifyContent: "space-around",
     },
     BoardImage: {
       maxHeight: "100%",
@@ -20,6 +21,18 @@ const useStyles = makeStyles(
       margin: 20,
       padding: 10,
       height: 800,
+    },
+    ControlsContainer: {
+      margin: 20,
+      padding: 10,
+    },
+    PlayerCardContainer: {
+      margin: 20,
+      padding: 10,
+    },
+    ClockContainer: {
+      margin: 20,
+      padding: 10,
     },
   }),
   // without this, MUI styles override user-specified styles in some cases.
