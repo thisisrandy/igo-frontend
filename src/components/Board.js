@@ -20,14 +20,14 @@ function Board() {
               src={white}
               alt="white stone"
               className={classes.StoneImage}
-              style={{ gridRow: i + 2, gridColumn: j + 2, overflow: "hidden" }}
+              style={{ gridRow: i + 2, gridColumn: j + 2 }}
             />
           ) : point === "b" ? (
             <img
               src={black}
               alt="black stone"
               className={classes.StoneImage}
-              style={{ gridRow: i + 2, gridColumn: j + 2, overflow: "hidden" }}
+              style={{ gridRow: i + 2, gridColumn: j + 2 }}
             />
           ) : (
             <React.Fragment />

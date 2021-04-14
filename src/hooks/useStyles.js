@@ -37,6 +37,7 @@ const useStyles = makeStyles(
       display: "block",
       height: "90%",
       width: "auto",
+      overflow: "hidden",
     },
     ControlsContainer: {
       margin: 20,
