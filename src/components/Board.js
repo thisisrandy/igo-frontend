@@ -8,14 +8,14 @@ import { useSelector } from "react-redux";
 
 function Board() {
   const classes = useStyles();
-  const { pieces } = useSelector((state) => state.board);
+  const { stones } = useSelector((state) => state.board);
 
   return (
     <Paper className={classes.BoardContainer}>
       <div className={classes.BoardImage}>
         <img src={goBoard} alt="board" className={classes.board} />
       </div>
-      {Array.from(pieces.entries(), ([i, row]) =>
+      {Array.from(stones.entries(), ([i, row]) =>
         Array.from(row.entries(), ([j, point]) => (
           <div
             style={{ gridRow: i + 2, gridColumn: j + 2, overflow: "hidden" }}
