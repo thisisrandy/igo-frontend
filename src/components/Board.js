@@ -14,27 +14,25 @@ function Board() {
     <Paper className={classes.BoardContainer}>
       <img src={goBoard} alt="board" className={classes.BoardImage} />
       {Array.from(stones.entries(), ([i, row]) =>
-        Array.from(row.entries(), ([j, point]) => (
-          <div
-            style={{ gridRow: i + 2, gridColumn: j + 2, overflow: "hidden" }}
-          >
-            {point === "w" ? (
-              <img
-                src={white}
-                alt="white stone"
-                className={classes.StoneImage}
-              />
-            ) : point === "b" ? (
-              <img
-                src={black}
-                alt="black stone"
-                className={classes.StoneImage}
-              />
-            ) : (
-              <React.Fragment />
-            )}
-          </div>
-        ))
+        Array.from(row.entries(), ([j, point]) =>
+          point === "w" ? (
+            <img
+              src={white}
+              alt="white stone"
+              className={classes.StoneImage}
+              style={{ gridRow: i + 2, gridColumn: j + 2, overflow: "hidden" }}
+            />
+          ) : point === "b" ? (
+            <img
+              src={black}
+              alt="black stone"
+              className={classes.StoneImage}
+              style={{ gridRow: i + 2, gridColumn: j + 2, overflow: "hidden" }}
+            />
+          ) : (
+            <React.Fragment />
+          )
+        )
       )}
     </Paper>
   );

@@ -22,6 +22,8 @@ const useStyles = makeStyles(
       display: "grid",
       gridTemplateColumns: "0.25fr repeat(19, 1fr) 0.25fr",
       gridTemplateRows: "0.25fr repeat(19, 1fr) 0.25fr",
+      justifyItems: "center",
+      alignItems: "center",
     },
     BoardImage: {
       gridColumn: "1 / -1",
