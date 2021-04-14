@@ -15,12 +15,18 @@ const useStyles = makeStyles(
       justifyContent: "space-around",
     },
     BoardImage: {
-      maxHeight: "100%",
+      gridColumn: "1 / -1",
+      gridRow: "1 / -1",
+      overflow: "hidden",
     },
     BoardContainer: {
       margin: 20,
       padding: 10,
       height: 800,
+      width: 800,
+      display: "grid",
+      gridTemplateColumns: "0.25fr repeat(19, 1fr) 0.25fr",
+      gridTemplateRows: "0.25fr repeat(19, 1fr) 0.25fr",
     },
     ControlsContainer: {
       margin: 20,
@@ -33,6 +39,16 @@ const useStyles = makeStyles(
     ClockContainer: {
       margin: 20,
       padding: 10,
+    },
+    board: {
+      display: "block",
+      height: "100%",
+      width: "auto",
+    },
+    piece: {
+      display: "block",
+      height: "90%",
+      width: "auto",
     },
   }),
   // without this, MUI styles override user-specified styles in some cases.
