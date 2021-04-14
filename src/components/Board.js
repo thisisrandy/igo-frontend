@@ -12,18 +12,24 @@ function Board() {
 
   return (
     <Paper className={classes.BoardContainer}>
-      <div className={classes.BoardImage}>
-        <img src={goBoard} alt="board" className={classes.board} />
-      </div>
+      <img src={goBoard} alt="board" className={classes.BoardImage} />
       {Array.from(stones.entries(), ([i, row]) =>
         Array.from(row.entries(), ([j, point]) => (
           <div
             style={{ gridRow: i + 2, gridColumn: j + 2, overflow: "hidden" }}
           >
             {point === "w" ? (
-              <img src={white} alt="piece" className={classes.piece} />
+              <img
+                src={white}
+                alt="white stone"
+                className={classes.StoneImage}
+              />
             ) : point === "b" ? (
-              <img src={black} alt="piece" className={classes.piece} />
+              <img
+                src={black}
+                alt="black stone"
+                className={classes.StoneImage}
+              />
             ) : (
               <React.Fragment />
             )}

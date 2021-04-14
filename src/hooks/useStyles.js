@@ -14,11 +14,6 @@ const useStyles = makeStyles(
       alignItems: "center",
       justifyContent: "space-around",
     },
-    BoardImage: {
-      gridColumn: "1 / -1",
-      gridRow: "1 / -1",
-      overflow: "hidden",
-    },
     BoardContainer: {
       margin: 20,
       padding: 10,
@@ -27,6 +22,19 @@ const useStyles = makeStyles(
       display: "grid",
       gridTemplateColumns: "0.25fr repeat(19, 1fr) 0.25fr",
       gridTemplateRows: "0.25fr repeat(19, 1fr) 0.25fr",
+    },
+    BoardImage: {
+      gridColumn: "1 / -1",
+      gridRow: "1 / -1",
+      overflow: "hidden",
+      display: "block",
+      height: "100%",
+      width: "auto",
+    },
+    StoneImage: {
+      display: "block",
+      height: "90%",
+      width: "auto",
     },
     ControlsContainer: {
       margin: 20,
@@ -39,16 +47,6 @@ const useStyles = makeStyles(
     ClockContainer: {
       margin: 20,
       padding: 10,
-    },
-    board: {
-      display: "block",
-      height: "100%",
-      width: "auto",
-    },
-    piece: {
-      display: "block",
-      height: "90%",
-      width: "auto",
     },
   }),
   // without this, MUI styles override user-specified styles in some cases.
