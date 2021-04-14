@@ -14,24 +14,25 @@ function Board() {
     <Paper className={classes.BoardContainer}>
       <img src={goBoard} alt="board" className={classes.BoardImage} />
       {Array.from(stones.entries(), ([i, row]) =>
-        Array.from(row.entries(), ([j, point]) =>
-          point === "w" ? (
-            <img
-              src={white}
-              alt="white stone"
-              className={classes.StoneImage}
-              style={{ gridRow: i + 2, gridColumn: j + 2 }}
-            />
-          ) : point === "b" ? (
-            <img
-              src={black}
-              alt="black stone"
-              className={classes.StoneImage}
-              style={{ gridRow: i + 2, gridColumn: j + 2 }}
-            />
-          ) : (
-            <React.Fragment />
-          )
+        Array.from(
+          row.entries(),
+          ([j, point]) =>
+            point !== "." &&
+            (point === "w" ? (
+              <img
+                src={white}
+                alt="white stone"
+                className={classes.StoneImage}
+                style={{ gridRow: i + 2, gridColumn: j + 2 }}
+              />
+            ) : (
+              <img
+                src={black}
+                alt="black stone"
+                className={classes.StoneImage}
+                style={{ gridRow: i + 2, gridColumn: j + 2 }}
+              />
+            ))
         )
       )}
     </Paper>
