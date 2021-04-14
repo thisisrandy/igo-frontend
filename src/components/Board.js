@@ -20,6 +20,7 @@ function Board() {
             point !== "." &&
             (point === "w" ? (
               <img
+                key={`${i},${j}`}
                 src={white}
                 alt="white stone"
                 className={classes.StoneImage}
@@ -27,6 +28,7 @@ function Board() {
               />
             ) : (
               <img
+                key={`${i},${j}`}
                 src={black}
                 alt="black stone"
                 className={classes.StoneImage}
