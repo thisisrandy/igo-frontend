@@ -38,6 +38,7 @@ const useStyles = makeStyles(
       height: "90%",
       width: "auto",
       overflow: "hidden",
+      zIndex: 1,
     },
     ControlsContainer: {
       margin: 20,
