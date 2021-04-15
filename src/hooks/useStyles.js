@@ -44,6 +44,10 @@ const useStyles = makeStyles(
       height: "100%",
       width: "100%",
       zIndex: 1,
+      // TODO: turn this off when it is not the player's turn
+      "&:hover": {
+        backgroundColor: "rgba(0, 0, 0, 0.4)",
+      },
     },
     ControlsContainer: {
       margin: 20,
