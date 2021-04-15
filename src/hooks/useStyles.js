@@ -62,7 +62,7 @@ const useStyles = makeStyles(
     },
     ClockContainer: {
       margin: 20,
-      padding: 10,
+      padding: "10px 30px",
     },
   }),
   // without this, MUI styles override user-specified styles in some cases.
