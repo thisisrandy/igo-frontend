@@ -49,12 +49,17 @@ const useStyles = makeStyles(
         backgroundColor: "rgba(0, 0, 0, 0.4)",
       },
     },
-    ControlsContainer: {
+    GameControlsContainer: {
       margin: 20,
       padding: 10,
+      width: 500,
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "space-around",
     },
     Button: {
       margin: "5px 20px",
+      minWidth: 110,
     },
     PlayerCardContainer: {
       margin: 20,

@@ -11,7 +11,7 @@ function GameControls() {
   const playButtonClick = () => setPlaying(false);
 
   return (
-    <Paper className={classes.ControlsContainer}>
+    <Paper className={classes.GameControlsContainer}>
       {playing ? (
         <React.Fragment>
           <Button
