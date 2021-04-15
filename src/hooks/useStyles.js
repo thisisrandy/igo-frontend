@@ -59,6 +59,19 @@ const useStyles = makeStyles(
     PlayerCardContainer: {
       margin: 20,
       padding: 10,
+      display: "flex",
+      flexDirection: "row",
+    },
+    PlayerCardSubContainer: {
+      margin: 10,
+      padding: 10,
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "space-around",
+    },
+    PlayerStoneImage: {
+      height: 100,
+      width: "auto",
     },
     ClockContainer: {
       margin: 20,
