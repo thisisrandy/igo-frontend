@@ -53,6 +53,9 @@ const useStyles = makeStyles(
       margin: 20,
       padding: 10,
     },
+    Button: {
+      margin: "5px 20px",
+    },
     PlayerCardContainer: {
       margin: 20,
       padding: 10,
