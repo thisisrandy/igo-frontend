@@ -40,6 +40,11 @@ const useStyles = makeStyles(
       overflow: "hidden",
       zIndex: 1,
     },
+    EmptyPoint: {
+      height: "100%",
+      width: "100%",
+      zIndex: 1,
+    },
     ControlsContainer: {
       margin: 20,
       padding: 10,
