@@ -12,7 +12,7 @@ const useStyles = makeStyles(
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      justifyContent: "space-around",
+      justifyContent: "center",
     },
     BoardContainer: {
       margin: 20,
