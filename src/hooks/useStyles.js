@@ -47,6 +47,7 @@ const useStyles = makeStyles(
       // TODO: turn this off when it is not the player's turn
       "&:hover": {
         backgroundColor: "rgba(0, 0, 0, 0.4)",
+        cursor: "pointer",
       },
     },
     GameControlsContainer: {
