@@ -11,9 +11,11 @@ function Clock() {
     setTimeout(() => setTime(time + 1), 1000);
   });
 
-  // NOTE: This "overflows" after 24 hours, but I don't really care
   const hhmmss = (seconds) => {
-    return new Date(seconds * 1000).toISOString().slice(11, 19);
+    return (
+      (seconds >= 86400 ? Math.floor(seconds / 86400) + "d, " : "") +
+      new Date(seconds * 1000).toISOString().slice(11, 19)
+    );
   };
 
   return (
