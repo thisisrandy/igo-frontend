@@ -24,7 +24,7 @@ function Board() {
     <Paper className={classes.BoardContainer}>
       <img
         src={goBoard}
-        alt="board"
+        alt="go board"
         className={classes.BoardImage}
         onClick={clickHandler}
       />
