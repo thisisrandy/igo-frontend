@@ -2,7 +2,7 @@ import { PLACE_STONE } from "../constants/ActionTypes";
 
 const initialState = {
   stones: Array.from({ length: 19 }, () =>
-    Array.from({ length: 19 }, () => ".")
+    Array.from({ length: 19 }, () => "")
   ),
 };
 
