@@ -6,8 +6,9 @@ import { brown } from "@material-ui/core/colors";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
 import { CssBaseline } from "@material-ui/core";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import rootReducer from "./reducers";
+import reduxWebsocket from "@giantmachines/redux-websocket";
 
 const theme = createMuiTheme({
   palette: {
@@ -16,7 +17,12 @@ const theme = createMuiTheme({
   },
 });
 
-const store = createStore(rootReducer);
+const reduxWebsocketMiddleware = reduxWebsocket();
+
+const store = createStore(
+  rootReducer,
+  applyMiddleware(reduxWebsocketMiddleware)
+);
 
 ReactDOM.render(
   <React.StrictMode>

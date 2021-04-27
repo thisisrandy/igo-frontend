@@ -1182,6 +1182,13 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
+"@giantmachines/redux-websocket@^1.5.0":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@giantmachines/redux-websocket/-/redux-websocket-1.5.0.tgz#eb75e75452e161e8c8ddc09b5ac3c47581beb6e1"
+  integrity sha512-Cc4aHuGQVzdKp9ILjat+rpBEa3AKyAHKp8lbm/ccCLoRaPOk0pgxqGjLTuXCp/GiYrnLulgOLH4+UaqsMVCi5Q==
+  dependencies:
+    redux "~4"
+
 "@hapi/address@2.x.x":
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/@hapi/address/-/address-2.1.4.tgz#5d67ed43f3fd41a69d4b9ff7b56e7c0d1d0a81e5"
@@ -9407,6 +9414,13 @@ redux@^4.0.0, redux@^4.0.5:
   dependencies:
     loose-envify "^1.4.0"
     symbol-observable "^1.2.0"
+
+redux@~4:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/redux/-/redux-4.1.0.tgz#eb049679f2f523c379f1aff345c8612f294c88d4"
+  integrity sha512-uI2dQN43zqLWCt6B/BMGRMY6db7TTY4qeHHfGeKb3EOhmOKjU3KdWvNLJyqaHRksv/ErdNH7cFZWg9jXtewy4g==
+  dependencies:
+    "@babel/runtime" "^7.9.2"
 
 regenerate-unicode-properties@^8.2.0:
   version "8.2.0"
