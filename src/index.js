@@ -17,7 +17,9 @@ const theme = createMuiTheme({
   },
 });
 
-const reduxWebsocketMiddleware = reduxWebsocket();
+const reduxWebsocketMiddleware = reduxWebsocket({
+  deserializer: JSON.parse,
+});
 
 const store = createStore(
   rootReducer,
