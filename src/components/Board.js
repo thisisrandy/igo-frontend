@@ -9,7 +9,7 @@ import { placeStone } from "../actions";
 
 function Board() {
   const classes = useStyles();
-  const { stones } = useSelector((state) => state.board);
+  const { board } = useSelector((state) => state.game);
   const dispatch = useDispatch();
 
   // TODO: this is just a dummy POC for handling board clicks. Flesh out later
@@ -28,7 +28,7 @@ function Board() {
         className={classes.BoardImage}
         onClick={clickHandler}
       />
-      {Array.from(stones.entries(), ([i, row]) =>
+      {Array.from(board.entries(), ([i, row]) =>
         Array.from(row.entries(), ([j, point]) =>
           point === "w" ? (
             <img
