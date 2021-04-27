@@ -1,7 +1,9 @@
 import { PLACE_STONE } from "../constants/ActionTypes";
 
 const initialState = {
-  board: Array.from({ length: 19 }, () => Array.from({ length: 19 }, () => "")),
+  board: Array.from({ length: 19 }, () =>
+    Array.from({ length: 19 }, () => ["", false, false, ""])
+  ),
 };
 
 export default function board(state = initialState, action) {
@@ -13,7 +15,9 @@ export default function board(state = initialState, action) {
         board: Array.from(state.board.entries(), ([i, row]) =>
           Array.from(row.entries(), ([j, point]) =>
             i === action.payload.i && j === action.payload.j
-              ? action.payload.turn
+              ? Array.from(point.entries(), ([k, attr]) =>
+                  k === 0 ? action.payload.turn : attr
+                )
               : point
           )
         ),

@@ -30,7 +30,7 @@ function Board() {
       />
       {Array.from(board.entries(), ([i, row]) =>
         Array.from(row.entries(), ([j, point]) =>
-          point === "w" ? (
+          point[0] === "w" ? (
             <img
               key={`${i},${j}`}
               src={white}
@@ -38,7 +38,7 @@ function Board() {
               className={classes.StoneImage}
               style={{ gridRow: i + 2, gridColumn: j + 2 }}
             />
-          ) : point === "b" ? (
+          ) : point[0] === "b" ? (
             <img
               key={`${i},${j}`}
               src={black}
