@@ -4,7 +4,19 @@ import {
   WS_MESSAGE,
   WS_OPEN,
 } from "../constants/ActionTypes";
-import { BOARD } from "../constants/StateKeys";
+import {
+  EXPLANATION,
+  KEYS,
+  SUCCESS,
+  YOUR_COLOR,
+} from "../constants/IncomingMessageKeys";
+import {
+  GAME_ACTION_RESPONSE,
+  GAME_STATUS,
+  JOIN_GAME_RESPONSE,
+  NEW_GAME_RESPONSE,
+} from "../constants/IncomingMessageTypes";
+import { ALERT, BOARD } from "../constants/StateKeys";
 
 const initialState = {
   [BOARD]: Array.from({ length: 19 }, () =>
@@ -30,16 +42,35 @@ export default function board(state = initialState, action) {
         ),
       };
     case WS_MESSAGE:
-      console.log("got message!");
       const msg = action.payload.message;
-      console.log(msg.message_type);
+      console.log(`got message of type ${msg.message_type}`);
+      const data = msg.data;
       // check the type and process accordingly
-      switch (action.payload.message.message_type) {
-        case GAME_STATUS:
-          console.log("got game status");
+      switch (msg.message_type) {
+        case NEW_GAME_RESPONSE:
+        case JOIN_GAME_RESPONSE:
           return {
             ...state,
-            ...action.payload.message.data,
+            // we want to be careful to preserve state on failure in case we are
+            // already in a game
+            [KEYS]: data[KEYS] ? data[SUCCESS] : state[KEYS],
+            [YOUR_COLOR]: data[YOUR_COLOR] ? data[SUCCESS] : state[YOUR_COLOR],
+            [ALERT]: data[EXPLANATION],
+          };
+        case GAME_ACTION_RESPONSE:
+          // there's no reason to alert the player after a successful game
+          // action, only on failure
+          if (!data[SUCCESS]) {
+            return {
+              ...state,
+              [ALERT]: data[EXPLANATION],
+            };
+          }
+          return state;
+        case GAME_STATUS:
+          return {
+            ...state,
+            ...data,
           };
         default:
           return state;
