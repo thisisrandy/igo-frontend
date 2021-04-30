@@ -1,11 +1,7 @@
 import { KEYS, YOUR_COLOR } from "./IncomingMessageKeys";
 
-// response container keys
-export const SUCCESS = "success";
-export const EXPLANATION = "explanation";
-export { KEYS, YOUR_COLOR };
-
 // game keys
+export { KEYS, YOUR_COLOR };
 export const BOARD = "board";
 export const STATUS = "status";
 export const KOMI = "komi";
@@ -15,6 +11,6 @@ export const TERRITORY = "territory";
 export const PENDINGREQUEST = "pendingRequest";
 export const RESULT = "result";
 
-// internal keys
+// message display keys
 export const ALERT = "alert";
 export const PERISTENT_ALERT = "peristent_alert";
