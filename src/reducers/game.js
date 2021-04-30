@@ -4,10 +4,10 @@ import {
   WS_MESSAGE,
   WS_OPEN,
 } from "../constants/ActionTypes";
-import { GAME_STATUS } from "../constants/IncomingMessageTypes";
+import { BOARD } from "../constants/StateKeys";
 
 const initialState = {
-  board: Array.from({ length: 19 }, () =>
+  [BOARD]: Array.from({ length: 19 }, () =>
     Array.from({ length: 19 }, () => ["", false, false, ""])
   ),
   connected: false,
@@ -19,7 +19,7 @@ export default function board(state = initialState, action) {
       // TODO: This is just a POC stub for board clicking. Flesh out later
       return {
         ...state,
-        board: Array.from(state.board.entries(), ([i, row]) =>
+        [BOARD]: Array.from(state.board.entries(), ([i, row]) =>
           Array.from(row.entries(), ([j, point]) =>
             i === action.payload.i && j === action.payload.j
               ? Array.from(point.entries(), ([k, attr]) =>
