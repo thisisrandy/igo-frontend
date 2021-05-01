@@ -63,6 +63,17 @@ const useStyles = makeStyles(
       margin: "5px 20px",
       minWidth: 110,
     },
+    DialogContent: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+    },
+    DialogActions: {
+      margin: "10px 0px",
+      width: "100%",
+      display: "flex",
+      justifyContent: "space-evenly",
+    },
     PlayerCardContainer: {
       margin: 20,
       padding: 10,

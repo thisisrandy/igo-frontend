@@ -1,4 +1,13 @@
-import { Button, Paper } from "@material-ui/core";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Paper,
+  TextField,
+} from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { useStyles } from "../hooks/useStyles";
 import { useDispatch, useSelector } from "react-redux";
@@ -60,9 +69,20 @@ function GameControls() {
     );
   };
 
+  const [joinResumeDialogOpen, setJoinResumeDialogOpen] = useState(false);
   const joinResumeGameButtonClick = () => {
-    // TODO: unhide form dialog which sends a message like the below
-    dispatch(send({ [TYPE]: JOIN_GAME, [KEY]: "0123456789" }));
+    setJoinResumeDialogOpen(true);
+  };
+
+  const [joinResumeKey, setJoinResumeKey] = useState("");
+  const joinResumeSubmitClick = () => {
+    setJoinResumeDialogOpen(false);
+    dispatch(send({ [TYPE]: JOIN_GAME, [KEY]: joinResumeKey }));
+    setJoinResumeKey("");
+  };
+  const joinResumeCancelClick = () => {
+    setJoinResumeDialogOpen(false);
+    setJoinResumeKey("");
   };
 
   const passButtonClick = () => {
@@ -150,6 +170,47 @@ function GameControls() {
           >
             Join/Resume Game
           </Button>
+          <Dialog
+            open={joinResumeDialogOpen}
+            onClose={() => setJoinResumeDialogOpen(false)}
+          >
+            <DialogTitle>Join/Resume Game</DialogTitle>
+            <DialogContent className={classes.DialogContent}>
+              <DialogContentText>
+                To join a new game, ask the player who created the game for the
+                10-digit player key for their opponent. If resuming, enter the
+                same key that was previously assigned to you. If you want to
+                view a past game, enter your player key from that game.
+              </DialogContentText>
+              <TextField
+                autoFocus
+                id="joinResumeKeyField"
+                label="Player key"
+                margin="dense"
+                inputProps={{ maxLength: 10 }}
+                onInput={(e) => {
+                  setJoinResumeKey(e.target.value);
+                }}
+              />
+            </DialogContent>
+            <DialogActions className={classes.DialogActions}>
+              <Button
+                className={classes.Button}
+                variant="contained"
+                onClick={joinResumeSubmitClick}
+                disabled={joinResumeKey.length !== 10}
+              >
+                Submit
+              </Button>
+              <Button
+                className={classes.Button}
+                variant="contained"
+                onClick={joinResumeCancelClick}
+              >
+                Cancel
+              </Button>
+            </DialogActions>
+          </Dialog>
         </React.Fragment>
       )}
     </Paper>
