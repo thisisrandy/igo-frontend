@@ -83,6 +83,10 @@ function Board() {
               key={`${i},${j}`}
               className={clsx(
                 classes.EmptyPoint,
+                // TODO: this styling, as well as stone styling (we want to
+                // highlight stones instead of empty points during the endgame
+                // and nothing while complete or pending request), also depends
+                // on game status. build that in later
                 myTurn ? classes.EmptyPointHover : {}
               )}
               style={{ gridRow: i + 2, gridColumn: j + 2 }}
