@@ -148,15 +148,7 @@ function GameControls() {
             onClick={joinResumeGameButtonClick}
             disabled={!connected}
           >
-            Resume Game
-          </Button>
-          <Button
-            variant="contained"
-            className={classes.Button}
-            onClick={joinResumeGameButtonClick}
-            disabled={!connected}
-          >
-            Join Game
+            Join/Resume Game
           </Button>
         </React.Fragment>
       )}
