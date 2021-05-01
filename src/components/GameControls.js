@@ -194,7 +194,7 @@ function GameControls() {
                 }}
               />
             </DialogContent>
-            <DialogActions className={classes.DialogActions}>
+            <DialogActions>
               <Button
                 className={classes.Button}
                 variant="contained"
