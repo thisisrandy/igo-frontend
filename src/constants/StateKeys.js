@@ -1,5 +1,8 @@
 import { KEYS, YOUR_COLOR } from "./IncomingMessageKeys";
 
+// websocket keys
+export const CONNECTED = "connected";
+
 // game keys
 export { KEYS, YOUR_COLOR };
 export const BOARD = "board";
