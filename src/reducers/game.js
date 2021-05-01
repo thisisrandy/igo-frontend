@@ -53,8 +53,8 @@ export default function board(state = initialState, action) {
             ...state,
             // we want to be careful to preserve state on failure in case we are
             // already in a game
-            [KEYS]: data[KEYS] ? data[SUCCESS] : state[KEYS],
-            [YOUR_COLOR]: data[YOUR_COLOR] ? data[SUCCESS] : state[YOUR_COLOR],
+            [KEYS]: data[SUCCESS] ? data[KEYS] : state[KEYS],
+            [YOUR_COLOR]: data[SUCCESS] ? data[YOUR_COLOR] : state[YOUR_COLOR],
             [ALERT]: data[EXPLANATION],
           };
         case GAME_ACTION_RESPONSE:
