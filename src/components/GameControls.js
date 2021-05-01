@@ -64,6 +64,7 @@ function GameControls() {
   }, [turn, your_color]);
 
   const newGameButtonClick = () => {
+    // TODO: make this a dialog
     dispatch(
       send({ [TYPE]: NEW_GAME, [VS]: HUMAN, [COLOR]: WHITE, [KOMI]: 6.5 })
     );
