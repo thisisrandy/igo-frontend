@@ -21,6 +21,7 @@ import {
   TURN,
   YOUR_COLOR,
 } from "../constants/StateKeys";
+import clsx from "clsx";
 
 function Board() {
   const classes = useStyles();
@@ -80,7 +81,10 @@ function Board() {
           ) : (
             <div
               key={`${i},${j}`}
-              className={classes.EmptyPoint}
+              className={clsx(
+                classes.EmptyPoint,
+                myTurn ? classes.EmptyPointHover : {}
+              )}
               style={{ gridRow: i + 2, gridColumn: j + 2 }}
               onClick={clickHandler(i, j)}
             />
