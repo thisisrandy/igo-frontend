@@ -1,23 +1,54 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useStyles } from "../hooks/useStyles";
 import goBoard from "../images/board.png";
 import black from "../images/black.png";
 import white from "../images/white.png";
 import { Paper } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
-import { placeStone } from "../actions";
+import { send } from "@giantmachines/redux-websocket";
+import {
+  ACTION_TYPE,
+  COORDS,
+  KEY,
+  TYPE,
+} from "../constants/OutgoingMessageKeys";
+import { GAME_ACTION } from "../constants/OutgoingMessageTypes";
+import { PLACE_STONE } from "../constants/GameActionTypes";
+import {
+  BOARD,
+  CONNECTED,
+  KEYS,
+  TURN,
+  YOUR_COLOR,
+} from "../constants/StateKeys";
 
 function Board() {
   const classes = useStyles();
-  const { board } = useSelector((state) => state.game);
+  const {
+    [BOARD]: board,
+    [TURN]: turn,
+    [YOUR_COLOR]: your_color,
+    [KEYS]: keys,
+    [CONNECTED]: connected,
+  } = useSelector((state) => state.game);
   const dispatch = useDispatch();
 
-  // TODO: this is just a dummy POC for handling board clicks. Flesh out later
-  const [turn, setTurn] = useState("w");
+  const [myTurn, setMyTurn] = useState(false);
+  useEffect(() => {
+    setMyTurn(typeof turn !== "undefined" && turn === your_color);
+  }, [turn, your_color]);
+
   const clickHandler = (i, j) => () => {
-    console.log(`${turn}: ${i}, ${j}`);
-    dispatch(placeStone(i, j, turn));
-    setTurn(turn === "w" ? "b" : "w");
+    if (connected && myTurn) {
+      dispatch(
+        send({
+          [TYPE]: GAME_ACTION,
+          [KEY]: keys[your_color],
+          [ACTION_TYPE]: PLACE_STONE,
+          [COORDS]: [i, j],
+        })
+      );
+    }
   };
 
   return (
