@@ -27,12 +27,12 @@ function Message() {
     // reply from the other player for something or reconnecting to server
 
     // <Backdrop
-    //   className={classes.MessageBackdrop}
+    //   className={classes.AlertBackdrop}
     //   open={typeof alert !== "undefined" && alert !== ""}
     //   onClick={() => dispatch(clearAlert())}
     // >
-    //   <Paper className={classes.MessagePaper}>
-    //     <Typography className={classes.MessageText} variant="h6">
+    //   <Paper className={classes.AlertPaper}>
+    //     <Typography className={classes.AlertText} variant="h6">
     //       {alert}
     //     </Typography>
     //   </Paper>
