@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { connect } from "@giantmachines/redux-websocket";
 import { SERVER_URI } from "../constants/ServerInfo";
 import Message from "./Message";
+import RequestResponseDialog from "./RequestResponseDialog";
 
 function App() {
   const classes = useStyles();
@@ -17,6 +18,7 @@ function App() {
   return (
     <div className={classes.App}>
       <Message />
+      <RequestResponseDialog />
       <Board />
       <div className={classes.StatusControlsContainer}>
         <GameControls />
