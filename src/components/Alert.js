@@ -1,5 +1,5 @@
 import { Backdrop, Paper, Typography } from "@material-ui/core";
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearAlert } from "../actions";
 import { ALERT } from "../constants/StateKeys";
@@ -9,10 +9,6 @@ function Alert() {
   const classes = useStyles();
   const { [ALERT]: alert } = useSelector((state) => state.game);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    console.log(alert);
-  }, [alert]);
 
   return (
     <Backdrop
