@@ -14,6 +14,12 @@ const useStyles = makeStyles(
       alignContent: "center",
       justifyContent: "center",
     },
+    MessagePaper: {
+      maxWidth: 600,
+    },
+    MessageText: {
+      padding: "16px 24px",
+    },
     StatusControlsContainer: {
       display: "flex",
       flexDirection: "column",

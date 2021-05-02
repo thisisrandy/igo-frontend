@@ -16,8 +16,10 @@ function Alert() {
       open={typeof alert !== "undefined" && alert !== ""}
       onClick={() => dispatch(clearAlert())}
     >
-      <Paper>
-        <Typography>{alert}</Typography>
+      <Paper className={classes.MessagePaper}>
+        <Typography className={classes.MessageText} variant="h6">
+          {alert}
+        </Typography>
       </Paper>
     </Backdrop>
   );
