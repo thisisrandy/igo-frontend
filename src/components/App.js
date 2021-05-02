@@ -7,7 +7,7 @@ import { useStyles } from "../hooks/useStyles";
 import { useDispatch } from "react-redux";
 import { connect } from "@giantmachines/redux-websocket";
 import { SERVER_URI } from "../constants/ServerInfo";
-import Alert from "./Alert";
+import Message from "./Message";
 
 function App() {
   const classes = useStyles();
@@ -16,7 +16,7 @@ function App() {
 
   return (
     <div className={classes.App}>
-      <Alert />
+      <Message />
       <Board />
       <div className={classes.StatusControlsContainer}>
         <GameControls />

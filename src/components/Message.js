@@ -15,7 +15,7 @@ import { clearAlert } from "../actions";
 import { ALERT } from "../constants/StateKeys";
 import { useStyles } from "../hooks/useStyles";
 
-function Alert() {
+function Message() {
   const classes = useStyles();
   const { [ALERT]: alert } = useSelector((state) => state.game);
   const dispatch = useDispatch();
@@ -60,4 +60,4 @@ function Alert() {
   );
 }
 
-export default Alert;
+export default Message;
