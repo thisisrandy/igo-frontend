@@ -1,2 +1,2 @@
-export const REQUEST_TYPE = "request_type";
+export const REQUEST_TYPE = "requestType";
 export const INITIATOR = "initiator";
