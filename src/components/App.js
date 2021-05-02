@@ -13,6 +13,8 @@ import RequestResponseDialog from "./RequestResponseDialog";
 function App() {
   const classes = useStyles();
   const dispatch = useDispatch();
+  // FIXME: the connection gets immediately severed and reconnected on startup.
+  // this is undoubtably because App gets re-rendered, but unclear why...
   dispatch(connect(SERVER_URI));
 
   return (
