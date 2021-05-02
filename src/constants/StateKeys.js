@@ -15,5 +15,5 @@ export const PENDINGREQUEST = "pendingRequest";
 export const RESULT = "result";
 
 // message display keys
-export const ALERT = "alert";
+export const MESSAGE = "message";
 export const PERISTENT_ALERT = "peristent_alert";

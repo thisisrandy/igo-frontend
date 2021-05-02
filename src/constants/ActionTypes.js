@@ -11,4 +11,4 @@ export const WS_OPEN = `${DEFAULT_PREFIX}::${WEBSOCKET_OPEN}`;
 export const WS_MESSAGE = `${DEFAULT_PREFIX}::${WEBSOCKET_MESSAGE}`;
 
 // internal actions
-export const CLEAR_ALERT = "CLEAR_ALERT";
+export const CLEAR_MESSAGE = "CLEAR_MESSAGE";

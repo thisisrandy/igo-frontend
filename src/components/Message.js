@@ -11,16 +11,16 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearAlert } from "../actions";
-import { ALERT } from "../constants/StateKeys";
+import { clearMessage } from "../actions";
+import { MESSAGE } from "../constants/StateKeys";
 import { useStyles } from "../hooks/useStyles";
 
 function Message() {
   const classes = useStyles();
-  const { [ALERT]: alert } = useSelector((state) => state.game);
+  const { [MESSAGE]: message } = useSelector((state) => state.game);
   const dispatch = useDispatch();
 
-  const clickHandler = () => dispatch(clearAlert());
+  const clickHandler = () => dispatch(clearMessage());
 
   return (
     // TODO: Use commented markup as template for "waiting," e.g. waiting for a
@@ -39,12 +39,12 @@ function Message() {
     // </Backdrop>
 
     <Dialog
-      open={typeof alert !== "undefined" && alert !== ""}
+      open={typeof message !== "undefined" && message !== ""}
       onClick={clickHandler}
     >
       <DialogContent className={classes.DialogContent}>
         <DialogContentText className={classes.MessageText}>
-          {alert}
+          {message}
         </DialogContentText>
       </DialogContent>
       <DialogActions className={classes.MessageButtonContainer}>

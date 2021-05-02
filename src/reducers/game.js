@@ -1,5 +1,5 @@
 import {
-  CLEAR_ALERT,
+  CLEAR_MESSAGE,
   WS_CLOSED,
   WS_MESSAGE,
   WS_OPEN,
@@ -16,7 +16,7 @@ import {
   JOIN_GAME_RESPONSE,
   NEW_GAME_RESPONSE,
 } from "../constants/IncomingMessageTypes";
-import { ALERT, BOARD, CONNECTED } from "../constants/StateKeys";
+import { MESSAGE, BOARD, CONNECTED } from "../constants/StateKeys";
 
 const initialState = {
   [BOARD]: Array.from({ length: 19 }, () =>
@@ -27,10 +27,10 @@ const initialState = {
 
 export default function board(state = initialState, action) {
   switch (action.type) {
-    case CLEAR_ALERT:
+    case CLEAR_MESSAGE:
       return {
         ...state,
-        [ALERT]: "",
+        [MESSAGE]: "",
       };
     case WS_MESSAGE:
       const msg = action.payload.message;
@@ -46,7 +46,7 @@ export default function board(state = initialState, action) {
             // already in a game
             [KEYS]: data[SUCCESS] ? data[KEYS] : state[KEYS],
             [YOUR_COLOR]: data[SUCCESS] ? data[YOUR_COLOR] : state[YOUR_COLOR],
-            [ALERT]: data[EXPLANATION],
+            [MESSAGE]: data[EXPLANATION],
           };
         case GAME_ACTION_RESPONSE:
           // there's no reason to alert the player after a successful game
@@ -54,7 +54,7 @@ export default function board(state = initialState, action) {
           if (!data[SUCCESS]) {
             return {
               ...state,
-              [ALERT]: data[EXPLANATION],
+              [MESSAGE]: data[EXPLANATION],
             };
           }
           return state;
