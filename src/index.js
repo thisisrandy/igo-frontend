@@ -3,14 +3,18 @@ import ReactDOM from "react-dom";
 import App from "./components/App";
 import reportWebVitals from "./reportWebVitals";
 import { brown } from "@material-ui/core/colors";
-import { createMuiTheme, MuiThemeProvider } from "@material-ui/core";
+// See https://stackoverflow.com/a/64135466/12162258
+import {
+  unstable_createMuiStrictModeTheme,
+  MuiThemeProvider,
+} from "@material-ui/core";
 import { CssBaseline } from "@material-ui/core";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import rootReducer from "./reducers";
 import reduxWebsocket from "@giantmachines/redux-websocket";
 
-const theme = createMuiTheme({
+const theme = unstable_createMuiStrictModeTheme({
   palette: {
     type: "dark",
     primary: brown,
