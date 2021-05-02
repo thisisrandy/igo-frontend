@@ -8,17 +8,25 @@ const useStyles = makeStyles(
       flexWrap: "wrap",
       justifyContent: "center",
     },
-    MessageBackdrop: {
+    AlertBackdrop: {
       zIndex: theme.zIndex.drawer + 1,
       display: "flex",
       alignContent: "center",
       justifyContent: "center",
     },
-    MessagePaper: {
+    AlertPaper: {
       maxWidth: 600,
     },
-    MessageText: {
+    AlertText: {
       padding: "16px 24px",
+    },
+    MessageText: {
+      margin: 0,
+    },
+    MessageButtonContainer: {
+      display: "flex",
+      alignContent: "center",
+      justifyContent: "center",
     },
     StatusControlsContainer: {
       display: "flex",
