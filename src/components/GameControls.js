@@ -148,7 +148,7 @@ function GameControls() {
             variant="contained"
             className={classes.Button}
             onClick={requestDrawButtonClick}
-            disabled={!connected || !playing}
+            disabled={!connected || !playing || !myTurn}
           >
             Request Draw
           </Button>
