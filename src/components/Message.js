@@ -38,6 +38,8 @@ function Message() {
     //   </Paper>
     // </Backdrop>
 
+    // TODO: the outgoing transition doesn't look very nice. figure out how to
+    // get rid of it here and elsewhere
     <Dialog
       open={typeof message !== "undefined" && message !== ""}
       onClick={clickHandler}
