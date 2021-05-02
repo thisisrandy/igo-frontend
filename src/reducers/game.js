@@ -1,4 +1,5 @@
 import {
+  CLEAR_ALERT,
   PLACE_STONE,
   WS_CLOSED,
   WS_MESSAGE,
@@ -40,6 +41,11 @@ export default function board(state = initialState, action) {
               : point
           )
         ),
+      };
+    case CLEAR_ALERT:
+      return {
+        ...state,
+        [ALERT]: "",
       };
     case WS_MESSAGE:
       const msg = action.payload.message;

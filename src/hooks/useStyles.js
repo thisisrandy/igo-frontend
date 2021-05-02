@@ -1,11 +1,17 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(
-  () => ({
+  (theme) => ({
     App: {
       display: "flex",
       flexDirection: "row",
       flexWrap: "wrap",
+      justifyContent: "center",
+    },
+    MessageBackdrop: {
+      zIndex: theme.zIndex.drawer + 1,
+      display: "flex",
+      alignContent: "center",
       justifyContent: "center",
     },
     StatusControlsContainer: {
