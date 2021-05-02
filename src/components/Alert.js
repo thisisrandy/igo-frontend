@@ -13,7 +13,7 @@ function Alert() {
   return (
     <Backdrop
       className={classes.MessageBackdrop}
-      open={alert}
+      open={typeof alert !== "undefined" && alert !== ""}
       onClick={() => dispatch(clearAlert())}
     >
       <Paper>
