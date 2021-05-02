@@ -16,13 +16,13 @@ import {
   JOIN_GAME_RESPONSE,
   NEW_GAME_RESPONSE,
 } from "../constants/IncomingMessageTypes";
-import { ALERT, BOARD } from "../constants/StateKeys";
+import { ALERT, BOARD, CONNECTED } from "../constants/StateKeys";
 
 const initialState = {
   [BOARD]: Array.from({ length: 19 }, () =>
     Array.from({ length: 19 }, () => ["", false, false, ""])
   ),
-  connected: false,
+  [CONNECTED]: false,
 };
 
 export default function board(state = initialState, action) {
@@ -80,7 +80,7 @@ export default function board(state = initialState, action) {
       console.log("websocket open");
       return {
         ...state,
-        connected: true,
+        [CONNECTED]: true,
       };
     case WS_CLOSED:
       // TODO: Pop up an alert saying we're disconnected
@@ -90,7 +90,7 @@ export default function board(state = initialState, action) {
       console.log("websocket closed");
       return {
         ...state,
-        connected: false,
+        [CONNECTED]: false,
       };
 
     default:
