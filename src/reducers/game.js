@@ -1,6 +1,5 @@
 import {
   CLEAR_ALERT,
-  PLACE_STONE,
   WS_CLOSED,
   WS_MESSAGE,
   WS_OPEN,
@@ -28,20 +27,6 @@ const initialState = {
 
 export default function board(state = initialState, action) {
   switch (action.type) {
-    case PLACE_STONE:
-      // TODO: This is just a POC stub for board clicking. Flesh out later
-      return {
-        ...state,
-        [BOARD]: Array.from(state.board.entries(), ([i, row]) =>
-          Array.from(row.entries(), ([j, point]) =>
-            i === action.payload.i && j === action.payload.j
-              ? Array.from(point.entries(), ([k, attr]) =>
-                  k === 0 ? action.payload.turn : attr
-                )
-              : point
-          )
-        ),
-      };
     case CLEAR_ALERT:
       return {
         ...state,
