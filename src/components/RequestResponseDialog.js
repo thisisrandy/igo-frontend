@@ -23,7 +23,7 @@ import { GAME_ACTION } from "../constants/OutgoingMessageTypes";
 import { DRAW, TALLY_SCORE } from "../constants/RequestType";
 import { REQUEST_PENDING } from "../constants/GameStatus";
 
-function RequestResponseDialog() {
+function RequestResponseDialog({ zIndex }) {
   const classes = useStyles();
   const {
     [STATUS]: gameStatus,
@@ -82,7 +82,7 @@ function RequestResponseDialog() {
   };
 
   return (
-    <Dialog open={getDialogOpen()}>
+    <Dialog open={getDialogOpen()} style={{ zIndex: zIndex }}>
       <DialogContent className={classes.DialogContent}>
         <DialogContentText className={classes.MessageText}>
           {getRequestText()}

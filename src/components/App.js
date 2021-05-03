@@ -20,12 +20,8 @@ function App() {
 
   return (
     <div className={classes.App}>
-      {/* TODO: specify z-indices for various message types to indicate priority
-      if more than one is open at a time, e.g. when one joins a game
-      ("successfully joined as...") and there is a pending request open, we
-      would like the join message to display on top */}
-      <Message />
-      <RequestResponseDialog />
+      <Message zIndex={2001} />
+      <RequestResponseDialog zIndex={2000} />
       <GameStatusProvider>
         <Board />
       </GameStatusProvider>
