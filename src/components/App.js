@@ -9,6 +9,7 @@ import { connect } from "@giantmachines/redux-websocket";
 import { SERVER_URI } from "../constants/ServerInfo";
 import Message from "./Message";
 import RequestResponseDialog from "./RequestResponseDialog";
+import GameStatusProvider from "./GameStatusProvider";
 
 function App() {
   const classes = useStyles();
@@ -25,9 +26,13 @@ function App() {
       would like the join message to display on top */}
       <Message />
       <RequestResponseDialog />
-      <Board />
+      <GameStatusProvider>
+        <Board />
+      </GameStatusProvider>
       <div className={classes.StatusControlsContainer}>
-        <GameControls />
+        <GameStatusProvider>
+          <GameControls />
+        </GameStatusProvider>
         <PlayerCard color="white" />
         <PlayerCard color="black" />
         <Clock />

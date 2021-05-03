@@ -8,7 +8,7 @@ import {
   Paper,
   TextField,
 } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useStyles } from "../hooks/useStyles";
 import { useDispatch, useSelector } from "react-redux";
 import { send } from "@giantmachines/redux-websocket";
@@ -27,41 +27,17 @@ import {
   ACTION_TYPE,
 } from "../constants/OutgoingMessageKeys";
 import { WHITE } from "../constants/Colors";
-import {
-  CONNECTED,
-  KEYS,
-  STATUS,
-  TURN,
-  YOUR_COLOR,
-} from "../constants/StateKeys";
-import { COMPLETE, PLAY } from "../constants/GameStatus";
+import { CONNECTED, KEYS, YOUR_COLOR } from "../constants/StateKeys";
 import { PASS_TURN, REQUEST_DRAW, RESIGN } from "../constants/GameActionTypes";
 
-function GameControls() {
+function GameControls({ playing, gameInProgress, myTurn }) {
   const classes = useStyles();
   const {
-    [STATUS]: status,
-    [TURN]: turn,
     [YOUR_COLOR]: your_color,
     [KEYS]: keys,
     [CONNECTED]: connected,
   } = useSelector((state) => state.game);
   const dispatch = useDispatch();
-
-  const [playing, setPlaying] = useState(false);
-  useEffect(() => {
-    setPlaying(typeof status !== "undefined" && status === PLAY);
-  }, [status]);
-
-  const [gameInProgress, setGameInProgress] = useState(false);
-  useEffect(() => {
-    setGameInProgress(typeof status !== "undefined" && status !== COMPLETE);
-  }, [status]);
-
-  const [myTurn, setMyTurn] = useState(false);
-  useEffect(() => {
-    setMyTurn(typeof turn !== "undefined" && turn === your_color);
-  }, [turn, your_color]);
 
   const newGameButtonClick = () => {
     // TODO: make this a dialog

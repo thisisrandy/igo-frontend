@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useStyles } from "../hooks/useStyles";
 import goBoard from "../images/board.png";
 import black from "../images/black.png";
@@ -14,33 +14,18 @@ import {
 } from "../constants/OutgoingMessageKeys";
 import { GAME_ACTION } from "../constants/OutgoingMessageTypes";
 import { PLACE_STONE } from "../constants/GameActionTypes";
-import {
-  BOARD,
-  CONNECTED,
-  KEYS,
-  TURN,
-  YOUR_COLOR,
-} from "../constants/StateKeys";
+import { BOARD, CONNECTED, KEYS, YOUR_COLOR } from "../constants/StateKeys";
 import clsx from "clsx";
 
-function Board() {
+function Board({ myTurn }) {
   const classes = useStyles();
   const {
     [BOARD]: board,
-    [TURN]: turn,
     [YOUR_COLOR]: your_color,
     [KEYS]: keys,
     [CONNECTED]: connected,
   } = useSelector((state) => state.game);
   const dispatch = useDispatch();
-
-  // TODO: I'm doing things like determining current turn in several places.
-  // Consolidate into wrapper component that can provide turn, etc as props to
-  // children
-  const [myTurn, setMyTurn] = useState(false);
-  useEffect(() => {
-    setMyTurn(typeof turn !== "undefined" && turn === your_color);
-  }, [turn, your_color]);
 
   const clickHandler = (i, j) => () => {
     if (connected && myTurn) {
