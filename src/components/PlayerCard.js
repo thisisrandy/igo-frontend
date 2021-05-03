@@ -7,6 +7,9 @@ import white from "../images/white.png";
 function PlayerCard({ color }) {
   const classes = useStyles();
 
+  // TODO: Grey out when not playing, highlight when current turn, and add
+  // indicator (star in upper-right) of which color is the user
+
   return (
     <Paper className={classes.PlayerCardContainer}>
       <Paper className={classes.PlayerCardSubContainer}>

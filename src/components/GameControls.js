@@ -118,10 +118,6 @@ function GameControls() {
   };
 
   // TODO: Need request tally button and callback
-
-  // TODO: Grey out when not playing, highlight when current turn, and add
-  // indicator (star in upper-right) of which color is the user
-
   // TODO: Add help button which explains player keys and how to use them
 
   return (
