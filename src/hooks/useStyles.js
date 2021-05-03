@@ -16,9 +16,16 @@ const useStyles = makeStyles(
     },
     AlertPaper: {
       maxWidth: 600,
+      padding: 10,
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
     },
     AlertText: {
       padding: "16px 24px",
+    },
+    AlertProgress: {
+      marginBottom: 10,
     },
     MessageText: {
       margin: 0,

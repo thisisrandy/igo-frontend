@@ -10,6 +10,8 @@ import { SERVER_URI } from "../constants/ServerInfo";
 import Message from "./Message";
 import RequestResponseDialog from "./RequestResponseDialog";
 import GameStatusProvider from "./GameStatusProvider";
+import RequestResponsePendingAlert from "./RequestResponsePendingAlert";
+import ConnectionAlert from "./ConnectionAlert";
 
 function App() {
   const classes = useStyles();
@@ -20,8 +22,10 @@ function App() {
 
   return (
     <div className={classes.App}>
-      <Message zIndex={2001} />
       <RequestResponseDialog zIndex={2000} />
+      <RequestResponsePendingAlert zIndex={2000} />
+      <Message zIndex={2001} />
+      <ConnectionAlert zIndex={2002} />
       <GameStatusProvider>
         <Board />
       </GameStatusProvider>
