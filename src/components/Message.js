@@ -19,8 +19,6 @@ function Message({ zIndex }) {
   const clickHandler = () => dispatch(clearMessage());
 
   return (
-    // TODO: the outgoing transition doesn't look very nice. figure out how to
-    // get rid of it here and elsewhere
     <Dialog
       open={typeof message !== "undefined" && message !== ""}
       onClick={clickHandler}
