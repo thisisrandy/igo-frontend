@@ -4,3 +4,8 @@ export const clearMessage = () => ({
   type: types.CLEAR_MESSAGE,
   payload: {},
 });
+
+export const clearRejoinNeeded = () => ({
+  type: types.CLEAR_REJOIN_NEEDED,
+  payload: {},
+});

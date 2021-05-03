@@ -1,5 +1,6 @@
 import {
   CLEAR_MESSAGE,
+  CLEAR_REJOIN_NEEDED,
   WS_CLOSED,
   WS_MESSAGE,
   WS_OPEN,
@@ -39,6 +40,11 @@ export default function board(state = initialState, action) {
         ...state,
         [MESSAGE]: "",
       };
+    case CLEAR_REJOIN_NEEDED:
+      return {
+        ...state,
+        [REJOIN_NEEDED]: false,
+      };
     case WS_MESSAGE:
       const msg = action.payload.message;
       console.log(`got message of type ${msg.message_type}`);
@@ -76,11 +82,11 @@ export default function board(state = initialState, action) {
           return state;
       }
     case WS_OPEN:
-      // TODO: Check if we have a game open and rejoin if necessary
       console.log("websocket open");
       return {
         ...state,
         [CONNECTED]: true,
+        [REJOIN_NEEDED]: KEYS_STATE in state,
       };
     case WS_CLOSED:
       // TODO: Pop up an alert saying we're disconnected

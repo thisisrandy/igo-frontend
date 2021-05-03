@@ -12,6 +12,7 @@ import RequestResponseDialog from "./RequestResponseDialog";
 import GameStatusProvider from "./GameStatusProvider";
 import RequestResponsePendingAlert from "./RequestResponsePendingAlert";
 import ConnectionAlert from "./ConnectionAlert";
+import GameRejoiner from "./GameRejoiner";
 
 function App() {
   const classes = useStyles();
@@ -22,6 +23,7 @@ function App() {
 
   return (
     <div className={classes.App}>
+      <GameRejoiner />
       <RequestResponseDialog zIndex={2000} />
       <RequestResponsePendingAlert zIndex={2000} />
       <Message zIndex={2001} />

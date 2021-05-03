@@ -12,3 +12,4 @@ export const WS_MESSAGE = `${DEFAULT_PREFIX}::${WEBSOCKET_MESSAGE}`;
 
 // internal actions
 export const CLEAR_MESSAGE = "CLEAR_MESSAGE";
+export const CLEAR_REJOIN_NEEDED = "CLEAR_REJOIN_NEEDED";
