@@ -89,9 +89,6 @@ export default function board(state = initialState, action) {
         [REJOIN_NEEDED]: KEYS_STATE in state,
       };
     case WS_CLOSED:
-      // Also, we might actually want WEBSOCKET_BROKEN, since we will never
-      // manually close the connection, but it might drop and need to be
-      // reconnected
       console.log("websocket closed");
       return {
         ...state,
