@@ -1,5 +1,6 @@
 import { Paper, Typography } from "@material-ui/core";
 import React from "react";
+import { WHITE } from "../constants/Colors";
 import { useStyles } from "../hooks/useStyles";
 import black from "../images/black.png";
 import white from "../images/white.png";
@@ -14,7 +15,7 @@ function PlayerCard({ color }) {
     <Paper className={classes.PlayerCardContainer}>
       <Paper className={classes.PlayerCardSubContainer}>
         <img
-          src={color === "white" ? white : black}
+          src={color === WHITE ? white : black}
           alt="player piece display"
           className={classes.PlayerStoneImage}
         />

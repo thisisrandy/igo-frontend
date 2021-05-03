@@ -11,6 +11,7 @@ import RequestResponsePendingAlert from "./RequestResponsePendingAlert";
 import ConnectionAlert from "./ConnectionAlert";
 import GameRejoiner from "./GameRejoiner";
 import ConnectionManager from "./ConnectionManager";
+import { BLACK, WHITE } from "../constants/Colors";
 
 function App() {
   const classes = useStyles();
@@ -30,8 +31,8 @@ function App() {
         <GameStatusProvider>
           <GameControls />
         </GameStatusProvider>
-        <PlayerCard color="white" />
-        <PlayerCard color="black" />
+        <PlayerCard color={WHITE} />
+        <PlayerCard color={BLACK} />
         <Clock />
       </div>
     </div>
