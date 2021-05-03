@@ -7,7 +7,7 @@ import {
 } from "@material-ui/core";
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ACCEPT, MARK_DEAD, REJECT } from "../constants/GameActionTypes";
+import { ACCEPT, REJECT } from "../constants/GameActionTypes";
 import { INITIATOR, REQUEST_TYPE } from "../constants/RequestKeys";
 import {
   KEYS,
@@ -20,7 +20,7 @@ import dedent from "dedent-js";
 import { send } from "@giantmachines/redux-websocket";
 import { ACTION_TYPE, KEY, TYPE } from "../constants/OutgoingMessageKeys";
 import { GAME_ACTION } from "../constants/OutgoingMessageTypes";
-import { DRAW, TALLY_SCORE } from "../constants/RequestType";
+import { MARK_DEAD, DRAW, TALLY_SCORE } from "../constants/RequestType";
 import { REQUEST_PENDING } from "../constants/GameStatus";
 
 function RequestResponseDialog({ zIndex }) {
