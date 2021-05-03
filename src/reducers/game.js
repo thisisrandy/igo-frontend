@@ -6,9 +6,9 @@ import {
 } from "../constants/ActionTypes";
 import {
   EXPLANATION,
-  KEYS,
+  KEYS as KEYS_MSG,
   SUCCESS,
-  YOUR_COLOR,
+  YOUR_COLOR as YOUR_COLOR_MSG,
 } from "../constants/IncomingMessageKeys";
 import {
   GAME_ACTION_RESPONSE,
@@ -16,7 +16,14 @@ import {
   JOIN_GAME_RESPONSE,
   NEW_GAME_RESPONSE,
 } from "../constants/IncomingMessageTypes";
-import { MESSAGE, BOARD, CONNECTED } from "../constants/StateKeys";
+import {
+  MESSAGE,
+  BOARD,
+  CONNECTED,
+  REJOIN_NEEDED,
+  KEYS as KEYS_STATE,
+  YOUR_COLOR as YOUR_COLOR_STATE,
+} from "../constants/StateKeys";
 
 const initialState = {
   [BOARD]: Array.from({ length: 19 }, () =>
@@ -44,8 +51,10 @@ export default function board(state = initialState, action) {
             ...state,
             // we want to be careful to preserve state on failure in case we are
             // already in a game
-            [KEYS]: data[SUCCESS] ? data[KEYS] : state[KEYS],
-            [YOUR_COLOR]: data[SUCCESS] ? data[YOUR_COLOR] : state[YOUR_COLOR],
+            [KEYS_STATE]: data[SUCCESS] ? data[KEYS_MSG] : state[KEYS_STATE],
+            [YOUR_COLOR_STATE]: data[SUCCESS]
+              ? data[YOUR_COLOR_MSG]
+              : state[YOUR_COLOR_STATE],
             [MESSAGE]: data[EXPLANATION],
           };
         case GAME_ACTION_RESPONSE:

@@ -1,10 +1,10 @@
-import { KEYS, YOUR_COLOR } from "./IncomingMessageKeys";
-
 // websocket keys
 export const CONNECTED = "connected";
+export const REJOIN_NEEDED = "rejoinNeeded";
 
 // game keys
-export { KEYS, YOUR_COLOR };
+export const KEYS = "keys";
+export const YOUR_COLOR = "your_color";
 export const BOARD = "board";
 export const STATUS = "status";
 export const KOMI = "komi";
