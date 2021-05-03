@@ -21,9 +21,15 @@ const theme = unstable_createMuiStrictModeTheme({
   },
 });
 
+// NOTE: redux-websocket for doesn't attempt to reconnect if the first
+// connection attempt fails, instead opting to only reconnect a previously
+// successful connection on certain configurable conditions. As this doesn't
+// fully meet our needs, it's easier just to turn its mechanisms off and handle
+// reconnection ourselves via an effect
 const reduxWebsocketMiddleware = reduxWebsocket({
   deserializer: JSON.parse,
-  reconnectOnClose: true,
+  reconnectOnClose: false,
+  reconnectOnError: false,
 });
 
 const store = createStore(
