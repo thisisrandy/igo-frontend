@@ -7,6 +7,7 @@ function Clock() {
   const [time, setTime] = useState(0);
 
   // TODO: State and effects are just mocks for now
+  // TODO: Add connection status indicator, e.g. green/red light
   useEffect(() => {
     setTimeout(() => setTime(time + 1), 1000);
   });
