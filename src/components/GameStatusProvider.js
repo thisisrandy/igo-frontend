@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { STATUS, TURN, YOUR_COLOR } from "../constants/StateKeys";
 import { COMPLETE, PLAY } from "../constants/GameStatus";
 
-function GameStatusProvider(props) {
+function GameStatusProvider({ children }) {
   const {
     [STATUS]: status,
     [TURN]: turn,
@@ -27,7 +27,7 @@ function GameStatusProvider(props) {
 
   return (
     <React.Fragment>
-      {React.Children.map(props.children, (child) =>
+      {React.Children.map(children, (child) =>
         React.cloneElement(child, { playing, gameInProgress, myTurn })
       )}
     </React.Fragment>
