@@ -34,6 +34,9 @@ function Board() {
   } = useSelector((state) => state.game);
   const dispatch = useDispatch();
 
+  // TODO: I'm doing things like determining current turn in several places.
+  // Consolidate into wrapper component that can provide turn, etc as props to
+  // children
   const [myTurn, setMyTurn] = useState(false);
   useEffect(() => {
     setMyTurn(typeof turn !== "undefined" && turn === your_color);
