@@ -5,7 +5,7 @@ import {
   DialogActions,
   Button,
 } from "@material-ui/core";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ACCEPT, MARK_DEAD, REJECT } from "../constants/GameActionTypes";
 import { INITIATOR, REQUEST_TYPE } from "../constants/RequestKeys";
@@ -21,6 +21,7 @@ import { send } from "@giantmachines/redux-websocket";
 import { ACTION_TYPE, KEY, TYPE } from "../constants/OutgoingMessageKeys";
 import { GAME_ACTION } from "../constants/OutgoingMessageTypes";
 import { DRAW, TALLY_SCORE } from "../constants/RequestType";
+import { REQUEST_PENDING } from "../constants/GameStatus";
 
 function RequestResponseDialog() {
   const classes = useStyles();
@@ -32,27 +33,17 @@ function RequestResponseDialog() {
   } = useSelector((state) => state.game);
   const dispatch = useDispatch();
 
-  // TODO: use status to determine open and text
-  // TODO: try using useCallback with deps instead of args
-  const determineDialogOpen = useCallback(
-    (request) => {
-      if (request == null) return false;
-      return request[INITIATOR] !== your_color;
-    },
-    [your_color]
-  );
-  const [dialogOpen, setDialogOpen] = useState(
-    determineDialogOpen(pendingRequest)
-  );
-  useEffect(() => {
-    setDialogOpen(determineDialogOpen(pendingRequest));
-  }, [determineDialogOpen, pendingRequest]);
+  const getDialogOpen = useCallback(() => {
+    if (gameStatus !== REQUEST_PENDING) return false;
+    return pendingRequest[INITIATOR] !== your_color;
+  }, [gameStatus, pendingRequest, your_color]);
 
-  const determineRequestText = (request) => {
-    if (request == null) return "";
+  const getRequestText = useCallback(() => {
+    if (gameStatus !== REQUEST_PENDING) return "";
     const color =
-      request[INITIATOR].charAt(0).toUpperCase() + request[INITIATOR].slice(1);
-    switch (request[REQUEST_TYPE]) {
+      pendingRequest[INITIATOR].charAt(0).toUpperCase() +
+      pendingRequest[INITIATOR].slice(1);
+    switch (pendingRequest[REQUEST_TYPE]) {
       case MARK_DEAD:
         return dedent(`${color} has marked a group as dead. Do you concur? If
           yes, the group will be removed and counted as prisoner(s). If no, you
@@ -66,16 +57,10 @@ function RequestResponseDialog() {
           the disagreement`);
       default:
         throw new TypeError(
-          `Unknown request type ${request[REQUEST_TYPE]} encountered`
+          `Unknown request type ${pendingRequest[REQUEST_TYPE]} encountered`
         );
     }
-  };
-  const [requestText, setRequestText] = useState(
-    determineRequestText(pendingRequest)
-  );
-  useEffect(() => {
-    setRequestText(determineRequestText(pendingRequest));
-  }, [pendingRequest]);
+  }, [gameStatus, pendingRequest]);
 
   const accept = () => {
     dispatch(
@@ -97,10 +82,10 @@ function RequestResponseDialog() {
   };
 
   return (
-    <Dialog open={dialogOpen}>
+    <Dialog open={getDialogOpen()}>
       <DialogContent className={classes.DialogContent}>
         <DialogContentText className={classes.MessageText}>
-          {requestText}
+          {getRequestText()}
         </DialogContentText>
       </DialogContent>
       <DialogActions className={classes.MessageButtonContainer}>
