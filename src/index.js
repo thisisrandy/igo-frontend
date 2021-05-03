@@ -23,6 +23,7 @@ const theme = unstable_createMuiStrictModeTheme({
 
 const reduxWebsocketMiddleware = reduxWebsocket({
   deserializer: JSON.parse,
+  reconnectOnClose: true,
 });
 
 const store = createStore(

@@ -68,8 +68,6 @@ export default function board(state = initialState, action) {
       }
     case WS_OPEN:
       // TODO: Check if we have a game open and rejoin if necessary
-      // TODO: Reconnect doesn't seem to work particularly reliably. Look more
-      // into details for a better understanding
       console.log("websocket open");
       return {
         ...state,
