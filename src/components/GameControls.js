@@ -71,7 +71,6 @@ function GameControls({ playing, gameInProgress, myTurn }) {
   };
 
   // TODO: Need request tally button and callback
-  // TODO: Add help button which explains player keys and how to use them
 
   return (
     <Paper className={classes.GameControlsContainer}>
