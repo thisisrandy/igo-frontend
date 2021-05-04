@@ -88,10 +88,10 @@ const useStyles = makeStyles(
       zIndex: 3,
     },
     CountedWhite: {
-      backgroundColor: "rgba(0, 0, 0, 0.4)",
+      backgroundColor: "rgba(255, 255, 255, 0.4)",
     },
     CountedBlack: {
-      backgroundColor: "rgba(255, 255, 255, 0.4)",
+      backgroundColor: "rgba(0, 0, 0, 0.4)",
     },
     GameControlsContainer: {
       margin: 20,
