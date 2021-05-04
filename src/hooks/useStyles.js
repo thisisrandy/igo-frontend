@@ -96,10 +96,10 @@ const useStyles = makeStyles(
     GameControlsContainer: {
       margin: 20,
       padding: 10,
-      width: 500,
+      width: 750,
       display: "flex",
       flexDirection: "row",
-      justifyContent: "space-around",
+      justifyContent: "space-evenly",
     },
     Button: {
       margin: "5px 20px",

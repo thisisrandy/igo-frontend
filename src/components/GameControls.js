@@ -15,10 +15,15 @@ import {
 } from "../constants/OutgoingMessageKeys";
 import { WHITE } from "../constants/Colors";
 import { CONNECTED, KEYS, YOUR_COLOR } from "../constants/StateKeys";
-import { PASS_TURN, REQUEST_DRAW, RESIGN } from "../constants/GameActionTypes";
+import {
+  PASS_TURN,
+  REQUEST_DRAW,
+  REQUEST_TALLY_SCORE,
+  RESIGN,
+} from "../constants/GameActionTypes";
 import JoinResumeDialog from "./JoinResumeDialog";
 
-function GameControls({ playing, gameInProgress, myTurn }) {
+function GameControls({ playing, endGame, gameInProgress, myTurn }) {
   const classes = useStyles();
   const {
     [YOUR_COLOR]: your_color,
@@ -70,6 +75,16 @@ function GameControls({ playing, gameInProgress, myTurn }) {
     );
   };
 
+  const requestTallyScore = () => {
+    dispatch(
+      send({
+        [TYPE]: GAME_ACTION,
+        [KEY]: keys[your_color],
+        [ACTION_TYPE]: REQUEST_TALLY_SCORE,
+      })
+    );
+  };
+
   // TODO: Need request tally button and callback
 
   return (
@@ -99,6 +114,14 @@ function GameControls({ playing, gameInProgress, myTurn }) {
             disabled={!connected || !playing || !myTurn}
           >
             Request Draw
+          </Button>
+          <Button
+            variant="contained"
+            className={classes.Button}
+            onClick={requestTallyScore}
+            disabled={!connected || !endGame || !myTurn}
+          >
+            Request Tally Score
           </Button>
         </React.Fragment>
       ) : (
