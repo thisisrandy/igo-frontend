@@ -16,7 +16,7 @@ function PlayerCard({ color }) {
       <Paper className={classes.PlayerCardSubContainer}>
         <img
           src={color === WHITE ? white : black}
-          alt="player piece display"
+          alt="player stone display"
           className={classes.PlayerStoneImage}
         />
       </Paper>
