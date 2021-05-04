@@ -9,22 +9,6 @@ const useStyles = makeStyles(
       flexWrap: "wrap",
       justifyContent: "center",
     },
-    AlertBackdrop: {
-      zIndex: theme.zIndex.drawer + 1,
-      display: "flex",
-      alignContent: "center",
-      justifyContent: "center",
-    },
-    AlertPaper: {
-      maxWidth: 600,
-      padding: 10,
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-    },
-    AlertText: {
-      padding: "16px 24px",
-    },
     AlertProgressContainer: {
       width: "100%",
       display: "flex",
