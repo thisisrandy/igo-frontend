@@ -104,6 +104,15 @@ const useStyles = makeStyles(
       flexDirection: "column",
       alignItems: "center",
     },
+    KomiTextContainer: {
+      width: "100%",
+      display: "flex",
+      justifyContent: "center",
+    },
+    KomiTextField: {
+      marginTop: 10,
+      width: "50%",
+    },
     PlayerCardContainer: {
       minWidth: 350,
       margin: 20,

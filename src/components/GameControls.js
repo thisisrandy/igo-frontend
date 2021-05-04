@@ -3,17 +3,8 @@ import React, { useState } from "react";
 import { useStyles } from "../hooks/useStyles";
 import { useDispatch, useSelector } from "react-redux";
 import { send } from "@giantmachines/redux-websocket";
-import { GAME_ACTION, NEW_GAME } from "../constants/OutgoingMessageTypes";
-import { HUMAN } from "../constants/OpponentTypes";
-import {
-  TYPE,
-  VS,
-  COLOR,
-  KOMI,
-  KEY,
-  ACTION_TYPE,
-} from "../constants/OutgoingMessageKeys";
-import { WHITE } from "../constants/Colors";
+import { GAME_ACTION } from "../constants/OutgoingMessageTypes";
+import { TYPE, KEY, ACTION_TYPE } from "../constants/OutgoingMessageKeys";
 import { CONNECTED, KEYS, YOUR_COLOR } from "../constants/StateKeys";
 import {
   PASS_TURN,
@@ -22,6 +13,7 @@ import {
   RESIGN,
 } from "../constants/GameActionTypes";
 import JoinResumeDialog from "./JoinResumeDialog";
+import NewGameDialog from "./NewGameDialog";
 
 function GameControls({ playing, endGame, gameInProgress, myTurn }) {
   const classes = useStyles();
@@ -32,11 +24,9 @@ function GameControls({ playing, endGame, gameInProgress, myTurn }) {
   } = useSelector((state) => state.game);
   const dispatch = useDispatch();
 
+  const [newGameDialogOpen, setNewGameDialogOpen] = useState(false);
   const newGameButtonClick = () => {
-    // TODO: make this a dialog
-    dispatch(
-      send({ [TYPE]: NEW_GAME, [VS]: HUMAN, [COLOR]: WHITE, [KOMI]: 6.5 })
-    );
+    setNewGameDialogOpen(true);
   };
 
   const [joinResumeDialogOpen, setJoinResumeDialogOpen] = useState(false);
@@ -132,6 +122,7 @@ function GameControls({ playing, endGame, gameInProgress, myTurn }) {
           >
             New Game
           </Button>
+          <NewGameDialog {...{ newGameDialogOpen, setNewGameDialogOpen }} />
           <Button
             variant="contained"
             className={classes.Button}
