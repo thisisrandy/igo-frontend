@@ -16,6 +16,8 @@ import { BLACK, WHITE } from "../constants/Colors";
 function App() {
   const classes = useStyles();
 
+  // TODO: Add some sort of info link, probably to github
+
   return (
     <div className={classes.App}>
       <ConnectionManager />
