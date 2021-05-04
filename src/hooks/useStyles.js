@@ -10,9 +10,9 @@ const useStyles = makeStyles(
       justifyContent: "center",
     },
     AlertProgressContainer: {
-      width: "100%",
       display: "flex",
       justifyContent: "center",
+      paddingBottom: 6,
     },
     AlertProgress: {
       marginBottom: 10,
