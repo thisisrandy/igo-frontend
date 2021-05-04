@@ -81,6 +81,7 @@ function RequestResponseDialog({ zIndex }) {
     );
   };
 
+  // TODO: Make draggable
   return (
     <Dialog open={getDialogOpen()} style={{ zIndex: zIndex }}>
       <DialogContent className={classes.DialogContent}>

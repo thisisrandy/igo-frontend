@@ -18,6 +18,7 @@ function Message({ zIndex }) {
 
   const clickHandler = () => dispatch(clearMessage());
 
+  // TODO: Make draggable
   return (
     <Dialog open={message != null && message !== ""} style={{ zIndex: zIndex }}>
       <DialogContent className={classes.DialogContent}>

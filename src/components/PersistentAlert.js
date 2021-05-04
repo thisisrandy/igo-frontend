@@ -14,6 +14,7 @@ import { useStyles } from "../hooks/useStyles";
 function PersistentAlert({ message, zIndex, open }) {
   const classes = useStyles();
 
+  // TODO: make draggable
   return (
     <Backdrop className={classes.AlertBackdrop} open={open}>
       <Paper className={classes.AlertPaper} style={{ zIndex: zIndex }}>
