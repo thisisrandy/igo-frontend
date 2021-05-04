@@ -1,10 +1,15 @@
-import { Backdrop, CircularProgress, Typography } from "@material-ui/core";
+import {
+  Dialog,
+  DialogContent,
+  DialogContentText,
+  CircularProgress,
+} from "@material-ui/core";
 import React from "react";
 import { useStyles } from "../hooks/useStyles";
 import {
   DraggablePaper,
-  draggableStyle,
-  genericDraggableId,
+  DraggableDialogTitle,
+  DraggableDialogActions,
 } from "./DraggablePaper";
 
 /***
@@ -15,20 +20,23 @@ function PersistentAlert({ message, zIndex, open }) {
   const classes = useStyles();
 
   return (
-    <Backdrop className={classes.AlertBackdrop} open={open}>
-      <DraggablePaper className={classes.AlertPaper} style={{ zIndex: zIndex }}>
-        <Typography className={classes.AlertText} variant="body1">
-          {message}
-        </Typography>
-        <div
-          id={genericDraggableId}
-          style={draggableStyle}
-          className={classes.AlertProgressContainer}
-        >
+    <React.Fragment>
+      <Dialog
+        open={open}
+        style={{ zIndex: zIndex }}
+        PaperComponent={DraggablePaper}
+      >
+        <DraggableDialogTitle>Alert</DraggableDialogTitle>
+        <DialogContent className={classes.DialogContent}>
+          <DialogContentText className={classes.MessageText}>
+            {message}
+          </DialogContentText>
+        </DialogContent>
+        <DraggableDialogActions className={classes.MessageButtonContainer}>
           <CircularProgress className={classes.AlertProgress} />
-        </div>
-      </DraggablePaper>
-    </Backdrop>
+        </DraggableDialogActions>
+      </Dialog>
+    </React.Fragment>
   );
 }
 
