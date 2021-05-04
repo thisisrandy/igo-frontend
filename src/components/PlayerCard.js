@@ -17,7 +17,7 @@ import black from "../images/black.png";
 import white from "../images/white.png";
 import StarIcon from "@material-ui/icons/Star";
 
-function PlayerCard({ color, joinedToGame }) {
+function PlayerCard({ color, joinedToGame, playing }) {
   const classes = useStyles();
   const {
     [YOUR_COLOR]: your_color,
@@ -74,7 +74,7 @@ function PlayerCard({ color, joinedToGame }) {
         </Paper>
       </span>
       <Paper className={classes.PlayerCardKeyContainer}>
-        {joinedToGame && turn === color && <StarIcon />}
+        {joinedToGame && playing && turn === color && <StarIcon />}
         <Typography
           variant="caption"
           style={{ marginLeft: joinedToGame ? 5 : 0 }}
