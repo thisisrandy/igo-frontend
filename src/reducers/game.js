@@ -47,7 +47,6 @@ export default function board(state = initialState, action) {
       };
     case WS_MESSAGE:
       const msg = action.payload.message;
-      console.log(`got message of type ${msg.message_type}`);
       const data = msg.data;
       // check the type and process accordingly
       switch (msg.message_type) {
@@ -82,14 +81,12 @@ export default function board(state = initialState, action) {
           return state;
       }
     case WS_OPEN:
-      console.log("websocket open");
       return {
         ...state,
         [CONNECTED]: true,
         [REJOIN_NEEDED]: KEYS_STATE in state,
       };
     case WS_CLOSED:
-      console.log("websocket closed");
       return {
         ...state,
         [CONNECTED]: false,
