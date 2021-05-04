@@ -73,7 +73,7 @@ const useStyles = makeStyles(
       width: "100%",
       zIndex: 1,
     },
-    EmptyPointHover: {
+    PointHover: {
       "&:hover": {
         backgroundColor: "rgba(0, 0, 0, 0.4)",
         cursor: "pointer",

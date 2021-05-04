@@ -75,7 +75,7 @@ function Board({ myTurn }) {
                 // highlight stones instead of empty points during the endgame
                 // and nothing while complete or pending request), also depends
                 // on game status. build that in later
-                myTurn ? classes.EmptyPointHover : {}
+                myTurn ? classes.PointHover : {}
               )}
               style={{ gridRow: i + 2, gridColumn: j + 2 }}
               onClick={clickHandler(i, j)}
