@@ -26,6 +26,7 @@ import {
   DraggableDialogTitle,
   DraggablePaper,
 } from "./DraggablePaper";
+import { capitalizeFirstLetter } from "../utils";
 
 function RequestResponseDialog({ zIndex }) {
   const classes = useStyles();
@@ -44,9 +45,7 @@ function RequestResponseDialog({ zIndex }) {
 
   const getRequestText = useCallback(() => {
     if (gameStatus !== REQUEST_PENDING) return "";
-    const color =
-      pendingRequest[INITIATOR].charAt(0).toUpperCase() +
-      pendingRequest[INITIATOR].slice(1);
+    const color = capitalizeFirstLetter(pendingRequest[INITIATOR]);
     switch (pendingRequest[REQUEST_TYPE]) {
       case MARK_DEAD:
         return dedent(`${color} has marked a group as dead. Do you concur? If
