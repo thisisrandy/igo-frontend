@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { STATUS, TURN, YOUR_COLOR } from "../constants/StateKeys";
+import { CONNECTED, STATUS, TURN, YOUR_COLOR } from "../constants/StateKeys";
 import { COMPLETE, PLAY } from "../constants/GameStatus";
 
 /**
@@ -9,6 +9,7 @@ import { COMPLETE, PLAY } from "../constants/GameStatus";
  */
 function GameStatusProvider({ children }) {
   const {
+    [CONNECTED]: connected,
     [STATUS]: status,
     [TURN]: turn,
     [YOUR_COLOR]: your_color,
@@ -16,8 +17,8 @@ function GameStatusProvider({ children }) {
 
   const [joinedToGame, setJoinedToGame] = useState(false);
   useEffect(() => {
-    setJoinedToGame(status != null);
-  }, [status]);
+    setJoinedToGame(connected && status != null);
+  }, [connected, status]);
 
   const [playing, setPlaying] = useState(false);
   useEffect(() => {
