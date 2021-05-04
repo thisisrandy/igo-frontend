@@ -68,10 +68,10 @@ const useStyles = makeStyles(
       overflow: "hidden",
       zIndex: 1,
     },
-    EmptyPoint: {
+    Point: {
       height: "100%",
       width: "100%",
-      zIndex: 1,
+      zIndex: 2,
     },
     PointHover: {
       "&:hover": {
@@ -85,7 +85,13 @@ const useStyles = makeStyles(
       width: "auto",
       overflow: "hidden",
       color: red[400],
-      zIndex: 2,
+      zIndex: 3,
+    },
+    CountedWhite: {
+      backgroundColor: "rgba(0, 0, 0, 0.4)",
+    },
+    CountedBlack: {
+      backgroundColor: "rgba(255, 255, 255, 0.4)",
     },
     GameControlsContainer: {
       margin: 20,
