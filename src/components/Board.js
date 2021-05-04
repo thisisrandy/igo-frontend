@@ -42,12 +42,7 @@ function Board({ myTurn }) {
 
   return (
     <Paper className={classes.BoardContainer}>
-      <img
-        src={goBoard}
-        alt="go board"
-        className={classes.BoardImage}
-        onClick={clickHandler}
-      />
+      <img src={goBoard} alt="go board" className={classes.BoardImage} />
       {Array.from(board.entries(), ([i, row]) =>
         Array.from(row.entries(), ([j, point]) =>
           point[0] === "w" ? (
