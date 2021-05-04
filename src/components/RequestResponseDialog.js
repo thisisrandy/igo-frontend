@@ -53,8 +53,8 @@ function RequestResponseDialog({ zIndex }) {
       case TALLY_SCORE:
         return dedent(`${color} has indicated that they are ready to tally
           the score. Do you concur? If yes, territory will be calculated and
-          the game will end. If no, you will be returned to play to resolve
-          the disagreement`);
+          the game will end. If no, you will be returned to the endgame to
+          resolve the disagreement`);
       default:
         throw new TypeError(
           `Unknown request type ${pendingRequest[REQUEST_TYPE]} encountered`

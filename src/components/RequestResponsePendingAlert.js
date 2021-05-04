@@ -32,7 +32,7 @@ function RequestResponsePendingAlert({ zIndex }) {
       case TALLY_SCORE:
         return dedent(`You indicated that you are ready to tally the score. If
           your opponent agrees, territory will be calculated and the game will
-          end. Otherwise, you will be returned to play to resolve the
+          end. Otherwise, you will be returned to the endgame to resolve the
           disagreement. Awaiting their response...`);
       default:
         throw new TypeError(
