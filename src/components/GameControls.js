@@ -85,8 +85,6 @@ function GameControls({ playing, endGame, gameInProgress, myTurn }) {
     );
   };
 
-  // TODO: Need request tally button and callback
-
   return (
     <Paper className={classes.GameControlsContainer}>
       {gameInProgress ? (
