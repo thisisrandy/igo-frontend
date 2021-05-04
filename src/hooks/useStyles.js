@@ -1,3 +1,4 @@
+import { red } from "@material-ui/core/colors";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(
@@ -96,14 +97,36 @@ const useStyles = makeStyles(
       alignItems: "center",
     },
     PlayerCardContainer: {
+      minWidth: 350,
       margin: 20,
       padding: 10,
+      borderWidth: 5,
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+    },
+    PlayerCardSelf: {
+      borderColor: theme.palette.primary.main,
+    },
+    PlayerCardNeutral: {
+      borderColor: theme.palette.grey[700],
+    },
+    PlayerCardOpponentNotConnected: {
+      borderColor: red[400],
+    },
+    PlayerCardSpan: {
       display: "flex",
       flexDirection: "row",
+      justifyContent: "space-around",
     },
     PlayerCardSubContainer: {
       margin: 10,
       padding: 10,
+      display: "flex",
+    },
+    PlayerCardScoreColumn: {
+      padding: 5,
+      minWidth: 55,
       display: "flex",
       flexDirection: "column",
       justifyContent: "space-around",
@@ -111,6 +134,13 @@ const useStyles = makeStyles(
     PlayerStoneImage: {
       height: 100,
       width: "auto",
+    },
+    PlayerCardKeyContainer: {
+      margin: "0px 10px 10px",
+      padding: 10,
+      display: "flex",
+      alignItems: "center",
+      minHeight: 45,
     },
     ClockContainer: {
       margin: 20,

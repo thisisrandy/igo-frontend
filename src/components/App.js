@@ -30,9 +30,9 @@ function App() {
       <div className={classes.StatusControlsContainer}>
         <GameStatusProvider>
           <GameControls />
+          <PlayerCard color={WHITE} />
+          <PlayerCard color={BLACK} />
         </GameStatusProvider>
-        <PlayerCard color={WHITE} />
-        <PlayerCard color={BLACK} />
         <Clock />
       </div>
     </div>
