@@ -19,10 +19,7 @@ function Message({ zIndex }) {
   const clickHandler = () => dispatch(clearMessage());
 
   return (
-    <Dialog
-      open={typeof message !== "undefined" && message !== ""}
-      style={{ zIndex: zIndex }}
-    >
+    <Dialog open={message != null && message !== ""} style={{ zIndex: zIndex }}>
       <DialogContent className={classes.DialogContent}>
         <DialogContentText className={classes.MessageText}>
           {message}

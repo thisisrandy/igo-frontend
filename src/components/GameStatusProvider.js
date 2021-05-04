@@ -22,17 +22,17 @@ function GameStatusProvider({ children }) {
 
   const [playing, setPlaying] = useState(false);
   useEffect(() => {
-    setPlaying(typeof status !== "undefined" && status === PLAY);
+    setPlaying(status === PLAY);
   }, [status]);
 
   const [gameInProgress, setGameInProgress] = useState(false);
   useEffect(() => {
-    setGameInProgress(typeof status !== "undefined" && status !== COMPLETE);
+    setGameInProgress(status != null && status !== COMPLETE);
   }, [status]);
 
   const [myTurn, setMyTurn] = useState(false);
   useEffect(() => {
-    setMyTurn(typeof turn !== "undefined" && turn === your_color);
+    setMyTurn(turn != null && turn === your_color);
   }, [turn, your_color]);
 
   return (
