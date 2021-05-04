@@ -8,6 +8,7 @@ function Clock() {
 
   // TODO: State and effects are just mocks for now
   // TODO: Add connection status indicator, e.g. green/red light
+  // TODO: Add game status indicator
   useEffect(() => {
     setTimeout(() => setTime(time + 1), 1000);
   });
