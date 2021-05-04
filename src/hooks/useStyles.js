@@ -79,6 +79,14 @@ const useStyles = makeStyles(
         cursor: "pointer",
       },
     },
+    DeadStone: {
+      display: "block",
+      height: "90%",
+      width: "auto",
+      overflow: "hidden",
+      color: red[400],
+      zIndex: 2,
+    },
     GameControlsContainer: {
       margin: 20,
       padding: 10,
