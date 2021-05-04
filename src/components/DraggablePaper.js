@@ -3,9 +3,6 @@ import Paper from "@material-ui/core/Paper";
 import Draggable from "react-draggable";
 import { DialogTitle } from "@material-ui/core";
 
-// TODO: quiet strict mode warnings using the following:
-// https://stackoverflow.com/a/63603903/12162258
-
 const titleId = "draggable-dialog-title";
 const actionsId = "draggable-dialog-actions";
 const genericDraggableId = "draggable-generic-id";
@@ -19,12 +16,17 @@ const draggableStyle = { cursor: "move" };
  * https://github.com/mui-org/material-ui/issues/23043, hence the hard-coding
  */
 function DraggablePaper(props) {
+  // This is to quiet strict mode warnings about findDOMNode usage. See
+  // https://stackoverflow.com/a/63603903/12162258 for details
+  const nodeRef = React.useRef(null);
+
   return (
     <Draggable
       handle={`#${titleId},#${actionsId},#${genericDraggableId}`}
       cancel={'[class*="MuiDialogContent-root"]'}
+      nodeRef={nodeRef}
     >
-      <Paper {...props} />
+      <Paper ref={nodeRef} {...props} />
     </Draggable>
   );
 }
