@@ -4,7 +4,8 @@ import { STATUS, TURN, YOUR_COLOR } from "../constants/StateKeys";
 import { COMPLETE, PLAY } from "../constants/GameStatus";
 
 /**
- * Wrapper to provide playing, gameInProgress, and myTurn to children
+ * Wrapper to provide joinedToGame, playing, gameInProgress, and myTurn to
+ * children
  */
 function GameStatusProvider({ children }) {
   const {
@@ -12,6 +13,11 @@ function GameStatusProvider({ children }) {
     [TURN]: turn,
     [YOUR_COLOR]: your_color,
   } = useSelector((state) => state.game);
+
+  const [joinedToGame, setJoinedToGame] = useState(false);
+  useEffect(() => {
+    setJoinedToGame(status != null);
+  }, [status]);
 
   const [playing, setPlaying] = useState(false);
   useEffect(() => {
@@ -31,7 +37,12 @@ function GameStatusProvider({ children }) {
   return (
     <React.Fragment>
       {React.Children.map(children, (child) =>
-        React.cloneElement(child, { playing, gameInProgress, myTurn })
+        React.cloneElement(child, {
+          joinedToGame,
+          playing,
+          gameInProgress,
+          myTurn,
+        })
       )}
     </React.Fragment>
   );
