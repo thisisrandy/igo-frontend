@@ -3,6 +3,9 @@ import { useSelector } from "react-redux";
 import { STATUS, TURN, YOUR_COLOR } from "../constants/StateKeys";
 import { COMPLETE, PLAY } from "../constants/GameStatus";
 
+/**
+ * Wrapper to provide playing, gameInProgress, and myTurn to children
+ */
 function GameStatusProvider({ children }) {
   const {
     [STATUS]: status,
