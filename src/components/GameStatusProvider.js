@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { CONNECTED, STATUS, TURN, YOUR_COLOR } from "../constants/StateKeys";
-import { COMPLETE, PLAY } from "../constants/GameStatus";
+import { COMPLETE, ENDGAME, PLAY } from "../constants/GameStatus";
 
 /**
- * Wrapper to provide joinedToGame, playing, gameInProgress, and myTurn to
- * children
+ * Wrapper to provide joinedToGame, playing, endGame, gameInProgress, and myTurn
+ * to children
  */
 function GameStatusProvider({ children }) {
   const {
@@ -25,6 +25,11 @@ function GameStatusProvider({ children }) {
     setPlaying(status === PLAY);
   }, [status]);
 
+  const [endGame, setEndGame] = useState(false);
+  useEffect(() => {
+    setEndGame(status === ENDGAME);
+  }, [status]);
+
   const [gameInProgress, setGameInProgress] = useState(false);
   useEffect(() => {
     setGameInProgress(status != null && status !== COMPLETE);
@@ -41,6 +46,7 @@ function GameStatusProvider({ children }) {
         React.cloneElement(child, {
           joinedToGame,
           playing,
+          endGame,
           gameInProgress,
           myTurn,
         })
