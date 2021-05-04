@@ -22,8 +22,13 @@ const useStyles = makeStyles(
     },
     MessageButtonContainer: {
       display: "flex",
-      alignContent: "center",
+      alignItems: "center",
       justifyContent: "center",
+    },
+    DialogButtonContainer: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "flex-end",
     },
     StatusControlsContainer: {
       display: "flex",

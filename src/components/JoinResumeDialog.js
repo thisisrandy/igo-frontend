@@ -1,10 +1,8 @@
 import {
   Button,
   Dialog,
-  DialogActions,
   DialogContent,
   DialogContentText,
-  DialogTitle,
   TextField,
 } from "@material-ui/core";
 import React, { useState } from "react";
@@ -14,6 +12,11 @@ import { send } from "@giantmachines/redux-websocket";
 import { JOIN_GAME } from "../constants/OutgoingMessageTypes";
 import { TYPE, KEY } from "../constants/OutgoingMessageKeys";
 import { CONNECTED } from "../constants/StateKeys";
+import {
+  DraggableDialogActions,
+  DraggableDialogTitle,
+  DraggablePaper,
+} from "./DraggablePaper";
 
 function JoinResumeDialog({ joinResumeDialogOpen, setJoinResumeDialogOpen }) {
   const classes = useStyles();
@@ -35,8 +38,9 @@ function JoinResumeDialog({ joinResumeDialogOpen, setJoinResumeDialogOpen }) {
     <Dialog
       open={joinResumeDialogOpen}
       onClose={() => setJoinResumeDialogOpen(false)}
+      PaperComponent={DraggablePaper}
     >
-      <DialogTitle>Join/Resume Game</DialogTitle>
+      <DraggableDialogTitle>Join/Resume Game</DraggableDialogTitle>
       <DialogContent className={classes.DialogContent}>
         <DialogContentText>
           To join a new game, ask the player who created the game for the
@@ -55,7 +59,7 @@ function JoinResumeDialog({ joinResumeDialogOpen, setJoinResumeDialogOpen }) {
           }}
         />
       </DialogContent>
-      <DialogActions>
+      <DraggableDialogActions className={classes.DialogButtonContainer}>
         <Button
           className={classes.Button}
           variant="contained"
@@ -71,7 +75,7 @@ function JoinResumeDialog({ joinResumeDialogOpen, setJoinResumeDialogOpen }) {
         >
           Cancel
         </Button>
-      </DialogActions>
+      </DraggableDialogActions>
     </Dialog>
   );
 }
