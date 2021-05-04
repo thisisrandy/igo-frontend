@@ -21,7 +21,6 @@ function Message({ zIndex }) {
   return (
     <Dialog
       open={typeof message !== "undefined" && message !== ""}
-      onClick={clickHandler}
       style={{ zIndex: zIndex }}
     >
       <DialogContent className={classes.DialogContent}>
