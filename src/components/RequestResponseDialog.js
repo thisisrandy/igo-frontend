@@ -2,7 +2,6 @@ import {
   Dialog,
   DialogContent,
   DialogContentText,
-  DialogActions,
   Button,
 } from "@material-ui/core";
 import React, { useCallback } from "react";
