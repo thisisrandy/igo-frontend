@@ -3,6 +3,9 @@ import Paper from "@material-ui/core/Paper";
 import Draggable from "react-draggable";
 import { DialogTitle } from "@material-ui/core";
 
+// TODO: quiet strict mode warnings using the following:
+// https://stackoverflow.com/a/63603903/12162258
+
 const titleId = "draggable-dialog-title";
 const actionsId = "draggable-dialog-actions";
 const genericDraggableId = "draggable-generic-id";
