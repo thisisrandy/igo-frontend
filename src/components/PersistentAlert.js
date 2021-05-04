@@ -1,11 +1,11 @@
-import {
-  Backdrop,
-  CircularProgress,
-  Paper,
-  Typography,
-} from "@material-ui/core";
+import { Backdrop, CircularProgress, Typography } from "@material-ui/core";
 import React from "react";
 import { useStyles } from "../hooks/useStyles";
+import {
+  DraggablePaper,
+  draggableStyle,
+  genericDraggableId,
+} from "./DraggablePaper";
 
 /***
  * This is a display component which should be wrapped with logic to determine a
@@ -14,15 +14,20 @@ import { useStyles } from "../hooks/useStyles";
 function PersistentAlert({ message, zIndex, open }) {
   const classes = useStyles();
 
-  // TODO: make draggable
   return (
     <Backdrop className={classes.AlertBackdrop} open={open}>
-      <Paper className={classes.AlertPaper} style={{ zIndex: zIndex }}>
+      <DraggablePaper className={classes.AlertPaper} style={{ zIndex: zIndex }}>
         <Typography className={classes.AlertText} variant="body1">
           {message}
         </Typography>
-        <CircularProgress className={classes.AlertProgress} />
-      </Paper>
+        <div
+          id={genericDraggableId}
+          style={draggableStyle}
+          className={classes.AlertProgressContainer}
+        >
+          <CircularProgress className={classes.AlertProgress} />
+        </div>
+      </DraggablePaper>
     </Backdrop>
   );
 }

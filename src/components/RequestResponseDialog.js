@@ -22,6 +22,11 @@ import { ACTION_TYPE, KEY, TYPE } from "../constants/OutgoingMessageKeys";
 import { GAME_ACTION } from "../constants/OutgoingMessageTypes";
 import { MARK_DEAD, DRAW, TALLY_SCORE } from "../constants/RequestType";
 import { REQUEST_PENDING } from "../constants/GameStatus";
+import {
+  DraggableDialogActions,
+  DraggableDialogTitle,
+  DraggablePaper,
+} from "./DraggablePaper";
 
 function RequestResponseDialog({ zIndex }) {
   const classes = useStyles();
@@ -81,22 +86,26 @@ function RequestResponseDialog({ zIndex }) {
     );
   };
 
-  // TODO: Make draggable
   return (
-    <Dialog open={getDialogOpen()} style={{ zIndex: zIndex }}>
+    <Dialog
+      open={getDialogOpen()}
+      style={{ zIndex: zIndex }}
+      PaperComponent={DraggablePaper}
+    >
+      <DraggableDialogTitle>Request</DraggableDialogTitle>
       <DialogContent className={classes.DialogContent}>
         <DialogContentText className={classes.MessageText}>
           {getRequestText()}
         </DialogContentText>
       </DialogContent>
-      <DialogActions className={classes.MessageButtonContainer}>
+      <DraggableDialogActions className={classes.MessageButtonContainer}>
         <Button className={classes.Button} variant="contained" onClick={accept}>
           Yes
         </Button>
         <Button className={classes.Button} variant="contained" onClick={reject}>
           No
         </Button>
-      </DialogActions>
+      </DraggableDialogActions>
     </Dialog>
   );
 }

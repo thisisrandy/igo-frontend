@@ -25,6 +25,11 @@ const useStyles = makeStyles(
     AlertText: {
       padding: "16px 24px",
     },
+    AlertProgressContainer: {
+      width: "100%",
+      display: "flex",
+      justifyContent: "center",
+    },
     AlertProgress: {
       marginBottom: 10,
     },
