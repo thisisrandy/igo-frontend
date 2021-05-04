@@ -119,7 +119,7 @@ function GameControls({ playing, endGame, gameInProgress, myTurn }) {
             variant="contained"
             className={classes.Button}
             onClick={requestTallyScore}
-            disabled={!connected || !endGame || !myTurn}
+            disabled={!connected || !endGame}
           >
             Request Tally Score
           </Button>
