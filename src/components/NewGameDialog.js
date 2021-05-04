@@ -104,7 +104,12 @@ function NewGameDialog({ newGameDialogOpen, setNewGameDialogOpen }) {
         </FormControl>
       </DialogContent>
       <DraggableDialogActions className={classes.DialogButtonContainer}>
-        <Button className={classes.Button} variant="contained" onClick={submit}>
+        <Button
+          className={classes.Button}
+          variant="contained"
+          onClick={submit}
+          disabled={!connected}
+        >
           Submit
         </Button>
         <Button
