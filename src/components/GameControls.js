@@ -14,6 +14,8 @@ import {
 } from "../constants/GameActionTypes";
 import JoinResumeDialog from "./JoinResumeDialog";
 import NewGameDialog from "./NewGameDialog";
+import YesNoDialog from "./YesNoDialog";
+import { ALERT_ZINDEX_BASE } from "../constants/AlertZindex";
 
 function GameControls({ playing, endGame, gameInProgress, myTurn }) {
   const classes = useStyles();
@@ -44,15 +46,24 @@ function GameControls({ playing, endGame, gameInProgress, myTurn }) {
     );
   };
 
+  const [
+    resignationConfirmationOpen,
+    setResignationConfirmationOpen,
+  ] = useState(false);
   const resignButtonClick = () => {
-    // TODO: probably best to do an "are you sure?" type dialog first
-    dispatch(
-      send({
-        [TYPE]: GAME_ACTION,
-        [KEY]: keys[your_color],
-        [ACTION_TYPE]: RESIGN,
-      })
-    );
+    setResignationConfirmationOpen(true);
+  };
+  const resignHandler = (confirmed) => () => {
+    setResignationConfirmationOpen(false);
+    if (confirmed) {
+      dispatch(
+        send({
+          [TYPE]: GAME_ACTION,
+          [KEY]: keys[your_color],
+          [ACTION_TYPE]: RESIGN,
+        })
+      );
+    }
   };
 
   const requestDrawButtonClick = () => {
@@ -95,6 +106,13 @@ function GameControls({ playing, endGame, gameInProgress, myTurn }) {
           >
             Resign
           </Button>
+          <YesNoDialog
+            zIndex={ALERT_ZINDEX_BASE}
+            open={resignationConfirmationOpen}
+            text="You elected to resign. Are you certain?"
+            yesHandler={resignHandler(true)}
+            noHandler={resignHandler(false)}
+          />
           <Button
             variant="contained"
             className={classes.Button}
