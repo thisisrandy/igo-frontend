@@ -39,8 +39,18 @@ const useStyles = makeStyles(
     BoardContainer: {
       margin: 20,
       padding: 10,
-      height: 800,
-      width: 800,
+      [theme.breakpoints.down("sm")]: {
+        height: 400,
+        width: 400,
+      },
+      [theme.breakpoints.between("sm", "md")]: {
+        height: 550,
+        width: 550,
+      },
+      [theme.breakpoints.up("md")]: {
+        height: 800,
+        width: 800,
+      },
       display: "grid",
       gridTemplateColumns: "0.25fr repeat(19, 1fr) 0.25fr",
       gridTemplateRows: "0.25fr repeat(19, 1fr) 0.25fr",
@@ -90,13 +100,23 @@ const useStyles = makeStyles(
     GameControlsContainer: {
       margin: 20,
       padding: 10,
-      width: 750,
+      [theme.breakpoints.down("sm")]: {
+        width: 400,
+        flexWrap: "wrap",
+      },
+      [theme.breakpoints.between("sm", "md")]: {
+        width: 550,
+        flexWrap: "wrap",
+      },
+      [theme.breakpoints.up("md")]: {
+        width: 750,
+      },
       display: "flex",
       flexDirection: "row",
       justifyContent: "space-evenly",
     },
     Button: {
-      margin: "5px 20px",
+      margin: "8px 20px",
       minWidth: 110,
     },
     DialogContent: {
