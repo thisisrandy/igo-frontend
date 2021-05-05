@@ -12,6 +12,7 @@ import ConnectionAlert from "./ConnectionAlert";
 import GameRejoiner from "./GameRejoiner";
 import ConnectionManager from "./ConnectionManager";
 import { BLACK, WHITE } from "../constants/Colors";
+import { ALERT_ZINDEX_BASE } from "../constants/AlertZindex";
 
 function App() {
   const classes = useStyles();
@@ -22,10 +23,10 @@ function App() {
     <div className={classes.App}>
       <ConnectionManager />
       <GameRejoiner />
-      <RequestResponseDialog zIndex={2000} />
-      <RequestResponsePendingAlert zIndex={2000} />
-      <Message zIndex={2001} />
-      <ConnectionAlert zIndex={2002} />
+      <RequestResponseDialog zIndex={ALERT_ZINDEX_BASE} />
+      <RequestResponsePendingAlert zIndex={ALERT_ZINDEX_BASE} />
+      <Message zIndex={ALERT_ZINDEX_BASE + 1} />
+      <ConnectionAlert zIndex={ALERT_ZINDEX_BASE + 2} />
       <GameStatusProvider>
         <Board />
       </GameStatusProvider>
