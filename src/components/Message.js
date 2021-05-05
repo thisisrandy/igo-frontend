@@ -1,6 +1,7 @@
 import {
   Button,
   Dialog,
+  DialogActions,
   DialogContent,
   DialogContentText,
 } from "@material-ui/core";
@@ -9,11 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearMessage } from "../actions";
 import { MESSAGE } from "../constants/StateKeys";
 import { useStyles } from "../hooks/useStyles";
-import {
-  DraggablePaper,
-  DraggableDialogTitle,
-  DraggableDialogActions,
-} from "./DraggablePaper";
+import { DraggablePaper, DraggableDialogTitle } from "./DraggablePaper";
 
 function Message({ zIndex }) {
   const classes = useStyles();
@@ -34,7 +31,7 @@ function Message({ zIndex }) {
           {message}
         </DialogContentText>
       </DialogContent>
-      <DraggableDialogActions className={classes.MessageButtonContainer}>
+      <DialogActions className={classes.MessageButtonContainer}>
         <Button
           className={classes.Button}
           variant="contained"
@@ -42,7 +39,7 @@ function Message({ zIndex }) {
         >
           Okay
         </Button>
-      </DraggableDialogActions>
+      </DialogActions>
     </Dialog>
   );
 }

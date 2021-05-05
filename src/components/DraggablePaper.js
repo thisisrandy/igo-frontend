@@ -47,7 +47,10 @@ function DraggableDialogTitle(props) {
 /**
  * IMPORTANT NOTE: as this component has a hard-coded id, it should not be used
  * more than once in any particular DOM. As we don't generally display more than
- * one `Dialog` at a time, this isn't likely to be an issue
+ * one `Dialog` at a time, this isn't likely to be an issue.
+ *
+ * Additionally, note that using this component with clickable children, e.g.
+ * buttons, breaks said children on touch screens
  */
 function DraggableDialogActions(props) {
   return (

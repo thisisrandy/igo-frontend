@@ -3,6 +3,7 @@ import {
   DialogContent,
   DialogContentText,
   Button,
+  DialogActions,
 } from "@material-ui/core";
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,11 +22,7 @@ import { ACTION_TYPE, KEY, TYPE } from "../constants/OutgoingMessageKeys";
 import { GAME_ACTION } from "../constants/OutgoingMessageTypes";
 import { MARK_DEAD, DRAW, TALLY_SCORE } from "../constants/RequestType";
 import { REQUEST_PENDING } from "../constants/GameStatus";
-import {
-  DraggableDialogActions,
-  DraggableDialogTitle,
-  DraggablePaper,
-} from "./DraggablePaper";
+import { DraggableDialogTitle, DraggablePaper } from "./DraggablePaper";
 import { capitalizeFirstLetter } from "../utils";
 
 function RequestResponseDialog({ zIndex }) {
@@ -96,14 +93,14 @@ function RequestResponseDialog({ zIndex }) {
           {getRequestText()}
         </DialogContentText>
       </DialogContent>
-      <DraggableDialogActions className={classes.MessageButtonContainer}>
+      <DialogActions className={classes.MessageButtonContainer}>
         <Button className={classes.Button} variant="contained" onClick={accept}>
           Yes
         </Button>
         <Button className={classes.Button} variant="contained" onClick={reject}>
           No
         </Button>
-      </DraggableDialogActions>
+      </DialogActions>
     </Dialog>
   );
 }

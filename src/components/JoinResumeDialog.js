@@ -3,6 +3,7 @@ import {
   Dialog,
   DialogContent,
   DialogContentText,
+  DialogActions,
   TextField,
 } from "@material-ui/core";
 import React, { useState } from "react";
@@ -12,11 +13,7 @@ import { send } from "@giantmachines/redux-websocket";
 import { JOIN_GAME } from "../constants/OutgoingMessageTypes";
 import { TYPE, KEY } from "../constants/OutgoingMessageKeys";
 import { CONNECTED } from "../constants/StateKeys";
-import {
-  DraggableDialogActions,
-  DraggableDialogTitle,
-  DraggablePaper,
-} from "./DraggablePaper";
+import { DraggableDialogTitle, DraggablePaper } from "./DraggablePaper";
 
 function JoinResumeDialog({ joinResumeDialogOpen, setJoinResumeDialogOpen }) {
   const classes = useStyles();
@@ -59,7 +56,7 @@ function JoinResumeDialog({ joinResumeDialogOpen, setJoinResumeDialogOpen }) {
           }}
         />
       </DialogContent>
-      <DraggableDialogActions className={classes.DialogButtonContainer}>
+      <DialogActions className={classes.DialogButtonContainer}>
         <Button
           className={classes.Button}
           variant="contained"
@@ -75,7 +72,7 @@ function JoinResumeDialog({ joinResumeDialogOpen, setJoinResumeDialogOpen }) {
         >
           Cancel
         </Button>
-      </DraggableDialogActions>
+      </DialogActions>
     </Dialog>
   );
 }

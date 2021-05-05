@@ -1,6 +1,7 @@
 import {
   Button,
   Dialog,
+  DialogActions,
   DialogContent,
   FormControl,
   FormControlLabel,
@@ -16,11 +17,7 @@ import { send } from "@giantmachines/redux-websocket";
 import { NEW_GAME } from "../constants/OutgoingMessageTypes";
 import { TYPE } from "../constants/OutgoingMessageKeys";
 import { CONNECTED } from "../constants/StateKeys";
-import {
-  DraggableDialogActions,
-  DraggableDialogTitle,
-  DraggablePaper,
-} from "./DraggablePaper";
+import { DraggableDialogTitle, DraggablePaper } from "./DraggablePaper";
 import { COMPUTER, HUMAN } from "../constants/OpponentTypes";
 import { VS, COLOR, KOMI } from "../constants/OutgoingMessageKeys";
 import { BLACK, WHITE } from "../constants/Colors";
@@ -103,7 +100,7 @@ function NewGameDialog({ newGameDialogOpen, setNewGameDialogOpen }) {
           </div>
         </FormControl>
       </DialogContent>
-      <DraggableDialogActions className={classes.DialogButtonContainer}>
+      <DialogActions className={classes.DialogButtonContainer}>
         <Button
           className={classes.Button}
           variant="contained"
@@ -119,7 +116,7 @@ function NewGameDialog({ newGameDialogOpen, setNewGameDialogOpen }) {
         >
           Cancel
         </Button>
-      </DraggableDialogActions>
+      </DialogActions>
     </Dialog>
   );
 }
