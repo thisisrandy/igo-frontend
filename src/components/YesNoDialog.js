@@ -9,7 +9,7 @@ import React from "react";
 import { useStyles } from "../hooks/useStyles";
 import { DraggableDialogTitle, DraggablePaper } from "./DraggablePaper";
 
-function YesNoDialog({ zIndex, open, text, yesHandler, noHandler }) {
+function YesNoDialog({ zIndex, open, title, text, yesHandler, noHandler }) {
   const classes = useStyles();
 
   return (
@@ -18,7 +18,7 @@ function YesNoDialog({ zIndex, open, text, yesHandler, noHandler }) {
       style={{ zIndex: zIndex }}
       PaperComponent={DraggablePaper}
     >
-      <DraggableDialogTitle>Request</DraggableDialogTitle>
+      <DraggableDialogTitle>{title}</DraggableDialogTitle>
       <DialogContent className={classes.DialogContent}>
         <DialogContentText className={classes.MessageText}>
           {text}

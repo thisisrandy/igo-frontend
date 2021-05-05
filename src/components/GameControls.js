@@ -109,6 +109,7 @@ function GameControls({ playing, endGame, gameInProgress, myTurn }) {
           <YesNoDialog
             zIndex={ALERT_ZINDEX_BASE}
             open={resignationConfirmationOpen}
+            title="Confirmation"
             text="You elected to resign. Are you certain?"
             yesHandler={resignHandler(true)}
             noHandler={resignHandler(false)}
