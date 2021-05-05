@@ -1,34 +1,27 @@
 import {
-  Button,
   Dialog,
-  DialogActions,
   DialogContent,
   DialogContentText,
+  Button,
+  DialogActions,
 } from "@material-ui/core";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { clearMessage } from "../actions";
-import { MESSAGE } from "../constants/StateKeys";
 import { useStyles } from "../hooks/useStyles";
-import { DraggablePaper, DraggableDialogTitle } from "./DraggablePaper";
+import { DraggableDialogTitle, DraggablePaper } from "./DraggablePaper";
 
-function Message({ zIndex }) {
+function YesNoDialog({ zIndex, open, text, yesHandler, noHandler }) {
   const classes = useStyles();
-  const { [MESSAGE]: message } = useSelector((state) => state.game);
-  const dispatch = useDispatch();
-
-  const clickHandler = () => dispatch(clearMessage());
 
   return (
     <Dialog
-      open={message != null && message !== ""}
+      open={open}
       style={{ zIndex: zIndex }}
       PaperComponent={DraggablePaper}
     >
-      <DraggableDialogTitle>Message</DraggableDialogTitle>
+      <DraggableDialogTitle>Request</DraggableDialogTitle>
       <DialogContent className={classes.DialogContent}>
         <DialogContentText className={classes.MessageText}>
-          {message}
+          {text}
         </DialogContentText>
       </DialogContent>
       <DialogActions
@@ -38,13 +31,20 @@ function Message({ zIndex }) {
         <Button
           className={classes.Button}
           variant="contained"
-          onClick={clickHandler}
+          onClick={yesHandler}
         >
-          Okay
+          Yes
+        </Button>
+        <Button
+          className={classes.Button}
+          variant="contained"
+          onClick={noHandler}
+        >
+          No
         </Button>
       </DialogActions>
     </Dialog>
   );
 }
 
-export default Message;
+export default YesNoDialog;

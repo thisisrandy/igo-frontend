@@ -100,7 +100,10 @@ function NewGameDialog({ newGameDialogOpen, setNewGameDialogOpen }) {
           </div>
         </FormControl>
       </DialogContent>
-      <DialogActions className={classes.DialogButtonContainer}>
+      <DialogActions
+        disableSpacing={true}
+        className={classes.DialogButtonContainer}
+      >
         <Button
           className={classes.Button}
           variant="contained"

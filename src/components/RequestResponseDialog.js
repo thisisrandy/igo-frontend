@@ -1,10 +1,3 @@
-import {
-  Dialog,
-  DialogContent,
-  DialogContentText,
-  Button,
-  DialogActions,
-} from "@material-ui/core";
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ACCEPT, REJECT } from "../constants/GameActionTypes";
@@ -15,18 +8,16 @@ import {
   STATUS,
   YOUR_COLOR,
 } from "../constants/StateKeys";
-import { useStyles } from "../hooks/useStyles";
 import dedent from "dedent-js";
 import { send } from "@giantmachines/redux-websocket";
 import { ACTION_TYPE, KEY, TYPE } from "../constants/OutgoingMessageKeys";
 import { GAME_ACTION } from "../constants/OutgoingMessageTypes";
 import { MARK_DEAD, DRAW, TALLY_SCORE } from "../constants/RequestType";
 import { REQUEST_PENDING } from "../constants/GameStatus";
-import { DraggableDialogTitle, DraggablePaper } from "./DraggablePaper";
 import { capitalizeFirstLetter } from "../utils";
+import YesNoDialog from "./YesNoDialog";
 
 function RequestResponseDialog({ zIndex }) {
-  const classes = useStyles();
   const {
     [STATUS]: gameStatus,
     [PENDINGREQUEST]: pendingRequest,
@@ -82,26 +73,13 @@ function RequestResponseDialog({ zIndex }) {
   };
 
   return (
-    <Dialog
+    <YesNoDialog
+      zIndex={zIndex}
       open={getDialogOpen()}
-      style={{ zIndex: zIndex }}
-      PaperComponent={DraggablePaper}
-    >
-      <DraggableDialogTitle>Request</DraggableDialogTitle>
-      <DialogContent className={classes.DialogContent}>
-        <DialogContentText className={classes.MessageText}>
-          {getRequestText()}
-        </DialogContentText>
-      </DialogContent>
-      <DialogActions className={classes.MessageButtonContainer}>
-        <Button className={classes.Button} variant="contained" onClick={accept}>
-          Yes
-        </Button>
-        <Button className={classes.Button} variant="contained" onClick={reject}>
-          No
-        </Button>
-      </DialogActions>
-    </Dialog>
+      text={getRequestText()}
+      yesHandler={accept}
+      noHandler={reject}
+    />
   );
 }
 

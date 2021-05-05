@@ -56,7 +56,10 @@ function JoinResumeDialog({ joinResumeDialogOpen, setJoinResumeDialogOpen }) {
           }}
         />
       </DialogContent>
-      <DialogActions className={classes.DialogButtonContainer}>
+      <DialogActions
+        disableSpacing={true}
+        className={classes.DialogButtonContainer}
+      >
         <Button
           className={classes.Button}
           variant="contained"
