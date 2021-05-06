@@ -9,12 +9,12 @@ import { POINTS } from "../constants/BoardKeys";
 
 function Board({ myTurn, playing, endGame }) {
   const classes = useStyles();
-  const { [BOARD]: board } = useSelector((state) => state.game);
+  const { [POINTS]: points } = useSelector((state) => state.game[BOARD]);
 
   return (
     <Paper className={classes.BoardContainer}>
       <img src={goBoard} alt="go board" className={classes.BoardImage} />
-      {Array.from(board[POINTS].entries(), ([i, row]) =>
+      {Array.from(points.entries(), ([i, row]) =>
         Array.from(row.entries(), ([j, point]) => (
           <Point
             key={`${i},${j}`}
