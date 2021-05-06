@@ -39,15 +39,11 @@ const useStyles = makeStyles(
     BoardContainer: {
       margin: 20,
       padding: 10,
-      [theme.breakpoints.down("sm")]: {
-        height: 400,
-        width: 400,
+      [theme.breakpoints.down("850")]: {
+        height: "90vw",
+        width: "90vw",
       },
-      [theme.breakpoints.between("sm", "md")]: {
-        height: 550,
-        width: 550,
-      },
-      [theme.breakpoints.up("md")]: {
+      [theme.breakpoints.up("850")]: {
         height: 800,
         width: 800,
       },
@@ -100,15 +96,11 @@ const useStyles = makeStyles(
     GameControlsContainer: {
       margin: 20,
       padding: 10,
-      [theme.breakpoints.down("sm")]: {
-        width: 400,
+      [theme.breakpoints.down("850")]: {
+        width: "84vw",
         flexWrap: "wrap",
       },
-      [theme.breakpoints.between("sm", "md")]: {
-        width: 550,
-        flexWrap: "wrap",
-      },
-      [theme.breakpoints.up("md")]: {
+      [theme.breakpoints.up("850")]: {
         width: 750,
       },
       display: "flex",
