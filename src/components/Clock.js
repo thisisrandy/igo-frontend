@@ -42,7 +42,7 @@ function Clock() {
 
   return (
     <Paper className={classes.ClockContainer}>
-      <Typography>{hhmmss(timePlayed)}</Typography>
+      <Typography>Time played: {hhmmss(timePlayed)}</Typography>
     </Paper>
   );
 }
