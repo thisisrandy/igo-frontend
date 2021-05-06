@@ -114,13 +114,20 @@ const useStyles = makeStyles(
       flexDirection: "column",
       alignItems: "center",
     },
+    BoardSizeSelectContainer: {
+      width: "100%",
+      display: "flex",
+      justifyContent: "center",
+    },
+    BoardSizeSelect: {
+      width: "50%",
+    },
     KomiTextContainer: {
       width: "100%",
       display: "flex",
       justifyContent: "center",
     },
     KomiTextField: {
-      marginTop: 10,
       width: "50%",
     },
     PlayerCardContainer: {

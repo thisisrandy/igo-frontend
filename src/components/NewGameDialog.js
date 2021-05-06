@@ -6,8 +6,10 @@ import {
   FormControl,
   FormControlLabel,
   FormLabel,
+  MenuItem,
   Radio,
   RadioGroup,
+  Select,
   TextField,
 } from "@material-ui/core";
 import React, { useState } from "react";
@@ -19,7 +21,7 @@ import { TYPE } from "../constants/OutgoingMessageKeys";
 import { CONNECTED } from "../constants/StateKeys";
 import { DraggableDialogTitle, DraggablePaper } from "./DraggablePaper";
 import { COMPUTER, HUMAN } from "../constants/OpponentTypes";
-import { VS, COLOR, KOMI } from "../constants/OutgoingMessageKeys";
+import { VS, COLOR, SIZE, KOMI } from "../constants/OutgoingMessageKeys";
 import { BLACK, WHITE } from "../constants/Colors";
 import { capitalizeFirstLetter } from "../utils";
 
@@ -38,6 +40,11 @@ function NewGameDialog({ newGameDialogOpen, setNewGameDialogOpen }) {
     setColor(e.target.value);
   };
 
+  const [size, setSize] = useState(19);
+  const handleSizeChange = (e) => {
+    setSize(e.target.value);
+  };
+
   const [komi, setKomi] = useState(6.5);
   const handleKomiChange = (e) => {
     setKomi(Number(e.target.value));
@@ -50,7 +57,13 @@ function NewGameDialog({ newGameDialogOpen, setNewGameDialogOpen }) {
   const submit = (e) => {
     setNewGameDialogOpen(false);
     dispatch(
-      send({ [TYPE]: NEW_GAME, [VS]: vs, [COLOR]: color, [KOMI]: komi })
+      send({
+        [TYPE]: NEW_GAME,
+        [VS]: vs,
+        [COLOR]: color,
+        [SIZE]: size,
+        [KOMI]: komi,
+      })
     );
   };
 
@@ -78,6 +91,18 @@ function NewGameDialog({ newGameDialogOpen, setNewGameDialogOpen }) {
             <FormControlLabel value={WHITE} control={<Radio />} label={WHITE} />
             <FormControlLabel value={BLACK} control={<Radio />} label={BLACK} />
           </RadioGroup>
+          <FormLabel component="legend">Board Size</FormLabel>
+          <div className={classes.BoardSizeSelectContainer}>
+            <Select
+              className={classes.BoardSizeSelect}
+              value={size}
+              onChange={handleSizeChange}
+            >
+              <MenuItem value={9}>9x9</MenuItem>
+              <MenuItem value={13}>13x13</MenuItem>
+              <MenuItem value={19}>19x19</MenuItem>
+            </Select>
+          </div>
           <FormLabel component="legend">
             {capitalizeFirstLetter(KOMI)}
           </FormLabel>
