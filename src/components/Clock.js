@@ -11,8 +11,6 @@ function Clock() {
     (state) => state.game
   );
 
-  // TODO: Add game status indicator
-
   const [timePlayed, setTimePlayed] = useState(0);
   useEffect(() => {
     if (serverTimePlayed != null) {
@@ -41,7 +39,7 @@ function Clock() {
   };
 
   return (
-    <Paper className={classes.ClockContainer}>
+    <Paper className={classes.InfoCardChild}>
       <Typography>Time played: {hhmmss(timePlayed)}</Typography>
     </Paper>
   );

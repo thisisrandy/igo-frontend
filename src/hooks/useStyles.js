@@ -171,8 +171,17 @@ const useStyles = makeStyles(
       alignItems: "center",
       minHeight: 45,
     },
-    ClockContainer: {
+    InfoCard: {
       margin: 20,
+      display: "flex",
+      justifyContent: "space-evenly",
+      [theme.breakpoints.down("850")]: {
+        width: "80vw",
+        flexWrap: "wrap",
+      },
+    },
+    InfoCardChild: {
+      margin: 10,
       padding: "10px 30px",
     },
   }),

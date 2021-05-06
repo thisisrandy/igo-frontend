@@ -2,7 +2,7 @@ import React from "react";
 import Board from "./Board";
 import GameControls from "./GameControls";
 import PlayerCard from "./PlayerCard";
-import Clock from "./Clock";
+import InfoCard from "./InfoCard";
 import { useStyles } from "../hooks/useStyles";
 import Message from "./Message";
 import RequestResponseDialog from "./RequestResponseDialog";
@@ -36,7 +36,7 @@ function App() {
           <PlayerCard color={WHITE} />
           <PlayerCard color={BLACK} />
         </GameStatusProvider>
-        <Clock />
+        <InfoCard />
       </div>
     </div>
   );
