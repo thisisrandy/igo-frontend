@@ -5,6 +5,7 @@ import { Paper } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import { BOARD } from "../constants/StateKeys";
 import Point from "./Point";
+import { POINTS } from "../constants/BoardKeys";
 
 function Board({ myTurn, playing, endGame }) {
   const classes = useStyles();
@@ -13,7 +14,7 @@ function Board({ myTurn, playing, endGame }) {
   return (
     <Paper className={classes.BoardContainer}>
       <img src={goBoard} alt="go board" className={classes.BoardImage} />
-      {Array.from(board.entries(), ([i, row]) =>
+      {Array.from(board[POINTS].entries(), ([i, row]) =>
         Array.from(row.entries(), ([j, point]) => (
           <Point
             key={`${i},${j}`}

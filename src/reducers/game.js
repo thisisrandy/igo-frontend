@@ -5,6 +5,7 @@ import {
   WS_MESSAGE,
   WS_OPEN,
 } from "../constants/ActionTypes";
+import { POINTS, SIZE } from "../constants/BoardKeys";
 import {
   EXPLANATION,
   KEYS as KEYS_MSG,
@@ -27,9 +28,12 @@ import {
 } from "../constants/StateKeys";
 
 const initialState = {
-  [BOARD]: Array.from({ length: 19 }, () =>
-    Array.from({ length: 19 }, () => ["", false, false, ""])
-  ),
+  [BOARD]: {
+    [SIZE]: 19,
+    [POINTS]: Array.from({ length: 19 }, () =>
+      Array.from({ length: 19 }, () => ["", false, false, ""])
+    ),
+  },
   [CONNECTED]: false,
 };
 
