@@ -48,8 +48,6 @@ const useStyles = makeStyles(
         width: 800,
       },
       display: "grid",
-      gridTemplateColumns: "0.25fr repeat(19, 1fr) 0.25fr",
-      gridTemplateRows: "0.25fr repeat(19, 1fr) 0.25fr",
       justifyItems: "center",
       alignItems: "center",
     },
