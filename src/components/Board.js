@@ -1,6 +1,6 @@
 import React from "react";
 import { useStyles } from "../hooks/useStyles";
-import goBoard from "../images/board.png";
+import goBoard from "../images/board_19x19.png";
 import { Paper } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import { BOARD } from "../constants/StateKeys";
