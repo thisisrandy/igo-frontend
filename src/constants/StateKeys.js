@@ -13,6 +13,7 @@ export const TURN = "turn";
 export const TERRITORY = "territory";
 export const PENDINGREQUEST = "pendingRequest";
 export const RESULT = "result";
+export const TIME_PLAYED = "timePlayed";
 export const OPPONENT_CONNECTED = "opponentConnected";
 
 // message display keys
