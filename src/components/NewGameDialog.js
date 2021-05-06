@@ -81,6 +81,8 @@ function NewGameDialog({ newGameDialogOpen, setNewGameDialogOpen }) {
           <FormLabel component="legend">
             {capitalizeFirstLetter(KOMI)}
           </FormLabel>
+          {/* TODO: this doesn't work on touch. Try typing with validation or
+          something else */}
           <div className={classes.KomiTextContainer}>
             <TextField
               name={KOMI}
