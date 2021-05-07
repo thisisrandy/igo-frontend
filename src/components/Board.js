@@ -16,22 +16,28 @@ function Board({ myTurn, playing, endGame }) {
   );
 
   let board = null;
+  let borderDim = null;
+  // board measurements in pixels
+  // 9x9: 135, 210*8, 135 -> (135-210/2)/210
+  // 13x13: 105, 145*12, 105 -> (105-145/2)/145
+  // 19x19: 75, 100*18, 75 -> (75-100/2)/100
   switch (size) {
     case 9:
       board = board_9x9;
+      borderDim = (135 - 210 / 2) / 210;
       break;
     case 13:
       board = board_13x13;
+      borderDim = (105 - 145 / 2) / 145;
       break;
     case 19:
       board = board_19x19;
+      borderDim = (75 - 100 / 2) / 100;
       break;
     default:
       throw new RangeError(`Unsupported board size ${size}`);
   }
-  // TODO: adjust this accordingly for 9x9 and 13x13 boards with appropriately
-  // sized borders
-  const gridTemplateStyling = `0.25fr repeat(${size}, ${19 / size}fr) 0.25fr`;
+  const gridTemplateStyling = `${borderDim}fr repeat(${size}, 1fr) ${borderDim}fr`;
 
   return (
     <Paper
