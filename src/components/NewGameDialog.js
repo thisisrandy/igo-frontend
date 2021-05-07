@@ -36,7 +36,7 @@ function NewGameDialog({ newGameDialogOpen, setNewGameDialogOpen }) {
     setVs(e.target.value);
   };
 
-  const [color, setColor] = useState(WHITE);
+  const [color, setColor] = useState(BLACK);
   const handleColorChange = (e) => {
     setColor(e.target.value);
   };
@@ -108,8 +108,8 @@ function NewGameDialog({ newGameDialogOpen, setNewGameDialogOpen }) {
           </RadioGroup>
           <FormLabel component="legend">Your Color</FormLabel>
           <RadioGroup row onChange={handleColorChange} value={color}>
-            <FormControlLabel value={WHITE} control={<Radio />} label={WHITE} />
             <FormControlLabel value={BLACK} control={<Radio />} label={BLACK} />
+            <FormControlLabel value={WHITE} control={<Radio />} label={WHITE} />
           </RadioGroup>
           <FormLabel component="legend">Board Size</FormLabel>
           <div className={classes.BoardSizeSelectContainer}>
