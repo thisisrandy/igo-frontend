@@ -24,6 +24,7 @@ import { COMPUTER, HUMAN } from "../constants/OpponentTypes";
 import { VS, COLOR, SIZE, KOMI } from "../constants/OutgoingMessageKeys";
 import { BLACK, WHITE } from "../constants/Colors";
 import { capitalizeFirstLetter } from "../utils";
+import { DEFAULT_BOARD_SIZE, DEFAULT_KOMI } from "../constants/Defaults";
 
 function NewGameDialog({ newGameDialogOpen, setNewGameDialogOpen }) {
   const classes = useStyles();
@@ -40,18 +41,37 @@ function NewGameDialog({ newGameDialogOpen, setNewGameDialogOpen }) {
     setColor(e.target.value);
   };
 
-  const [size, setSize] = useState(19);
+  const [size, setSize] = useState(DEFAULT_BOARD_SIZE);
   const handleSizeChange = (e) => {
     setSize(e.target.value);
   };
 
-  const [komi, setKomi] = useState(6.5);
+  const [komi, setKomi] = useState(DEFAULT_KOMI);
+  const [komiValid, setKomiValid] = useState(true);
   const handleKomiChange = (e) => {
-    setKomi(Number(e.target.value));
+    const val = e.target.value;
+    const asNum = Number(val);
+    const fractional = asNum % 1;
+    if (
+      val.length &&
+      !Number.isNaN(asNum) &&
+      asNum >= 0 &&
+      asNum < 101 &&
+      (fractional === 0 || fractional === 0.5)
+    ) {
+      setKomiValid(true);
+      setKomi(asNum);
+    } else {
+      setKomiValid(false);
+    }
   };
 
-  const cancelClick = () => {
+  const dialogClose = () => {
     setNewGameDialogOpen(false);
+    if (!komiValid) {
+      setKomi(DEFAULT_KOMI);
+      setKomiValid(true);
+    }
   };
 
   const submit = (e) => {
@@ -70,7 +90,7 @@ function NewGameDialog({ newGameDialogOpen, setNewGameDialogOpen }) {
   return (
     <Dialog
       open={newGameDialogOpen}
-      onClose={() => setNewGameDialogOpen(false)}
+      onClose={dialogClose}
       PaperComponent={DraggablePaper}
     >
       <DraggableDialogTitle>New Game</DraggableDialogTitle>
@@ -106,22 +126,18 @@ function NewGameDialog({ newGameDialogOpen, setNewGameDialogOpen }) {
           <FormLabel component="legend">
             {capitalizeFirstLetter(KOMI)}
           </FormLabel>
-          {/* TODO: this doesn't work on touch. Try typing with validation or
-          something else */}
           <div className={classes.KomiTextContainer}>
             <TextField
               name={KOMI}
               className={classes.KomiTextField}
               type="number"
               inputProps={{
-                min: 0.5,
+                min: 0,
                 max: 100.5,
-                step: 1,
-                onKeyDown: (e) => {
-                  e.preventDefault();
-                },
+                step: 0.5,
               }}
               defaultValue={komi}
+              error={!komiValid}
               onChange={handleKomiChange}
             />
           </div>
@@ -135,14 +151,14 @@ function NewGameDialog({ newGameDialogOpen, setNewGameDialogOpen }) {
           className={classes.Button}
           variant="contained"
           onClick={submit}
-          disabled={!connected}
+          disabled={!connected || !komiValid}
         >
           Submit
         </Button>
         <Button
           className={classes.Button}
           variant="contained"
-          onClick={cancelClick}
+          onClick={dialogClose}
         >
           Cancel
         </Button>
