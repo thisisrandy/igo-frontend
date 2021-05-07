@@ -3,6 +3,7 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
+  Zoom,
   FormControl,
   FormControlLabel,
   FormLabel,
@@ -92,6 +93,7 @@ function NewGameDialog({ newGameDialogOpen, setNewGameDialogOpen }) {
       open={newGameDialogOpen}
       onClose={dialogClose}
       PaperComponent={DraggablePaper}
+      TransitionComponent={Zoom}
     >
       <DraggableDialogTitle>New Game</DraggableDialogTitle>
       <DialogContent className={classes.DialogContent}>

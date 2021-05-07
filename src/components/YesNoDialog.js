@@ -4,6 +4,7 @@ import {
   DialogContentText,
   Button,
   DialogActions,
+  Zoom,
 } from "@material-ui/core";
 import React from "react";
 import { useStyles } from "../hooks/useStyles";
@@ -17,6 +18,7 @@ function YesNoDialog({ zIndex, open, title, text, yesHandler, noHandler }) {
       open={open}
       style={{ zIndex: zIndex }}
       PaperComponent={DraggablePaper}
+      TransitionComponent={Zoom}
     >
       <DraggableDialogTitle>{title}</DraggableDialogTitle>
       <DialogContent className={classes.DialogContent}>

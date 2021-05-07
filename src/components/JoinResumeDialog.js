@@ -5,6 +5,7 @@ import {
   DialogContentText,
   DialogActions,
   TextField,
+  Zoom,
 } from "@material-ui/core";
 import React, { useState } from "react";
 import { useStyles } from "../hooks/useStyles";
@@ -36,6 +37,7 @@ function JoinResumeDialog({ joinResumeDialogOpen, setJoinResumeDialogOpen }) {
       open={joinResumeDialogOpen}
       onClose={() => setJoinResumeDialogOpen(false)}
       PaperComponent={DraggablePaper}
+      TransitionComponent={Zoom}
     >
       <DraggableDialogTitle>Join/Resume Game</DraggableDialogTitle>
       <DialogContent className={classes.DialogContent}>

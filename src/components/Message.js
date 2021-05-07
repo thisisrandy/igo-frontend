@@ -4,6 +4,7 @@ import {
   DialogActions,
   DialogContent,
   DialogContentText,
+  Zoom,
 } from "@material-ui/core";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -24,6 +25,12 @@ function Message({ zIndex }) {
       open={message != null && message !== ""}
       style={{ zIndex: zIndex }}
       PaperComponent={DraggablePaper}
+      // NOTE: for unknown reasons, the outgoing transition is sometimes a
+      // combination of whichever transition is chosen and Zoom. Choosing Zoom
+      // explicitly patches the weird double-transition bug, so that is what we
+      // elect to do. This applies anywhere that a Dialog component is used in
+      // this codebase
+      TransitionComponent={Zoom}
     >
       <DraggableDialogTitle>Message</DraggableDialogTitle>
       <DialogContent className={classes.DialogContent}>

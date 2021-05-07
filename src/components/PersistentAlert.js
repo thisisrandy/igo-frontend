@@ -3,6 +3,7 @@ import {
   DialogContent,
   DialogContentText,
   CircularProgress,
+  Zoom,
 } from "@material-ui/core";
 import React from "react";
 import { useStyles } from "../hooks/useStyles";
@@ -25,6 +26,7 @@ function PersistentAlert({ message, zIndex, open }) {
         open={open}
         style={{ zIndex: zIndex }}
         PaperComponent={DraggablePaper}
+        TransitionComponent={Zoom}
       >
         <DraggableDialogTitle>Alert</DraggableDialogTitle>
         <DialogContent className={classes.DialogContent}>

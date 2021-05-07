@@ -72,9 +72,6 @@ function RequestResponseDialog({ zIndex }) {
     );
   };
 
-  // TODO: for no apparent reason, the outgoing transition for this is zoom
-  // instead of fade. Also true of some (but not all) of the other dialogs. Try
-  // to figure out why
   return (
     <YesNoDialog
       zIndex={zIndex}
