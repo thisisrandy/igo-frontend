@@ -11,6 +11,19 @@ function Clock() {
     (state) => state.game
   );
 
+  // server time is only updated when a game action is taken to avoid writing to
+  // disk and sending updates overly often (see the backend code). instead of
+  // ticking on the server end, we can much more efficiently tick on the client
+  // side, which we do here
+  //
+  // NB: when a client first connects, they will start ticking upward from the
+  // server time. as such, clients who connect to the same game at different
+  // times will display a difference in time played equal to the gap between
+  // connection times. this difference will be resolved after any action is
+  // taken, because server time will be updated, causing the clients to sync up
+  // modulo network latency differences. ultimately, whether the clients' clocks
+  // are in perfect sync is not a matter of any real importance, so there's no
+  // reason to spent any energy trying to do a better job here
   const [timePlayed, setTimePlayed] = useState(0);
   useEffect(() => {
     if (serverTimePlayed != null) {
