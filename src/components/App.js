@@ -13,6 +13,7 @@ import GameRejoiner from "./GameRejoiner";
 import ConnectionManager from "./ConnectionManager";
 import { BLACK, WHITE } from "../constants/Colors";
 import { ALERT_ZINDEX_BASE } from "../constants/AlertZindex";
+import EndgameHelpMessage from "./EndgameHelpMessage";
 
 function App() {
   const classes = useStyles();
@@ -25,8 +26,9 @@ function App() {
       <GameRejoiner />
       <RequestResponseDialog zIndex={ALERT_ZINDEX_BASE} />
       <RequestResponsePendingAlert zIndex={ALERT_ZINDEX_BASE} />
-      <Message zIndex={ALERT_ZINDEX_BASE + 1} />
-      <ConnectionAlert zIndex={ALERT_ZINDEX_BASE + 2} />
+      <EndgameHelpMessage zIndex={ALERT_ZINDEX_BASE + 1} />
+      <Message zIndex={ALERT_ZINDEX_BASE + 2} />
+      <ConnectionAlert zIndex={ALERT_ZINDEX_BASE + 3} />
       <GameStatusProvider>
         <Board />
       </GameStatusProvider>
