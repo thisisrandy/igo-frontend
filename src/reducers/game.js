@@ -11,7 +11,12 @@ import {
   KEYS as KEYS_MSG,
   SUCCESS,
   YOUR_COLOR as YOUR_COLOR_MSG,
-} from "../constants/IncomingMessageKeys";
+} from "../constants/IncomingMessageDataKeys";
+import {
+  MESSAGE as PAYLOAD_MESSAGE,
+  DATA,
+  MESSAGE_TYPE,
+} from "../constants/IncomingMessagePayloadKeys";
 import {
   GAME_ACTION_RESPONSE,
   GAME_STATUS,
@@ -50,10 +55,10 @@ export default function game(state = initialState, action) {
         [REJOIN_NEEDED]: false,
       };
     case WS_MESSAGE:
-      const msg = action.payload.message;
-      const data = msg.data;
+      const msg = action.payload[PAYLOAD_MESSAGE];
+      const data = msg[DATA];
       // check the type and process accordingly
-      switch (msg.message_type) {
+      switch (msg[MESSAGE_TYPE]) {
         case NEW_GAME_RESPONSE:
         case JOIN_GAME_RESPONSE:
           return {
