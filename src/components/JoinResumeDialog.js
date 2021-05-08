@@ -15,6 +15,7 @@ import { JOIN_GAME } from "../constants/OutgoingMessageTypes";
 import { TYPE, KEY } from "../constants/OutgoingMessageKeys";
 import { CONNECTED } from "../constants/StateKeys";
 import { DraggableDialogTitle, DraggablePaper } from "./DraggablePaper";
+import { PLAYER_KEY_LENGTH } from "../constants/PlayerKeyInfo";
 
 function JoinResumeDialog({ joinResumeDialogOpen, setJoinResumeDialogOpen }) {
   const classes = useStyles();
@@ -34,7 +35,7 @@ function JoinResumeDialog({ joinResumeDialogOpen, setJoinResumeDialogOpen }) {
 
   const [canSubmit, setCanSubmit] = useState(false);
   useEffect(() => {
-    setCanSubmit(joinResumeKey.length === 10 && connected);
+    setCanSubmit(joinResumeKey.length === PLAYER_KEY_LENGTH && connected);
   }, [joinResumeKey.length, connected]);
 
   return (
@@ -47,17 +48,17 @@ function JoinResumeDialog({ joinResumeDialogOpen, setJoinResumeDialogOpen }) {
       <DraggableDialogTitle>Join/Resume Game</DraggableDialogTitle>
       <DialogContent className={classes.DialogContent}>
         <DialogContentText>
-          To join a new game, ask the player who created the game for the
-          10-digit player key for their opponent. If resuming, enter the same
-          key that was previously assigned to you. If you want to view a past
-          game, enter your player key from that game.
+          To join a new game, ask the player who created the game for the{" "}
+          {PLAYER_KEY_LENGTH}-digit player key for their opponent. If resuming,
+          enter the same key that was previously assigned to you. If you want to
+          view a past game, enter your player key from that game.
         </DialogContentText>
         <TextField
           autoFocus
           id="joinResumeKeyField"
           label="Player key"
           margin="dense"
-          inputProps={{ maxLength: 10 }}
+          inputProps={{ maxLength: PLAYER_KEY_LENGTH }}
           onInput={(e) => {
             setJoinResumeKey(e.target.value);
           }}
