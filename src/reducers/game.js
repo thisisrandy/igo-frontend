@@ -82,7 +82,9 @@ export default function game(state = initialState, action) {
             ...data,
           };
         default:
-          return state;
+          throw new TypeError(
+            `Unknown incoming message type ${msg.message_type} encountered`
+          );
       }
     case WS_OPEN:
       return {
