@@ -7,7 +7,7 @@ import {
   TextField,
   Zoom,
 } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useStyles } from "../hooks/useStyles";
 import { useDispatch, useSelector } from "react-redux";
 import { send } from "@giantmachines/redux-websocket";
@@ -31,6 +31,11 @@ function JoinResumeDialog({ joinResumeDialogOpen, setJoinResumeDialogOpen }) {
     setJoinResumeDialogOpen(false);
     setJoinResumeKey("");
   };
+
+  const [canSubmit, setCanSubmit] = useState(false);
+  useEffect(() => {
+    setCanSubmit(joinResumeKey.length === 10 && connected);
+  }, [joinResumeKey.length, connected]);
 
   return (
     <Dialog
@@ -56,6 +61,11 @@ function JoinResumeDialog({ joinResumeDialogOpen, setJoinResumeDialogOpen }) {
           onInput={(e) => {
             setJoinResumeKey(e.target.value);
           }}
+          onKeyPress={(e) => {
+            if (e.key === "Enter" && canSubmit) {
+              joinResumeSubmitClick();
+            }
+          }}
         />
       </DialogContent>
       <DialogActions
@@ -66,7 +76,7 @@ function JoinResumeDialog({ joinResumeDialogOpen, setJoinResumeDialogOpen }) {
           className={classes.Button}
           variant="contained"
           onClick={joinResumeSubmitClick}
-          disabled={joinResumeKey.length !== 10 || !connected}
+          disabled={!canSubmit}
         >
           Submit
         </Button>
