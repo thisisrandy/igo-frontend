@@ -23,7 +23,7 @@ function Clock() {
   // taken, because server time will be updated, causing the clients to sync up
   // modulo network latency differences. ultimately, whether the clients' clocks
   // are in perfect sync is not a matter of any real importance, so there's no
-  // reason to spent any energy trying to do a better job here
+  // reason to spend any energy trying to do a better job here
   const [timePlayed, setTimePlayed] = useState(0);
   useEffect(() => {
     if (serverTimePlayed != null) {
