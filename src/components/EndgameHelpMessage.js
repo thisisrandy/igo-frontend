@@ -8,7 +8,7 @@ import {
 } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { PLAY, ENDGAME } from "../constants/GameStatus";
+import { PLAY, ENDGAME, COMPLETE } from "../constants/GameStatus";
 import { STATUS } from "../constants/StateKeys";
 import { useStyles } from "../hooks/useStyles";
 import { DraggablePaper, DraggableDialogTitle } from "./DraggablePaper";
@@ -18,16 +18,29 @@ function EndgameHelpMessage({ zIndex }) {
   const classes = useStyles();
   const { [STATUS]: status } = useSelector((state) => state.game);
 
+  // the goal here is to display this message whenever we transition to the
+  // endgame from play. in order to accomplish this, we keep track of when we
+  // enter the endgame from any state (mightShow), and whether the user has
+  // already been shown this message (shown). shown gets reset if we go back to
+  // play and set to true when the user closes the dialog
+  const [mightShow, setMightShow] = useState(false);
   const [shown, setShown] = useState(false);
   useEffect(() => {
+    // notably, we are not changing any local state when status is
+    // REQUEST_PENDING
     if (status === PLAY) {
       setShown(false);
+      setMightShow(false);
+    } else if (status === ENDGAME) {
+      setMightShow(true);
+    } else if (status === COMPLETE) {
+      setMightShow(false);
     }
   }, [status]);
 
   return (
     <Dialog
-      open={status === ENDGAME && !shown}
+      open={mightShow && !shown}
       style={{ zIndex: zIndex }}
       PaperComponent={DraggablePaper}
       TransitionComponent={Zoom}
