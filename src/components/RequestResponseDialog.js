@@ -38,14 +38,14 @@ function RequestResponseDialog({ zIndex }) {
       case MARK_DEAD:
         return dedent(`${color} has marked a group as dead. Do you concur? If
           yes, the group will be removed and counted as prisoner(s). If no, you
-          will be returned to play to resolve the disagreement`);
+          will be returned to play to resolve the disagreement.`);
       case DRAW:
         return `${color} has requested a draw. Do you accept?`;
       case TALLY_SCORE:
         return dedent(`${color} has indicated that they are ready to tally
           the score. Do you concur? If yes, territory will be calculated and
           the game will end. If no, you will be returned to the endgame to
-          resolve the disagreement`);
+          resolve the disagreement.`);
       default:
         throw new TypeError(
           `Unknown request type ${pendingRequest[REQUEST_TYPE]} encountered`
