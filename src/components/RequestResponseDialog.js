@@ -38,7 +38,9 @@ function RequestResponseDialog({ zIndex }) {
       case MARK_DEAD:
         return dedent(`${color} has marked a group as dead. Do you concur? If
           yes, the group will be removed and counted as prisoner(s). If no, you
-          will be returned to play to resolve the disagreement.`);
+          will be returned to play to resolve the disagreement. (Hint: If this
+          dialog is obscuring your view of the dead group, simply grab it by the
+          top and drag it out of the way)`);
       case DRAW:
         return `${color} has requested a draw. Do you accept?`;
       case TALLY_SCORE:
