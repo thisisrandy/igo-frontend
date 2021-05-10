@@ -74,8 +74,11 @@ function Point({ i, j, point, myTurn, playing, endGame }) {
           (!point[0] && playing && myTurn) || (point[0] && endGame)
             ? classes.PointHover
             : {},
-          point[2] && point[3] === "w" ? classes.CountedWhite : {},
-          point[2] && point[3] === "b" ? classes.CountedBlack : {}
+          point[2]
+            ? point[3] === "w"
+              ? classes.CountedWhite
+              : classes.CountedBlack
+            : {}
         )}
         style={{ gridRow: i + 2, gridColumn: j + 2 }}
         onClick={
