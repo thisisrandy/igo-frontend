@@ -58,12 +58,8 @@ function Point({ i, j, point, myTurn, playing, endGame }) {
         <img
           src={point[0] === "w" ? whiteStone : blackStone}
           alt={`${point[0] === "w" ? WHITE : BLACK} stone`}
-          className={clsx(
-            classes.StoneImage,
-            endGame ? classes.PointHover : {}
-          )}
+          className={classes.StoneImage}
           style={{ gridRow: i + 2, gridColumn: j + 2 }}
-          onClick={stoneClickHandler(i, j)}
         />
       )}
       {point[1] && (
