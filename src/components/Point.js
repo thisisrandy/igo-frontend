@@ -52,6 +52,14 @@ function Point({ i, j, point, myTurn, playing, endGame }) {
     }
   };
 
+  // NOTE: point is an array of length 4 with contents as follows:
+  // [
+  //    stone in ("w", "b", ""),
+  //    marked dead in (true, false),
+  //    counted in (true, false),
+  //    counted for in ("w", "b", "")
+  // ]
+
   return (
     <React.Fragment>
       {point[0] && (
