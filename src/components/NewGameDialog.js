@@ -12,6 +12,7 @@ import {
   RadioGroup,
   Select,
   TextField,
+  Tooltip,
 } from "@material-ui/core";
 import React, { useState } from "react";
 import { useStyles } from "../hooks/useStyles";
@@ -101,12 +102,14 @@ function NewGameDialog({ newGameDialogOpen, setNewGameDialogOpen }) {
           <FormLabel component="legend">VS.</FormLabel>
           <RadioGroup row onChange={handleVsChange} value={vs}>
             <FormControlLabel value={HUMAN} control={<Radio />} label={HUMAN} />
-            <FormControlLabel
-              value={COMPUTER}
-              control={<Radio />}
-              label={COMPUTER}
-              disabled
-            />
+            <Tooltip title="Not yet supported. Please check back later">
+              <FormControlLabel
+                value={COMPUTER}
+                control={<Radio />}
+                label={COMPUTER}
+                disabled
+              />
+            </Tooltip>
           </RadioGroup>
           <FormLabel component="legend">Your Color</FormLabel>
           <RadioGroup row onChange={handleColorChange} value={color}>
