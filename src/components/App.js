@@ -14,11 +14,10 @@ import ConnectionManager from "./ConnectionManager";
 import { BLACK, WHITE } from "../constants/Colors";
 import { ALERT_ZINDEX_BASE } from "../constants/AlertZindex";
 import EndgameHelpMessage from "./EndgameHelpMessage";
+import TopBar from "./TopBar";
 
 function App() {
   const classes = useStyles();
-
-  // TODO: Add some sort of info link, probably to github
 
   return (
     <div className={classes.App}>
@@ -29,6 +28,7 @@ function App() {
       <EndgameHelpMessage zIndex={ALERT_ZINDEX_BASE + 1} />
       <Message zIndex={ALERT_ZINDEX_BASE + 2} />
       <ConnectionAlert zIndex={ALERT_ZINDEX_BASE + 3} />
+      <TopBar />
       <GameStatusProvider>
         <Board />
       </GameStatusProvider>

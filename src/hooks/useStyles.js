@@ -9,6 +9,12 @@ const useStyles = makeStyles(
       flexWrap: "wrap",
       justifyContent: "center",
     },
+    TopDrawer: {
+      width: "auto",
+    },
+    TopDrawerButton: {
+      marginRight: theme.spacing(2),
+    },
     AlertProgressContainer: {
       display: "flex",
       justifyContent: "center",
