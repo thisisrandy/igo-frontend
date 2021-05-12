@@ -1,7 +1,7 @@
 import { act, render, screen } from "@testing-library/react";
 import TopBar from "../components/TopBar";
 
-test("renders toolbar", () => {
+test("renders TopBar", () => {
   render(<TopBar />);
   const topBar = screen.getByText(/囲碁 - igo/);
   expect(topBar).toBeInTheDocument();
