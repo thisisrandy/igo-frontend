@@ -3,7 +3,7 @@ import TopBar from "../components/TopBar";
 
 test("renders TopBar", () => {
   render(<TopBar />);
-  const topBar = screen.getByText(/囲碁 - igo/);
+  const topBar = screen.getByText("囲碁 - igo");
   expect(topBar).toBeInTheDocument();
 });
 
