@@ -89,6 +89,8 @@ function NewGameDialog({ newGameDialogOpen, setNewGameDialogOpen }) {
     );
   };
 
+  const getRadio = () => <Radio color="primary" />;
+
   return (
     <Dialog
       open={newGameDialogOpen}
@@ -101,11 +103,15 @@ function NewGameDialog({ newGameDialogOpen, setNewGameDialogOpen }) {
         <FormControl component="fieldset">
           <FormLabel component="legend">VS.</FormLabel>
           <RadioGroup row onChange={handleVsChange} value={vs}>
-            <FormControlLabel value={HUMAN} control={<Radio />} label={HUMAN} />
+            <FormControlLabel
+              value={HUMAN}
+              control={getRadio()}
+              label={HUMAN}
+            />
             <Tooltip title="Not yet supported. Please check back later">
               <FormControlLabel
                 value={COMPUTER}
-                control={<Radio />}
+                control={getRadio()}
                 label={COMPUTER}
                 disabled
               />
@@ -113,8 +119,16 @@ function NewGameDialog({ newGameDialogOpen, setNewGameDialogOpen }) {
           </RadioGroup>
           <FormLabel component="legend">Your Color</FormLabel>
           <RadioGroup row onChange={handleColorChange} value={color}>
-            <FormControlLabel value={BLACK} control={<Radio />} label={BLACK} />
-            <FormControlLabel value={WHITE} control={<Radio />} label={WHITE} />
+            <FormControlLabel
+              value={BLACK}
+              control={getRadio()}
+              label={BLACK}
+            />
+            <FormControlLabel
+              value={WHITE}
+              control={getRadio()}
+              label={WHITE}
+            />
           </RadioGroup>
           <FormLabel component="legend">Board Size</FormLabel>
           <div className={classes.BoardSizeSelectContainer}>
