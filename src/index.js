@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/App";
 import reportWebVitals from "./reportWebVitals";
-import { brown } from "@material-ui/core/colors";
+import { blueGrey } from "@material-ui/core/colors";
 // See https://stackoverflow.com/a/64135466/12162258
 import {
   unstable_createMuiStrictModeTheme,
@@ -17,7 +17,7 @@ import reduxWebsocket from "@giantmachines/redux-websocket";
 const theme = unstable_createMuiStrictModeTheme({
   palette: {
     type: "dark",
-    primary: brown,
+    primary: blueGrey,
   },
 });
 
