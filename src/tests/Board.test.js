@@ -22,7 +22,7 @@ test("renders empty Board", () => {
   render(<Board myTurn={true} playing={true} endGame={false} />, {
     initialState: emptyBoard,
   });
-  const board = screen.queryByAltText("go board");
+  const board = screen.getByAltText("go board");
   expect(board).toBeInTheDocument();
   const stone = screen.queryByAltText(/stone/);
   expect(stone).not.toBeInTheDocument();
@@ -34,7 +34,7 @@ test("renders Board with white stone", () => {
   render(<Board myTurn={true} playing={true} endGame={false} />, {
     initialState: board,
   });
-  const white = screen.queryByAltText("white stone");
+  const white = screen.getByAltText("white stone");
   expect(white).toBeInTheDocument();
   const black = screen.queryByAltText("black stone");
   expect(black).not.toBeInTheDocument();
@@ -48,7 +48,7 @@ test("renders Board with black stone", () => {
   });
   const white = screen.queryByAltText("white stone");
   expect(white).not.toBeInTheDocument();
-  const black = screen.queryByAltText("black stone");
+  const black = screen.getByAltText("black stone");
   expect(black).toBeInTheDocument();
 });
 
