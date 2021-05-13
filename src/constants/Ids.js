@@ -3,6 +3,7 @@
 
 // TODO: add verify uniqueness test
 
+// new game
 export const KOMI_SELECT = "komi-select";
 export const VS_SELECT = "vs-select";
 export const COLOR_SELECT = "color-select";
