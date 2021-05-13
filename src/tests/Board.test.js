@@ -1,9 +1,23 @@
 import Board from "../components/Board";
 import { POINTS, SIZE } from "../constants/BoardKeys";
-import { BLACK } from "../constants/Colors";
+import { BLACK, WHITE } from "../constants/Colors";
 import { BOARD, YOUR_COLOR, KEYS, CONNECTED } from "../constants/StateKeys";
-import { render, screen } from "../utils/test-utils";
+import { act, render, screen } from "../utils/test-utils";
+import createMockStore from "redux-mock-store";
+import {
+  ACTION_TYPE,
+  COORDS,
+  KEY,
+  TYPE,
+} from "../constants/OutgoingMessageKeys";
+import { GAME_ACTION } from "../constants/OutgoingMessageTypes";
+import { MARK_DEAD, PLACE_STONE } from "../constants/GameActionTypes";
+import { render as rtlRender } from "@testing-library/react";
+import { Provider } from "react-redux";
+import { WS_SEND } from "../constants/ActionTypes";
 
+const keyW = "0123456789";
+const keyB = "9876543210";
 const emptyBoard = {
   game: {
     [BOARD]: {
@@ -13,7 +27,7 @@ const emptyBoard = {
       ),
     },
     [YOUR_COLOR]: BLACK,
-    [KEYS]: { WHITE: "0123456789", BLACK: "9876543210" },
+    [KEYS]: { [WHITE]: keyW, [BLACK]: keyB },
     [CONNECTED]: true,
   },
 };
@@ -127,8 +141,54 @@ test("board button labels are correct during the endgame", () => {
   });
   expect(emptyPoint).toBeInTheDocument();
 });
-// TODO: check correct handlers called/dispatches made on clicks
+
+const mockStore = createMockStore([]);
+
+test("clicks dispatch correct actions during play", () => {
+  const store = mockStore(emptyBoard);
+  rtlRender(
+    <Provider store={store}>
+      <Board myTurn={true} playing={true} endGame={false} />
+    </Provider>
+  );
+  const emptyPoint = screen.getByRole("button", { name: /\(0, 0\)/ });
+  act(() => {
+    emptyPoint.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+  });
+  expect(store.getActions().length).toBe(1);
+  const action = store.getActions().pop();
+  expect(action.type).toBe(WS_SEND);
+  expect(action.payload).toEqual({
+    [TYPE]: GAME_ACTION,
+    [KEY]: keyB,
+    [ACTION_TYPE]: PLACE_STONE,
+    [COORDS]: [0, 0],
+  });
+});
+
+test("clicks dispatch correct actions during endgame", () => {
+  const board = JSON.parse(JSON.stringify(emptyBoard));
+  board.game[BOARD][POINTS][0][0][0] = "b";
+  const store = mockStore(board);
+  rtlRender(
+    <Provider store={store}>
+      <Board myTurn={true} playing={false} endGame={true} />
+    </Provider>
+  );
+  const emptyPoint = screen.getByRole("button", { name: /\(0, 0\)/ });
+  act(() => {
+    emptyPoint.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+  });
+  expect(store.getActions().length).toBe(1);
+  const action = store.getActions().pop();
+  expect(action.type).toBe(WS_SEND);
+  expect(action.payload).toEqual({
+    [TYPE]: GAME_ACTION,
+    [KEY]: keyB,
+    [ACTION_TYPE]: MARK_DEAD,
+    [COORDS]: [0, 0],
+  });
+});
+
 // TODO: check marked dead and counted work as expected
 // TODO: check hover works as expected
-// TODO: check stones placed in correct spot. this might be difficult to verify
-// in a non-artificial way, but at least think it through
