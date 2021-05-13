@@ -52,6 +52,22 @@ test("renders Board with black stone", () => {
   expect(black).toBeInTheDocument();
 });
 
+test("renders Board with several stones", () => {
+  const board = JSON.parse(JSON.stringify(emptyBoard));
+  board.game[BOARD][POINTS][0][0][0] = "b";
+  board.game[BOARD][POINTS][0][1][0] = "b";
+  board.game[BOARD][POINTS][1][0][0] = "b";
+  board.game[BOARD][POINTS][0][10][0] = "w";
+  board.game[BOARD][POINTS][0][11][0] = "w";
+  render(<Board myTurn={true} playing={true} endGame={false} />, {
+    initialState: board,
+  });
+  const white = screen.getAllByAltText("white stone");
+  expect(white.length).toBe(2);
+  const black = screen.getAllByAltText("black stone");
+  expect(black.length).toBe(3);
+});
+
 // TODO: check correct handlers called/dispatches made on clicks
 // TODO: check correct board size used
 // TODO: check marked dead and counted work as expected
