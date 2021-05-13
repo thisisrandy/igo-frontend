@@ -219,4 +219,18 @@ test("clicks dispatch correct actions during endgame", () => {
   });
 });
 
-// TODO: check marked dead and counted work as expected
+test("mark dead displays correctly", () => {
+  const board = JSON.parse(JSON.stringify(emptyBoard));
+  board.game[BOARD][POINTS][0][0][0] = "b";
+  board.game[BOARD][POINTS][0][0][1] = true;
+  const store = mockStore(board);
+  render(
+    <Provider store={store}>
+      <Board myTurn={true} playing={false} endGame={true} />
+    </Provider>
+  );
+  const deadMark = screen.getByLabelText(/marked as dead.*\(0, 0\)/);
+  expect(deadMark).toBeInTheDocument();
+});
+
+// TODO: check counted works as expected
