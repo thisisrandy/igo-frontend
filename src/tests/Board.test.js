@@ -80,6 +80,53 @@ test("board size is correct", () => {
   expect(tooFarRight).not.toBeInTheDocument();
 });
 
+test("board button labels are correct during play on my turn", () => {
+  const board = JSON.parse(JSON.stringify(emptyBoard));
+  board.game[BOARD][POINTS][0][0][0] = "b";
+  board.game[BOARD][POINTS][0][1][0] = "w";
+  render(<Board myTurn={true} playing={true} endGame={false} />, {
+    initialState: board,
+  });
+
+  const blackStone = screen.getByRole("button", {
+    name: /unclickable black stone.*\(0, 0\)/,
+  });
+  expect(blackStone).toBeInTheDocument();
+  const whiteStone = screen.getByRole("button", {
+    name: /unclickable white stone.*\(0, 1\)/,
+  });
+  expect(whiteStone).toBeInTheDocument();
+  const emptyPoint = screen.getByRole("button", {
+    name: /^clickable point.*\(1, 1\)/,
+  });
+  expect(emptyPoint).toBeInTheDocument();
+});
+
+test("board button labels are correct during play on my opponent's turn", () => {
+  render(<Board myTurn={false} playing={true} endGame={false} />, {
+    initialState: emptyBoard,
+  });
+  const emptyPoint = screen.getByRole("button", {
+    name: /unclickable point.*\(1, 1\)/,
+  });
+  expect(emptyPoint).toBeInTheDocument();
+});
+
+test("board button labels are correct during the endgame", () => {
+  const board = JSON.parse(JSON.stringify(emptyBoard));
+  board.game[BOARD][POINTS][0][0][0] = "b";
+  render(<Board myTurn={false} playing={false} endGame={true} />, {
+    initialState: board,
+  });
+  const blackStone = screen.getByRole("button", {
+    name: /^clickable black stone.*\(0, 0\)/,
+  });
+  expect(blackStone).toBeInTheDocument();
+  const emptyPoint = screen.getByRole("button", {
+    name: /unclickable point.*\(1, 1\)/,
+  });
+  expect(emptyPoint).toBeInTheDocument();
+});
 // TODO: check correct handlers called/dispatches made on clicks
 // TODO: check marked dead and counted work as expected
 // TODO: check hover works as expected
