@@ -31,6 +31,11 @@ function Message({ zIndex }) {
       // elect to do. This applies anywhere that a Dialog component is used in
       // this codebase
       TransitionComponent={Zoom}
+      onKeyPress={(e) => {
+        if (e.key === "Enter") {
+          clickHandler();
+        }
+      }}
     >
       <DraggableDialogTitle>Message</DraggableDialogTitle>
       <DialogContent className={classes.DialogContent}>
