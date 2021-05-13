@@ -89,7 +89,7 @@ function Point({ i, j, point, myTurn, playing, endGame }) {
         onClick={
           !point[0] ? emptyPointClickHandler(i, j) : stoneClickHandler(i, j)
         }
-        name={`${clickable ? "" : "un"}clickable ${
+        aria-label={`${clickable ? "" : "un"}clickable ${
           point[0] ? (point[0] === "w" ? WHITE : BLACK) + " stone" : "point"
         }${
           point[2]
