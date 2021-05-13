@@ -1,7 +1,5 @@
 // this is a place to put element ids in constants to avoid typos and also
-// verify uniqueness
-
-// TODO: add verify uniqueness test
+// facilitate verifying uniqueness in a test
 
 // new game
 export const KOMI_SELECT = "komi-select";
