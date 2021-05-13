@@ -220,4 +220,3 @@ test("clicks dispatch correct actions during endgame", () => {
 });
 
 // TODO: check marked dead and counted work as expected
-// TODO: check hover works as expected
