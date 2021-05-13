@@ -27,6 +27,12 @@ import { VS, COLOR, SIZE, KOMI } from "../constants/OutgoingMessageKeys";
 import { BLACK, WHITE } from "../constants/Colors";
 import { capitalizeFirstLetter } from "../utils";
 import { DEFAULT_BOARD_SIZE, DEFAULT_KOMI } from "../constants/Defaults";
+import {
+  KOMI_SELECT,
+  VS_SELECT,
+  COLOR_SELECT,
+  BOARD_SIZE_SELECT,
+} from "../constants/Ids";
 
 function NewGameDialog({ newGameDialogOpen, setNewGameDialogOpen }) {
   const classes = useStyles();
@@ -101,8 +107,10 @@ function NewGameDialog({ newGameDialogOpen, setNewGameDialogOpen }) {
       <DraggableDialogTitle>New Game</DraggableDialogTitle>
       <DialogContent className={classes.DialogContent}>
         <FormControl component="fieldset">
-          <FormLabel component="legend">VS.</FormLabel>
-          <RadioGroup row onChange={handleVsChange} value={vs}>
+          <FormLabel component="legend" htmlFor={VS_SELECT}>
+            VS.
+          </FormLabel>
+          <RadioGroup id={VS_SELECT} row onChange={handleVsChange} value={vs}>
             <FormControlLabel
               value={HUMAN}
               control={getRadio()}
@@ -117,8 +125,15 @@ function NewGameDialog({ newGameDialogOpen, setNewGameDialogOpen }) {
               />
             </Tooltip>
           </RadioGroup>
-          <FormLabel component="legend">Your Color</FormLabel>
-          <RadioGroup row onChange={handleColorChange} value={color}>
+          <FormLabel component="legend" htmlFor={COLOR_SELECT}>
+            Your Color
+          </FormLabel>
+          <RadioGroup
+            id={COLOR_SELECT}
+            row
+            onChange={handleColorChange}
+            value={color}
+          >
             <FormControlLabel
               value={BLACK}
               control={getRadio()}
@@ -130,9 +145,12 @@ function NewGameDialog({ newGameDialogOpen, setNewGameDialogOpen }) {
               label={WHITE}
             />
           </RadioGroup>
-          <FormLabel component="legend">Board Size</FormLabel>
+          <FormLabel component="legend" htmlFor={BOARD_SIZE_SELECT}>
+            Board Size
+          </FormLabel>
           <div className={classes.BoardSizeSelectContainer}>
             <Select
+              id={BOARD_SIZE_SELECT}
               className={classes.BoardSizeSelect}
               value={size}
               onChange={handleSizeChange}
@@ -142,11 +160,12 @@ function NewGameDialog({ newGameDialogOpen, setNewGameDialogOpen }) {
               <MenuItem value={19}>19x19</MenuItem>
             </Select>
           </div>
-          <FormLabel component="legend">
+          <FormLabel component="legend" htmlFor={KOMI_SELECT}>
             {capitalizeFirstLetter(KOMI)}
           </FormLabel>
           <div className={classes.KomiTextContainer}>
             <Input
+              id={KOMI_SELECT}
               name={KOMI}
               className={classes.KomiTextField}
               type="number"
