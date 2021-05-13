@@ -2,7 +2,6 @@ import Board from "../components/Board";
 import { POINTS, SIZE } from "../constants/BoardKeys";
 import { BLACK, WHITE } from "../constants/Colors";
 import { BOARD, YOUR_COLOR, KEYS, CONNECTED } from "../constants/StateKeys";
-import { act, render, screen } from "../utils/test-utils";
 import createMockStore from "redux-mock-store";
 import {
   ACTION_TYPE,
@@ -12,7 +11,7 @@ import {
 } from "../constants/OutgoingMessageKeys";
 import { GAME_ACTION } from "../constants/OutgoingMessageTypes";
 import { MARK_DEAD, PLACE_STONE } from "../constants/GameActionTypes";
-import { render as rtlRender } from "@testing-library/react";
+import { render, act, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { WS_SEND } from "../constants/ActionTypes";
 
@@ -32,10 +31,15 @@ const emptyBoard = {
   },
 };
 
+const mockStore = createMockStore([]);
+
 test("renders empty Board", () => {
-  render(<Board myTurn={true} playing={true} endGame={false} />, {
-    initialState: emptyBoard,
-  });
+  render(
+    <Provider store={mockStore(emptyBoard)}>
+      <Board myTurn={true} playing={true} endGame={false} />
+    </Provider>
+  );
+
   const board = screen.getByAltText("go board");
   expect(board).toBeInTheDocument();
   const stone = screen.queryByAltText(/stone/);
@@ -45,9 +49,12 @@ test("renders empty Board", () => {
 test("renders Board with white stone", () => {
   const board = JSON.parse(JSON.stringify(emptyBoard));
   board.game[BOARD][POINTS][0][0][0] = "w";
-  render(<Board myTurn={true} playing={true} endGame={false} />, {
-    initialState: board,
-  });
+  render(
+    <Provider store={mockStore(board)}>
+      <Board myTurn={true} playing={true} endGame={false} />
+    </Provider>
+  );
+
   const white = screen.getByAltText("white stone");
   expect(white).toBeInTheDocument();
   const black = screen.queryByAltText("black stone");
@@ -57,9 +64,12 @@ test("renders Board with white stone", () => {
 test("renders Board with black stone", () => {
   const board = JSON.parse(JSON.stringify(emptyBoard));
   board.game[BOARD][POINTS][0][0][0] = "b";
-  render(<Board myTurn={true} playing={true} endGame={false} />, {
-    initialState: board,
-  });
+  render(
+    <Provider store={mockStore(board)}>
+      <Board myTurn={true} playing={true} endGame={false} />
+    </Provider>
+  );
+
   const white = screen.queryByAltText("white stone");
   expect(white).not.toBeInTheDocument();
   const black = screen.getByAltText("black stone");
@@ -73,9 +83,12 @@ test("renders Board with several stones", () => {
   board.game[BOARD][POINTS][1][0][0] = "b";
   board.game[BOARD][POINTS][0][10][0] = "w";
   board.game[BOARD][POINTS][0][11][0] = "w";
-  render(<Board myTurn={true} playing={true} endGame={false} />, {
-    initialState: board,
-  });
+  render(
+    <Provider store={mockStore(board)}>
+      <Board myTurn={true} playing={true} endGame={false} />
+    </Provider>
+  );
+
   const white = screen.getAllByAltText("white stone");
   expect(white.length).toBe(2);
   const black = screen.getAllByAltText("black stone");
@@ -83,9 +96,12 @@ test("renders Board with several stones", () => {
 });
 
 test("board size is correct", () => {
-  render(<Board myTurn={true} playing={true} endGame={false} />, {
-    initialState: emptyBoard,
-  });
+  render(
+    <Provider store={mockStore(emptyBoard)}>
+      <Board myTurn={true} playing={true} endGame={false} />
+    </Provider>
+  );
+
   const bottomRight = screen.getByRole("button", { name: /\(18, 18\)/ });
   expect(bottomRight).toBeInTheDocument();
   const tooFarDown = screen.queryByRole("button", { name: /\(19, 18\)/ });
@@ -98,9 +114,11 @@ test("board button labels are correct during play on my turn", () => {
   const board = JSON.parse(JSON.stringify(emptyBoard));
   board.game[BOARD][POINTS][0][0][0] = "b";
   board.game[BOARD][POINTS][0][1][0] = "w";
-  render(<Board myTurn={true} playing={true} endGame={false} />, {
-    initialState: board,
-  });
+  render(
+    <Provider store={mockStore(board)}>
+      <Board myTurn={true} playing={true} endGame={false} />
+    </Provider>
+  );
 
   const blackStone = screen.getByRole("button", {
     name: /unclickable black stone.*\(0, 0\)/,
@@ -117,9 +135,12 @@ test("board button labels are correct during play on my turn", () => {
 });
 
 test("board button labels are correct during play on my opponent's turn", () => {
-  render(<Board myTurn={false} playing={true} endGame={false} />, {
-    initialState: emptyBoard,
-  });
+  render(
+    <Provider store={mockStore(emptyBoard)}>
+      <Board myTurn={false} playing={true} endGame={false} />
+    </Provider>
+  );
+
   const emptyPoint = screen.getByRole("button", {
     name: /unclickable point.*\(1, 1\)/,
   });
@@ -129,9 +150,12 @@ test("board button labels are correct during play on my opponent's turn", () => 
 test("board button labels are correct during the endgame", () => {
   const board = JSON.parse(JSON.stringify(emptyBoard));
   board.game[BOARD][POINTS][0][0][0] = "b";
-  render(<Board myTurn={false} playing={false} endGame={true} />, {
-    initialState: board,
-  });
+  render(
+    <Provider store={mockStore(board)}>
+      <Board myTurn={true} playing={false} endGame={true} />
+    </Provider>
+  );
+
   const blackStone = screen.getByRole("button", {
     name: /^clickable black stone.*\(0, 0\)/,
   });
@@ -142,11 +166,9 @@ test("board button labels are correct during the endgame", () => {
   expect(emptyPoint).toBeInTheDocument();
 });
 
-const mockStore = createMockStore([]);
-
 test("clicks dispatch correct actions during play", () => {
   const store = mockStore(emptyBoard);
-  rtlRender(
+  render(
     <Provider store={store}>
       <Board myTurn={true} playing={true} endGame={false} />
     </Provider>
@@ -170,7 +192,7 @@ test("clicks dispatch correct actions during endgame", () => {
   const board = JSON.parse(JSON.stringify(emptyBoard));
   board.game[BOARD][POINTS][0][0][0] = "b";
   const store = mockStore(board);
-  rtlRender(
+  render(
     <Provider store={store}>
       <Board myTurn={true} playing={false} endGame={true} />
     </Provider>
