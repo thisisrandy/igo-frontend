@@ -52,6 +52,8 @@ function Point({ i, j, point, myTurn, playing, endGame }) {
     }
   };
 
+  const clickable = (!point[0] && playing && myTurn) || (point[0] && endGame);
+
   // NOTE: point is an array of length 4 with contents as follows:
   // [
   //    stone in ("w", "b", ""),
@@ -79,9 +81,7 @@ function Point({ i, j, point, myTurn, playing, endGame }) {
       <div
         className={clsx(
           classes.Point,
-          (!point[0] && playing && myTurn) || (point[0] && endGame)
-            ? classes.PointHover
-            : {},
+          clickable ? classes.PointHover : {},
           point[2] && point[3] === "w" ? classes.CountedWhite : {},
           point[2] && point[3] === "b" ? classes.CountedBlack : {}
         )}
@@ -89,6 +89,15 @@ function Point({ i, j, point, myTurn, playing, endGame }) {
         onClick={
           !point[0] ? emptyPointClickHandler(i, j) : stoneClickHandler(i, j)
         }
+        name={`${clickable ? "" : "un"}clickable ${
+          point[0] ? (point[0] === "w" ? WHITE : BLACK) + " stone" : "point"
+        }${
+          point[2]
+            ? " counted for " +
+              (point[3] === "w" ? WHITE : point[3] === "b" ? BLACK : "no one")
+            : ""
+        } at coordinates (${i}, ${j})`}
+        role="button"
       />
     </React.Fragment>
   );
