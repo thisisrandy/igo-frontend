@@ -11,8 +11,8 @@ import {
   Radio,
   RadioGroup,
   Select,
-  TextField,
   Tooltip,
+  Input,
 } from "@material-ui/core";
 import React, { useState } from "react";
 import { useStyles } from "../hooks/useStyles";
@@ -146,7 +146,7 @@ function NewGameDialog({ newGameDialogOpen, setNewGameDialogOpen }) {
             {capitalizeFirstLetter(KOMI)}
           </FormLabel>
           <div className={classes.KomiTextContainer}>
-            <TextField
+            <Input
               name={KOMI}
               className={classes.KomiTextField}
               type="number"
