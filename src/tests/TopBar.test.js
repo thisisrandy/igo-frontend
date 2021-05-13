@@ -12,6 +12,7 @@ test("drawer is hidden and appears on button click", () => {
   expect(screen.queryByText("How do I play?")).toBeNull();
   expect(screen.queryByText("Show me the code!")).toBeNull();
   const button = document.querySelector("button");
+  expect(button).toBeInTheDocument();
   act(() => {
     button.dispatchEvent(new MouseEvent("click", { bubbles: true }));
   });
