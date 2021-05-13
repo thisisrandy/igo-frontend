@@ -11,3 +11,8 @@ export const BOARD_SIZE_SELECT = "board-size-select";
 
 // join game
 export const JOIN_RESUME_KEY_FIELD = "join-resume-key-field";
+
+// draggable paper
+export const TITLE_ID = "draggable-dialog-title";
+export const ACTIONS_ID = "draggable-dialog-actions";
+export const GENERIC_DRAGGABLE_ID = "draggable-generic-id";

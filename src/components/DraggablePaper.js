@@ -2,10 +2,11 @@ import React from "react";
 import Paper from "@material-ui/core/Paper";
 import Draggable from "react-draggable";
 import { DialogTitle } from "@material-ui/core";
+import { ACTIONS_ID, GENERIC_DRAGGABLE_ID, TITLE_ID } from "../constants/Ids";
 
-const titleId = "draggable-dialog-title";
-const actionsId = "draggable-dialog-actions";
-const genericDraggableId = "draggable-generic-id";
+const titleId = TITLE_ID;
+const actionsId = ACTIONS_ID;
+const genericDraggableId = GENERIC_DRAGGABLE_ID;
 const draggableStyle = { cursor: "move" };
 
 /**
