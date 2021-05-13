@@ -219,7 +219,7 @@ test("clicks dispatch correct actions during endgame", () => {
   });
 });
 
-test("mark dead displays correctly", () => {
+test("marked dead stones display correctly", () => {
   const board = JSON.parse(JSON.stringify(emptyBoard));
   board.game[BOARD][POINTS][0][0][0] = "b";
   board.game[BOARD][POINTS][0][0][1] = true;
@@ -233,7 +233,7 @@ test("mark dead displays correctly", () => {
   expect(deadMark).toBeInTheDocument();
 });
 
-test("counted displays correctly", () => {
+test("counted points display correctly", () => {
   const board = JSON.parse(JSON.stringify(emptyBoard));
   board.game[BOARD][POINTS][0][0] = ["b", false, false, ""];
   board.game[BOARD][POINTS][0][1] = ["", false, true, "b"];
