@@ -76,6 +76,10 @@ function Point({ i, j, point, myTurn, playing, endGame }) {
         <ClearIcon
           style={{ gridRow: i + 2, gridColumn: j + 2 }}
           className={classes.DeadStone}
+          aria-label={`${
+            point[0] === "w" ? WHITE : BLACK
+          } stone marked as dead awaiting response at coordinates (${i}, ${j})`}
+          role="presentation"
         />
       )}
       <div
