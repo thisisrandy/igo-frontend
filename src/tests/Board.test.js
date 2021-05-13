@@ -204,9 +204,9 @@ test("clicks dispatch correct actions during endgame", () => {
       <Board myTurn={true} playing={false} endGame={true} />
     </Provider>
   );
-  const emptyPoint = screen.getByRole("button", { name: /\(0, 0\)/ });
+  const blackStone = screen.getByRole("button", { name: /\(0, 0\)/ });
   act(() => {
-    emptyPoint.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+    blackStone.dispatchEvent(new MouseEvent("click", { bubbles: true }));
   });
   expect(store.getActions().length).toBe(1);
   const action = store.getActions().pop();
