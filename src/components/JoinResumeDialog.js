@@ -16,6 +16,7 @@ import { TYPE, KEY } from "../constants/OutgoingMessageKeys";
 import { CONNECTED } from "../constants/StateKeys";
 import { DraggableDialogTitle, DraggablePaper } from "./DraggablePaper";
 import { PLAYER_KEY_LENGTH } from "../constants/PlayerKeyInfo";
+import { JOIN_RESUME_KEY_FIELD } from "../constants/Ids";
 
 function JoinResumeDialog({ joinResumeDialogOpen, setJoinResumeDialogOpen }) {
   const classes = useStyles();
@@ -55,7 +56,7 @@ function JoinResumeDialog({ joinResumeDialogOpen, setJoinResumeDialogOpen }) {
         </DialogContentText>
         <TextField
           autoFocus
-          id="joinResumeKeyField"
+          id={JOIN_RESUME_KEY_FIELD}
           label="Player key"
           margin="dense"
           inputProps={{ maxLength: PLAYER_KEY_LENGTH }}
