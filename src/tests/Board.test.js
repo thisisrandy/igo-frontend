@@ -233,4 +233,24 @@ test("mark dead displays correctly", () => {
   expect(deadMark).toBeInTheDocument();
 });
 
-// TODO: check counted works as expected
+test("counted displays correctly", () => {
+  const board = JSON.parse(JSON.stringify(emptyBoard));
+  board.game[BOARD][POINTS][0][0] = ["b", false, false, ""];
+  board.game[BOARD][POINTS][0][1] = ["", false, true, "b"];
+  board.game[BOARD][POINTS][1][0] = ["", false, true, "w"];
+  board.game[BOARD][POINTS][1][1] = ["", false, true, ""];
+  const store = mockStore(board);
+  render(
+    <Provider store={store}>
+      <Board myTurn={true} playing={false} endGame={false} />
+    </Provider>
+  );
+  const shouldNotBeCounted = screen.queryByLabelText(/counted for.*\(0, 0\)/);
+  expect(shouldNotBeCounted).not.toBeInTheDocument();
+  const countedBlack = screen.queryByLabelText(/counted for black.*\(0, 1\)/);
+  expect(countedBlack).toBeInTheDocument();
+  const countedWhite = screen.queryByLabelText(/counted for white.*\(1, 0\)/);
+  expect(countedWhite).toBeInTheDocument();
+  const countedNoOne = screen.queryByLabelText(/counted for no one.*\(1, 1\)/);
+  expect(countedNoOne).toBeInTheDocument();
+});
