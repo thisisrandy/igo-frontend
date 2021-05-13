@@ -17,12 +17,13 @@ import { WS_SEND } from "../constants/ActionTypes";
 
 const keyW = "0123456789";
 const keyB = "9876543210";
+const boardSize = 9;
 const emptyBoard = {
   game: {
     [BOARD]: {
-      [SIZE]: 19,
-      [POINTS]: Array.from({ length: 19 }, () =>
-        Array.from({ length: 19 }, () => ["", false, false, ""])
+      [SIZE]: boardSize,
+      [POINTS]: Array.from({ length: boardSize }, () =>
+        Array.from({ length: boardSize }, () => ["", false, false, ""])
       ),
     },
     [YOUR_COLOR]: BLACK,
@@ -81,8 +82,8 @@ test("renders Board with several stones", () => {
   board.game[BOARD][POINTS][0][0][0] = "b";
   board.game[BOARD][POINTS][0][1][0] = "b";
   board.game[BOARD][POINTS][1][0][0] = "b";
-  board.game[BOARD][POINTS][0][10][0] = "w";
-  board.game[BOARD][POINTS][0][11][0] = "w";
+  board.game[BOARD][POINTS][0][5][0] = "w";
+  board.game[BOARD][POINTS][0][6][0] = "w";
   render(
     <Provider store={mockStore(board)}>
       <Board myTurn={true} playing={true} endGame={false} />
@@ -102,11 +103,17 @@ test("board size is correct", () => {
     </Provider>
   );
 
-  const bottomRight = screen.getByRole("button", { name: /\(18, 18\)/ });
+  const bottomRight = screen.getByRole("button", {
+    name: new RegExp(`\\(${boardSize - 1}, ${boardSize - 1}\\)`),
+  });
   expect(bottomRight).toBeInTheDocument();
-  const tooFarDown = screen.queryByRole("button", { name: /\(19, 18\)/ });
+  const tooFarDown = screen.queryByRole("button", {
+    name: new RegExp(`\\(${boardSize}, ${boardSize - 1}\\)`),
+  });
   expect(tooFarDown).not.toBeInTheDocument();
-  const tooFarRight = screen.queryByRole("button", { name: /\(18, 19\)/ });
+  const tooFarRight = screen.queryByRole("button", {
+    name: new RegExp(`\\(${boardSize - 1}, ${boardSize}\\)`),
+  });
   expect(tooFarRight).not.toBeInTheDocument();
 });
 
