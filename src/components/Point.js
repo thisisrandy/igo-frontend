@@ -79,7 +79,6 @@ function Point({ i, j, point, myTurn, playing, endGame }) {
           aria-label={`${
             point[0] === "w" ? WHITE : BLACK
           } stone marked as dead awaiting response at coordinates (${i}, ${j})`}
-          role="presentation"
         />
       )}
       <div
