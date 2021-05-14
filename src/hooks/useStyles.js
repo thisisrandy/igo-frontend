@@ -67,7 +67,6 @@ const useStyles = makeStyles(
     },
     StoneImage: {
       display: "block",
-      height: "90%",
       width: "auto",
       overflow: "hidden",
       zIndex: 1,

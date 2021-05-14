@@ -17,7 +17,7 @@ import clsx from "clsx";
 import ClearIcon from "@material-ui/icons/Clear";
 import { BLACK, WHITE } from "../constants/Colors";
 
-function Point({ i, j, point, myTurn, playing, endGame }) {
+function Point({ i, j, point, myTurn, playing, endGame, stoneHeight }) {
   const classes = useStyles();
   const {
     [YOUR_COLOR]: your_color,
@@ -69,7 +69,7 @@ function Point({ i, j, point, myTurn, playing, endGame }) {
           src={point[0] === "w" ? whiteStone : blackStone}
           alt={`${point[0] === "w" ? WHITE : BLACK} stone`}
           className={classes.StoneImage}
-          style={{ gridRow: i + 2, gridColumn: j + 2 }}
+          style={{ gridRow: i + 2, gridColumn: j + 2, height: stoneHeight }}
         />
       )}
       {point[1] && (
