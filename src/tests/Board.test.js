@@ -180,6 +180,7 @@ test("clicks dispatch correct actions during play", () => {
       <Board myTurn={true} playing={true} endGame={false} />
     </Provider>
   );
+
   const emptyPoint = screen.getByRole("button", { name: /\(0, 0\)/ });
   act(() => {
     emptyPoint.dispatchEvent(new MouseEvent("click", { bubbles: true }));
@@ -204,6 +205,7 @@ test("clicks dispatch correct actions during endgame", () => {
       <Board myTurn={true} playing={false} endGame={true} />
     </Provider>
   );
+
   const blackStone = screen.getByRole("button", { name: /\(0, 0\)/ });
   act(() => {
     blackStone.dispatchEvent(new MouseEvent("click", { bubbles: true }));
@@ -229,6 +231,7 @@ test("marked dead stones display correctly", () => {
       <Board myTurn={true} playing={false} endGame={true} />
     </Provider>
   );
+
   const deadMark = screen.getByLabelText(/marked as dead.*\(0, 0\)/);
   expect(deadMark).toBeInTheDocument();
 });
@@ -245,6 +248,7 @@ test("counted points display correctly", () => {
       <Board myTurn={true} playing={false} endGame={false} />
     </Provider>
   );
+
   const shouldNotBeCounted = screen.queryByLabelText(/counted for.*\(0, 0\)/);
   expect(shouldNotBeCounted).not.toBeInTheDocument();
   const countedBlack = screen.queryByLabelText(/counted for black.*\(0, 1\)/);
