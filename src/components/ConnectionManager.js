@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { connect } from "@giantmachines/redux-websocket";
-import { SERVER_URI } from "../constants/ServerInfo";
+import { RECONNECT_INTERVAL_MS, SERVER_URI } from "../constants/ServerInfo";
 import { CONNECTED } from "../constants/StateKeys";
 
 function ConnectionManager() {
@@ -17,7 +17,7 @@ function ConnectionManager() {
     if (!connected) {
       const do_connect = () => dispatch(connect(SERVER_URI));
       do_connect();
-      const interval = setInterval(do_connect, 2000);
+      const interval = setInterval(do_connect, RECONNECT_INTERVAL_MS);
       return () => clearInterval(interval);
     }
   }, [connected, dispatch]);
