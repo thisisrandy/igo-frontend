@@ -95,6 +95,8 @@ function NewGameDialog({ newGameDialogOpen, setNewGameDialogOpen }) {
     );
   };
 
+  const canSubmit = connected && komiValid;
+
   const getRadio = () => <Radio color="primary" />;
 
   return (
@@ -177,6 +179,11 @@ function NewGameDialog({ newGameDialogOpen, setNewGameDialogOpen }) {
               defaultValue={komi}
               error={!komiValid}
               onChange={handleKomiChange}
+              onKeyPress={(e) => {
+                if (e.key === "Enter" && canSubmit) {
+                  submit();
+                }
+              }}
             />
           </div>
         </FormControl>
@@ -189,7 +196,7 @@ function NewGameDialog({ newGameDialogOpen, setNewGameDialogOpen }) {
           className={classes.Button}
           variant="contained"
           onClick={submit}
-          disabled={!connected || !komiValid}
+          disabled={!canSubmit}
         >
           Submit
         </Button>
