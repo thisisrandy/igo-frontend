@@ -4,6 +4,7 @@ import { CONNECTED } from "../constants/StateKeys";
 import { useSelector } from "react-redux";
 import { SERVER_URI } from "../constants/ServerInfo";
 import dedent from "dedent-js";
+import { CONNECTION_ALERT_DELAY_MS } from "../constants/ConnectionAlertDelay";
 
 function ConnectionAlert({ zIndex }) {
   const { [CONNECTED]: connected } = useSelector((state) => state.game);
@@ -13,7 +14,10 @@ function ConnectionAlert({ zIndex }) {
   const [hidden, setHidden] = useState(true);
   useEffect(() => {
     if (!connected) {
-      const timeout = setTimeout(() => setHidden(false), 200);
+      const timeout = setTimeout(
+        () => setHidden(false),
+        CONNECTION_ALERT_DELAY_MS
+      );
       return () => clearTimeout(timeout);
     } else {
       setHidden(true);

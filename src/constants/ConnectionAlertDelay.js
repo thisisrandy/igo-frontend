@@ -1,0 +1,1 @@
+export const CONNECTION_ALERT_DELAY_MS = 200;
