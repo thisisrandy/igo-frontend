@@ -2,24 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/App";
 import reportWebVitals from "./reportWebVitals";
-import { blueGrey } from "@material-ui/core/colors";
-// See https://stackoverflow.com/a/64135466/12162258
-import {
-  unstable_createMuiStrictModeTheme,
-  MuiThemeProvider,
-} from "@material-ui/core";
-import { CssBaseline } from "@material-ui/core";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import rootReducer from "./reducers";
 import reduxWebsocket from "@giantmachines/redux-websocket";
-
-const theme = unstable_createMuiStrictModeTheme({
-  palette: {
-    type: "dark",
-    primary: blueGrey,
-  },
-});
 
 // NOTE: redux-websocket for doesn't attempt to reconnect if the first
 // connection attempt fails, instead opting to only reconnect a previously
@@ -39,12 +25,9 @@ const store = createStore(
 
 ReactDOM.render(
   <React.StrictMode>
-    <MuiThemeProvider theme={theme}>
-      <CssBaseline />
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </MuiThemeProvider>
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );
