@@ -11,13 +11,14 @@ import {
   ListItemText,
   Slide,
   useScrollTrigger,
+  Switch,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import LocalLibraryIcon from "@material-ui/icons/LocalLibrary";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import { useStyles } from "../hooks/useStyles";
 
-function TopBar() {
+function TopBar({ darkMode, setDarkMode }) {
   const classes = useStyles();
   const trigger = useScrollTrigger();
 
@@ -73,7 +74,6 @@ function TopBar() {
 
   return (
     <React.Fragment>
-      {/* TODO: Add light/dark mode switch */}
       <Slide appear={false} direction="down" in={!trigger}>
         <AppBar position="sticky">
           <Toolbar>
@@ -88,9 +88,13 @@ function TopBar() {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h5" className={classes.title}>
+            <Typography variant="h5" className={classes.TopBarTitle}>
               囲碁 - igo
             </Typography>
+            <Switch
+              checked={darkMode}
+              onChange={() => setDarkMode((old) => !old)}
+            />
           </Toolbar>
         </AppBar>
       </Slide>

@@ -15,6 +15,9 @@ const useStyles = makeStyles(
     TopBarButton: {
       marginRight: theme.spacing(2),
     },
+    TopBarTitle: {
+      flexGrow: 1,
+    },
     AlertProgressContainer: {
       display: "flex",
       justifyContent: "center",

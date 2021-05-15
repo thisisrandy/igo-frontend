@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Board from "./Board";
 import GameControls from "./GameControls";
 import PlayerCard from "./PlayerCard";
@@ -25,9 +25,12 @@ import { CssBaseline } from "@material-ui/core";
 
 function App() {
   const classes = useStyles();
+
+  // TODO: persist this to local storage
+  const [darkMode, setDarkMode] = useState(true);
   const theme = unstable_createMuiStrictModeTheme({
     palette: {
-      type: "dark",
+      type: darkMode ? "dark" : "light",
       primary: blueGrey,
     },
   });
@@ -43,7 +46,7 @@ function App() {
         <EndgameHelpMessage zIndex={ALERT_ZINDEX_BASE + 1} />
         <Message zIndex={ALERT_ZINDEX_BASE + 2} />
         <ConnectionAlert zIndex={ALERT_ZINDEX_BASE + 3} />
-        <TopBar />
+        <TopBar {...{ darkMode, setDarkMode }} />
         <GameStatusProvider>
           <Board />
         </GameStatusProvider>
