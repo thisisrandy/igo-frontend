@@ -61,7 +61,7 @@ function JoinResumeDialog({ joinResumeDialogOpen, setJoinResumeDialogOpen }) {
           margin="dense"
           inputProps={{ maxLength: PLAYER_KEY_LENGTH }}
           onInput={(e) => {
-            setJoinResumeKey(e.target.value);
+            setJoinResumeKey(e.target.value.toLowerCase());
           }}
           onKeyPress={(e) => {
             if (e.key === "Enter" && canSubmit) {
