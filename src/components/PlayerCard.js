@@ -55,6 +55,8 @@ function PlayerCard({ color, joinedToGame, playing }) {
           />
         </Paper>
         <Paper className={classes.PlayerCardSubContainer}>
+          {/* TODO: this wraps on mobile. Use a table or something to keep the
+          rows lined up */}
           <div className={classes.PlayerCardScoreColumn}>
             <Typography>Prisoners:</Typography>
             <Typography>Territory:</Typography>
