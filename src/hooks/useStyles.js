@@ -60,15 +60,20 @@ const useStyles = makeStyles(
     BoardImage: {
       gridColumn: "1 / -1",
       gridRow: "1 / -1",
-      overflow: "hidden",
       display: "block",
       height: "100%",
       width: "auto",
     },
+    ImageCell: {
+      height: "100%",
+      width: "100%",
+      position: "relative",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    },
     StoneImage: {
-      display: "block",
-      width: "auto",
-      overflow: "hidden",
+      position: "absolute",
       zIndex: 1,
     },
     Point: {
@@ -83,10 +88,7 @@ const useStyles = makeStyles(
       },
     },
     DeadStone: {
-      display: "block",
-      height: "90%",
-      width: "auto",
-      overflow: "hidden",
+      position: "absolute",
       color: red[400],
       zIndex: 3,
     },

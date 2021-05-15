@@ -17,7 +17,7 @@ function Board({ myTurn, playing, endGame }) {
 
   let board = null;
   let borderDim = null;
-  let stoneHeight = null;
+  let stoneHeightWidth = null;
   // board measurements in pixels
   // 9x9: 135, 210*8, 135 -> (135-210/2)/210
   // 13x13: 105, 145*12, 105 -> (105-145/2)/145
@@ -26,17 +26,17 @@ function Board({ myTurn, playing, endGame }) {
     case 9:
       board = board_9x9;
       borderDim = (135 - 210 / 2) / 210;
-      stoneHeight = "80%";
+      stoneHeightWidth = "80%";
       break;
     case 13:
       board = board_13x13;
       borderDim = (105 - 145 / 2) / 145;
-      stoneHeight = "90%";
+      stoneHeightWidth = "90%";
       break;
     case 19:
       board = board_19x19;
       borderDim = (75 - 100 / 2) / 100;
-      stoneHeight = "90%";
+      stoneHeightWidth = "90%";
       break;
     default:
       throw new RangeError(`Unsupported board size ${size}`);
@@ -56,7 +56,7 @@ function Board({ myTurn, playing, endGame }) {
         Array.from(row.entries(), ([j, point]) => (
           <Point
             key={`${i},${j}`}
-            {...{ i, j, point, myTurn, playing, endGame, stoneHeight }}
+            {...{ i, j, point, myTurn, playing, endGame, stoneHeightWidth }}
           />
         ))
       )}

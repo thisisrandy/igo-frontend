@@ -17,7 +17,7 @@ import clsx from "clsx";
 import ClearIcon from "@material-ui/icons/Clear";
 import { BLACK, WHITE } from "../constants/Colors";
 
-function Point({ i, j, point, myTurn, playing, endGame, stoneHeight }) {
+function Point({ i, j, point, myTurn, playing, endGame, stoneHeightWidth }) {
   const classes = useStyles();
   const {
     [YOUR_COLOR]: your_color,
@@ -64,23 +64,36 @@ function Point({ i, j, point, myTurn, playing, endGame, stoneHeight }) {
 
   return (
     <React.Fragment>
-      {point[0] && (
-        <img
-          src={point[0] === "w" ? whiteStone : blackStone}
-          alt={`${point[0] === "w" ? WHITE : BLACK} stone`}
-          className={classes.StoneImage}
-          style={{ gridRow: i + 2, gridColumn: j + 2, height: stoneHeight }}
-        />
-      )}
-      {point[1] && (
-        <ClearIcon
-          style={{ gridRow: i + 2, gridColumn: j + 2 }}
-          className={classes.DeadStone}
-          aria-label={`${
-            point[0] === "w" ? WHITE : BLACK
-          } stone marked as dead awaiting response at coordinates (${i}, ${j})`}
-        />
-      )}
+      {/* the images are wrapped in a div for compatibility with some older
+      devices. see https://stackoverflow.com/a/67527395/12162258 */}
+      <div
+        className={classes.ImageCell}
+        style={{
+          gridRow: i + 2,
+          gridColumn: j + 2,
+        }}
+      >
+        {point[0] && (
+          <img
+            src={point[0] === "w" ? whiteStone : blackStone}
+            alt={`${point[0] === "w" ? WHITE : BLACK} stone`}
+            className={classes.StoneImage}
+            style={{
+              height: stoneHeightWidth,
+              width: stoneHeightWidth,
+            }}
+          />
+        )}
+        {point[1] && (
+          <ClearIcon
+            style={{ height: stoneHeightWidth, width: stoneHeightWidth }}
+            className={classes.DeadStone}
+            aria-label={`${
+              point[0] === "w" ? WHITE : BLACK
+            } stone marked as dead awaiting response at coordinates (${i}, ${j})`}
+          />
+        )}
+      </div>
       <div
         className={clsx(
           classes.Point,
