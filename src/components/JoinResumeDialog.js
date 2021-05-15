@@ -59,7 +59,10 @@ function JoinResumeDialog({ joinResumeDialogOpen, setJoinResumeDialogOpen }) {
           id={JOIN_RESUME_KEY_FIELD}
           label="Player key"
           margin="dense"
-          inputProps={{ maxLength: PLAYER_KEY_LENGTH }}
+          inputProps={{
+            maxLength: PLAYER_KEY_LENGTH,
+            spellCheck: false,
+          }}
           onInput={(e) => {
             setJoinResumeKey(e.target.value.toLowerCase());
           }}
