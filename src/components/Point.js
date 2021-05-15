@@ -106,11 +106,12 @@ function Point({ i, j, point, myTurn, playing, endGame, stoneHeightWidth }) {
           !point[0] ? emptyPointClickHandler(i, j) : stoneClickHandler(i, j)
         }
         aria-label={`${clickable ? "" : "un"}clickable ${
-          point[0] ? (point[0] === "w" ? WHITE : BLACK) + " stone" : "point"
+          point[0] ? `${point[0] === "w" ? WHITE : BLACK} stone` : "point"
         }${
           point[2]
-            ? " counted for " +
-              (point[3] === "w" ? WHITE : point[3] === "b" ? BLACK : "no one")
+            ? ` counted for ${
+                point[3] === "w" ? WHITE : point[3] === "b" ? BLACK : "no one"
+              }`
             : ""
         } at coordinates (${i}, ${j})`}
         role="button"
