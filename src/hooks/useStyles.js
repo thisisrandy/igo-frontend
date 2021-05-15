@@ -12,7 +12,7 @@ const useStyles = makeStyles(
     TopDrawer: {
       width: "auto",
     },
-    TopDrawerButton: {
+    TopBarButton: {
       marginRight: theme.spacing(2),
     },
     AlertProgressContainer: {

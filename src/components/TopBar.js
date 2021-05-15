@@ -79,7 +79,7 @@ function TopBar() {
           <Toolbar>
             <IconButton
               edge="start"
-              className={classes.TopDrawerButton}
+              className={classes.TopBarButton}
               color="inherit"
               aria-label="menu"
               aria-controls="main-menu"
