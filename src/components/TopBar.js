@@ -73,6 +73,7 @@ function TopBar() {
 
   return (
     <React.Fragment>
+      {/* TODO: Add light/dark mode switch */}
       <Slide appear={false} direction="down" in={!trigger}>
         <AppBar position="sticky">
           <Toolbar>
