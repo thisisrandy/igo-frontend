@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import Board from "./Board";
 import GameControls from "./GameControls";
 import PlayerCard from "./PlayerCard";
@@ -22,12 +21,13 @@ import {
   MuiThemeProvider,
 } from "@material-ui/core";
 import { CssBaseline } from "@material-ui/core";
+import { useStateWithLocalStorage } from "../hooks/useStateWithLocalStorage";
+import { DARK_MODE } from "../constants/LocalStorageKeys";
 
 function App() {
   const classes = useStyles();
 
-  // TODO: persist this to local storage
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useStateWithLocalStorage(DARK_MODE, true);
   const theme = unstable_createMuiStrictModeTheme({
     palette: {
       type: darkMode ? "dark" : "light",
