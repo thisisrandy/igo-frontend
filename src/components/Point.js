@@ -97,9 +97,9 @@ function Point({ i, j, point, myTurn, playing, endGame, stoneHeightWidth }) {
       <div
         className={clsx(
           classes.Point,
-          clickable ? classes.PointHover : {},
-          point[2] && point[3] === "w" ? classes.CountedWhite : {},
-          point[2] && point[3] === "b" ? classes.CountedBlack : {}
+          clickable && classes.PointHover,
+          point[2] && point[3] === "w" && classes.CountedWhite,
+          point[2] && point[3] === "b" && classes.CountedBlack
         )}
         style={{ gridRow: i + 2, gridColumn: j + 2 }}
         onClick={
