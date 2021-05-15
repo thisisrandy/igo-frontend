@@ -108,6 +108,10 @@ function NewGameDialog({ newGameDialogOpen, setNewGameDialogOpen }) {
     >
       <DraggableDialogTitle>New Game</DraggableDialogTitle>
       <DialogContent className={classes.DialogContent}>
+        {/* TODO: something in here is causing a warning like "Material-UI:
+        There are multiple InputBase components inside a FormControl." I only
+        appear to have one Input, so not sure why this is happening.
+        Investigate... */}
         <FormControl component="fieldset">
           <FormLabel component="legend" htmlFor={VS_SELECT}>
             VS.
