@@ -46,10 +46,8 @@ function GameControls({ playing, endGame, gameInProgress, myTurn }) {
     );
   };
 
-  const [
-    resignationConfirmationOpen,
-    setResignationConfirmationOpen,
-  ] = useState(false);
+  const [resignationConfirmationOpen, setResignationConfirmationOpen] =
+    useState(false);
   const resignButtonClick = () => {
     setResignationConfirmationOpen(true);
   };
