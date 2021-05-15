@@ -9,9 +9,8 @@ const mockStore = createMockStore([]);
 const queryExpr = /Connection to the game server.*lost/;
 
 test("alert not present when connected", () => {
-  const store = mockStore({ game: { [CONNECTED]: true } });
   render(
-    <Provider store={store}>
+    <Provider store={mockStore({ game: { [CONNECTED]: true } })}>
       <ConnectionAlert zIndex={1} />
     </Provider>
   );
@@ -22,9 +21,8 @@ test("alert not present when connected", () => {
 
 test("alert present when disconnected", () => {
   jest.useFakeTimers();
-  const store = mockStore({ game: { [CONNECTED]: false } });
   render(
-    <Provider store={store}>
+    <Provider store={mockStore({ game: { [CONNECTED]: false } })}>
       <ConnectionAlert zIndex={1} />
     </Provider>
   );
