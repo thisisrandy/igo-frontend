@@ -44,7 +44,6 @@ function PlayerCard({ color, joinedToGame, playing }) {
           : classes.PlayerCardNeutral
       )}
       variant="outlined"
-      style={{ opacity: joinedToGame ? "100%" : "60%" }}
     >
       <span className={classes.PlayerCardSpan}>
         <Paper className={classes.PlayerCardSubContainer}>
