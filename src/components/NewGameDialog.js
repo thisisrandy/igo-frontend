@@ -108,89 +108,93 @@ function NewGameDialog({ newGameDialogOpen, setNewGameDialogOpen }) {
     >
       <DraggableDialogTitle>New Game</DraggableDialogTitle>
       <DialogContent className={classes.DialogContent}>
-        {/* TODO: something in here is causing a warning like "Material-UI:
-        There are multiple InputBase components inside a FormControl." I only
-        appear to have one Input, so not sure why this is happening.
-        Investigate... */}
-        <FormControl component="fieldset">
-          <FormLabel component="legend" htmlFor={VS_SELECT}>
-            VS.
-          </FormLabel>
-          <RadioGroup id={VS_SELECT} row onChange={handleVsChange} value={vs}>
-            <FormControlLabel
-              value={HUMAN}
-              control={getRadio()}
-              label={HUMAN}
-            />
-            <Tooltip title="Not yet supported. Please check back later">
+        <div className={classes.FormContainer}>
+          <FormControl>
+            <FormLabel component="legend" htmlFor={VS_SELECT}>
+              VS.
+            </FormLabel>
+            <RadioGroup id={VS_SELECT} row onChange={handleVsChange} value={vs}>
               <FormControlLabel
-                value={COMPUTER}
+                value={HUMAN}
                 control={getRadio()}
-                label={COMPUTER}
-                disabled
+                label={HUMAN}
               />
-            </Tooltip>
-          </RadioGroup>
-          <FormLabel component="legend" htmlFor={COLOR_SELECT}>
-            Your Color
-          </FormLabel>
-          <RadioGroup
-            id={COLOR_SELECT}
-            row
-            onChange={handleColorChange}
-            value={color}
-          >
-            <FormControlLabel
-              value={BLACK}
-              control={getRadio()}
-              label={BLACK}
-            />
-            <FormControlLabel
-              value={WHITE}
-              control={getRadio()}
-              label={WHITE}
-            />
-          </RadioGroup>
-          <FormLabel component="legend" htmlFor={BOARD_SIZE_SELECT}>
-            Board Size
-          </FormLabel>
-          <div className={classes.BoardSizeSelectContainer}>
-            <Select
-              id={BOARD_SIZE_SELECT}
-              className={classes.BoardSizeSelect}
-              value={size}
-              onChange={handleSizeChange}
+              <Tooltip title="Not yet supported. Please check back later">
+                <FormControlLabel
+                  value={COMPUTER}
+                  control={getRadio()}
+                  label={COMPUTER}
+                  disabled
+                />
+              </Tooltip>
+            </RadioGroup>
+          </FormControl>
+          <FormControl>
+            <FormLabel component="legend" htmlFor={COLOR_SELECT}>
+              Your Color
+            </FormLabel>
+            <RadioGroup
+              id={COLOR_SELECT}
+              row
+              onChange={handleColorChange}
+              value={color}
             >
-              <MenuItem value={9}>9x9</MenuItem>
-              <MenuItem value={13}>13x13</MenuItem>
-              <MenuItem value={19}>19x19</MenuItem>
-            </Select>
-          </div>
-          <FormLabel component="legend" htmlFor={KOMI_SELECT}>
-            {capitalizeFirstLetter(KOMI)}
-          </FormLabel>
-          <div className={classes.KomiTextContainer}>
-            <Input
-              id={KOMI_SELECT}
-              name={KOMI}
-              className={classes.KomiTextField}
-              type="number"
-              inputProps={{
-                min: 0,
-                max: 100.5,
-                step: 0.5,
-              }}
-              defaultValue={komi}
-              error={!komiValid}
-              onChange={handleKomiChange}
-              onKeyPress={(e) => {
-                if (e.key === "Enter" && canSubmit) {
-                  submit();
-                }
-              }}
-            />
-          </div>
-        </FormControl>
+              <FormControlLabel
+                value={BLACK}
+                control={getRadio()}
+                label={BLACK}
+              />
+              <FormControlLabel
+                value={WHITE}
+                control={getRadio()}
+                label={WHITE}
+              />
+            </RadioGroup>
+          </FormControl>
+          <FormControl>
+            <FormLabel component="legend" htmlFor={BOARD_SIZE_SELECT}>
+              Board Size
+            </FormLabel>
+            <div className={classes.BoardSizeSelectContainer}>
+              <Select
+                id={BOARD_SIZE_SELECT}
+                className={classes.BoardSizeSelect}
+                value={size}
+                onChange={handleSizeChange}
+              >
+                <MenuItem value={9}>9x9</MenuItem>
+                <MenuItem value={13}>13x13</MenuItem>
+                <MenuItem value={19}>19x19</MenuItem>
+              </Select>
+            </div>
+          </FormControl>
+          <FormControl>
+            <FormLabel component="legend" htmlFor={KOMI_SELECT}>
+              {capitalizeFirstLetter(KOMI)}
+            </FormLabel>
+            <div className={classes.KomiTextContainer}>
+              <Input
+                id={KOMI_SELECT}
+                name={KOMI}
+                className={classes.KomiTextField}
+                type="number"
+                inputProps={{
+                  min: 0,
+                  max: 100.5,
+                  step: 0.5,
+                }}
+                defaultValue={komi}
+                error={!komiValid}
+                onChange={handleKomiChange}
+                onKeyPress={(e) => {
+                  if (e.key === "Enter" && canSubmit) {
+                    submit();
+                  }
+                }}
+              />
+            </div>
+          </FormControl>
+        </div>
       </DialogContent>
       <DialogActions
         disableSpacing={true}

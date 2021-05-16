@@ -124,6 +124,10 @@ const useStyles = makeStyles(
       flexDirection: "column",
       alignItems: "center",
     },
+    FormContainer: {
+      display: "flex",
+      flexDirection: "column",
+    },
     BoardSizeSelectContainer: {
       width: "100%",
       display: "flex",
