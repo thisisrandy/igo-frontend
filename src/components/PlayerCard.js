@@ -49,7 +49,7 @@ function PlayerCard({ color, joinedToGame, playing }) {
         <Paper className={classes.PlayerCardSubContainer}>
           <img
             src={color === WHITE ? white : black}
-            alt="player stone display"
+            alt={`player stone display for ${color}`}
             className={classes.PlayerStoneImage}
           />
         </Paper>
@@ -63,9 +63,13 @@ function PlayerCard({ color, joinedToGame, playing }) {
             <Typography>Total Score:</Typography>
           </div>
           <div className={classes.PlayerCardScoreColumn}>
-            <Typography>{joinedToGame ? prisoners[color] : "-"}</Typography>
-            <Typography>{joinedToGame ? territory[color] : "-"}</Typography>
-            <Typography>
+            <Typography aria-label={`prisoner count for ${color}`}>
+              {joinedToGame ? prisoners[color] : "-"}
+            </Typography>
+            <Typography aria-label={`territory count for ${color}`}>
+              {joinedToGame ? territory[color] : "-"}
+            </Typography>
+            <Typography aria-label={`total score for ${color}`}>
               {joinedToGame
                 ? prisoners[color] +
                   territory[color] +
@@ -76,15 +80,22 @@ function PlayerCard({ color, joinedToGame, playing }) {
         </Paper>
       </span>
       <Paper className={classes.PlayerCardKeyContainer}>
-        {joinedToGame && playing && turn === color && <StarIcon />}
+        {joinedToGame && playing && turn === color && (
+          <StarIcon aria-label={`it's ${color}'s turn`} />
+        )}
         <Typography
+          aria-label={`player key for ${color}`}
           variant="caption"
           style={{ marginLeft: joinedToGame ? 5 : 0 }}
         >
           Player Key: {joinedToGame ? keys[color] : "-"}
         </Typography>
         {joinedToGame && (
-          <Typography variant="caption" style={{ marginLeft: 5 }}>
+          <Typography
+            aria-label={`connection status for ${color}`}
+            variant="caption"
+            style={{ marginLeft: 5 }}
+          >
             {isThisMe()
               ? "(you)"
               : opponentConnected
