@@ -159,6 +159,7 @@ const useStyles = makeStyles(
       borderColor: red[400],
     },
     PlayerCardSpan: {
+      width: "100%",
       display: "flex",
       flexDirection: "row",
       justifyContent: "space-around",
@@ -170,7 +171,6 @@ const useStyles = makeStyles(
     },
     PlayerCardScoreColumn: {
       padding: 5,
-      minWidth: 55,
       display: "flex",
       flexDirection: "column",
       justifyContent: "space-around",

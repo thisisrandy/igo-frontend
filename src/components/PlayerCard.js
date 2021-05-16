@@ -53,9 +53,10 @@ function PlayerCard({ color, joinedToGame, playing }) {
             className={classes.PlayerStoneImage}
           />
         </Paper>
-        <Paper className={classes.PlayerCardSubContainer}>
-          {/* TODO: this wraps on mobile. Use a table or something to keep the
-          rows lined up */}
+        <Paper
+          className={classes.PlayerCardSubContainer}
+          style={{ flexGrow: 1 }}
+        >
           <div className={classes.PlayerCardScoreColumn}>
             <Typography>Prisoners:</Typography>
             <Typography>Territory:</Typography>
