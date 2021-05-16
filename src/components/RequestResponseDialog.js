@@ -21,15 +21,15 @@ function RequestResponseDialog({ zIndex }) {
   const {
     [STATUS]: gameStatus,
     [PENDING_REQUEST]: pendingRequest,
-    [YOUR_COLOR]: your_color,
+    [YOUR_COLOR]: yourColor,
     [KEYS]: keys,
   } = useSelector((state) => state.game);
   const dispatch = useDispatch();
 
   const getDialogOpen = useCallback(() => {
     if (gameStatus !== REQUEST_PENDING) return false;
-    return pendingRequest[INITIATOR] !== your_color;
-  }, [gameStatus, pendingRequest, your_color]);
+    return pendingRequest[INITIATOR] !== yourColor;
+  }, [gameStatus, pendingRequest, yourColor]);
 
   const getRequestText = useCallback(() => {
     if (gameStatus !== REQUEST_PENDING) return "";
@@ -59,7 +59,7 @@ function RequestResponseDialog({ zIndex }) {
     dispatch(
       send({
         [TYPE]: GAME_ACTION,
-        [KEY]: keys[your_color],
+        [KEY]: keys[yourColor],
         [ACTION_TYPE]: ACCEPT,
       })
     );
@@ -68,7 +68,7 @@ function RequestResponseDialog({ zIndex }) {
     dispatch(
       send({
         [TYPE]: GAME_ACTION,
-        [KEY]: keys[your_color],
+        [KEY]: keys[yourColor],
         [ACTION_TYPE]: REJECT,
       })
     );

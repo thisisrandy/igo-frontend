@@ -20,7 +20,7 @@ import { BLACK, WHITE } from "../constants/Colors";
 function Point({ i, j, point, myTurn, playing, endGame, stoneHeightWidth }) {
   const classes = useStyles();
   const {
-    [YOUR_COLOR]: your_color,
+    [YOUR_COLOR]: yourColor,
     [KEYS]: keys,
     [CONNECTED]: connected,
   } = useSelector((state) => state.game);
@@ -31,7 +31,7 @@ function Point({ i, j, point, myTurn, playing, endGame, stoneHeightWidth }) {
       dispatch(
         send({
           [TYPE]: GAME_ACTION,
-          [KEY]: keys[your_color],
+          [KEY]: keys[yourColor],
           [ACTION_TYPE]: PLACE_STONE,
           [COORDS]: [i, j],
         })
@@ -44,7 +44,7 @@ function Point({ i, j, point, myTurn, playing, endGame, stoneHeightWidth }) {
       dispatch(
         send({
           [TYPE]: GAME_ACTION,
-          [KEY]: keys[your_color],
+          [KEY]: keys[yourColor],
           [ACTION_TYPE]: MARK_DEAD,
           [COORDS]: [i, j],
         })

@@ -20,7 +20,7 @@ import { ALERT_ZINDEX_BASE } from "../constants/AlertZindex";
 function GameControls({ playing, endGame, gameInProgress, myTurn }) {
   const classes = useStyles();
   const {
-    [YOUR_COLOR]: your_color,
+    [YOUR_COLOR]: yourColor,
     [KEYS]: keys,
     [CONNECTED]: connected,
   } = useSelector((state) => state.game);
@@ -40,7 +40,7 @@ function GameControls({ playing, endGame, gameInProgress, myTurn }) {
     dispatch(
       send({
         [TYPE]: GAME_ACTION,
-        [KEY]: keys[your_color],
+        [KEY]: keys[yourColor],
         [ACTION_TYPE]: PASS_TURN,
       })
     );
@@ -57,7 +57,7 @@ function GameControls({ playing, endGame, gameInProgress, myTurn }) {
       dispatch(
         send({
           [TYPE]: GAME_ACTION,
-          [KEY]: keys[your_color],
+          [KEY]: keys[yourColor],
           [ACTION_TYPE]: RESIGN,
         })
       );
@@ -68,7 +68,7 @@ function GameControls({ playing, endGame, gameInProgress, myTurn }) {
     dispatch(
       send({
         [TYPE]: GAME_ACTION,
-        [KEY]: keys[your_color],
+        [KEY]: keys[yourColor],
         [ACTION_TYPE]: REQUEST_DRAW,
       })
     );
@@ -78,7 +78,7 @@ function GameControls({ playing, endGame, gameInProgress, myTurn }) {
     dispatch(
       send({
         [TYPE]: GAME_ACTION,
-        [KEY]: keys[your_color],
+        [KEY]: keys[yourColor],
         [ACTION_TYPE]: REQUEST_TALLY_SCORE,
       })
     );

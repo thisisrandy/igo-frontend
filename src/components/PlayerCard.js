@@ -20,7 +20,7 @@ import StarIcon from "@material-ui/icons/Star";
 function PlayerCard({ color, joinedToGame, playing }) {
   const classes = useStyles();
   const {
-    [YOUR_COLOR]: your_color,
+    [YOUR_COLOR]: yourColor,
     [PRISONERS]: prisoners,
     [TERRITORY]: territory,
     [KOMI]: komi,
@@ -30,8 +30,8 @@ function PlayerCard({ color, joinedToGame, playing }) {
   } = useSelector((state) => state.game);
 
   const isThisMe = useCallback(() => {
-    return color === your_color;
-  }, [color, your_color]);
+    return color === yourColor;
+  }, [color, yourColor]);
 
   return (
     <Paper

@@ -12,7 +12,7 @@ function GameStatusProvider({ children }) {
     [CONNECTED]: connected,
     [STATUS]: status,
     [TURN]: turn,
-    [YOUR_COLOR]: your_color,
+    [YOUR_COLOR]: yourColor,
   } = useSelector((state) => state.game);
 
   const [joinedToGame, setJoinedToGame] = useState(false);
@@ -37,8 +37,8 @@ function GameStatusProvider({ children }) {
 
   const [myTurn, setMyTurn] = useState(false);
   useEffect(() => {
-    setMyTurn(turn != null && turn === your_color);
-  }, [turn, your_color]);
+    setMyTurn(turn != null && turn === yourColor);
+  }, [turn, yourColor]);
 
   return (
     <React.Fragment>

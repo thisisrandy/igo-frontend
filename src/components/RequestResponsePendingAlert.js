@@ -11,13 +11,13 @@ function RequestResponsePendingAlert({ zIndex }) {
   const {
     [STATUS]: gameStatus,
     [PENDING_REQUEST]: pendingRequest,
-    [YOUR_COLOR]: your_color,
+    [YOUR_COLOR]: yourColor,
   } = useSelector((state) => state.game);
 
   const getOpen = useCallback(() => {
     if (gameStatus !== REQUEST_PENDING) return false;
-    return pendingRequest[INITIATOR] === your_color;
-  }, [gameStatus, pendingRequest, your_color]);
+    return pendingRequest[INITIATOR] === yourColor;
+  }, [gameStatus, pendingRequest, yourColor]);
 
   const getText = useCallback(() => {
     if (gameStatus !== REQUEST_PENDING) return "";
