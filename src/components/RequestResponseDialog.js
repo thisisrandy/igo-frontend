@@ -4,7 +4,7 @@ import { ACCEPT, REJECT } from "../constants/GameActionTypes";
 import { INITIATOR, REQUEST_TYPE } from "../constants/RequestKeys";
 import {
   KEYS,
-  PENDINGREQUEST,
+  PENDING_REQUEST,
   STATUS,
   YOUR_COLOR,
 } from "../constants/StateKeys";
@@ -20,7 +20,7 @@ import YesNoDialog from "./YesNoDialog";
 function RequestResponseDialog({ zIndex }) {
   const {
     [STATUS]: gameStatus,
-    [PENDINGREQUEST]: pendingRequest,
+    [PENDING_REQUEST]: pendingRequest,
     [YOUR_COLOR]: your_color,
     [KEYS]: keys,
   } = useSelector((state) => state.game);

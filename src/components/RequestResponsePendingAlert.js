@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import PersistentAlert from "./PersistentAlert";
 import { REQUEST_PENDING } from "../constants/GameStatus";
-import { PENDINGREQUEST, STATUS, YOUR_COLOR } from "../constants/StateKeys";
+import { PENDING_REQUEST, STATUS, YOUR_COLOR } from "../constants/StateKeys";
 import { useSelector } from "react-redux";
 import { INITIATOR, REQUEST_TYPE } from "../constants/RequestKeys";
 import { MARK_DEAD, DRAW, TALLY_SCORE } from "../constants/RequestType";
@@ -10,7 +10,7 @@ import dedent from "dedent-js";
 function RequestResponsePendingAlert({ zIndex }) {
   const {
     [STATUS]: gameStatus,
-    [PENDINGREQUEST]: pendingRequest,
+    [PENDING_REQUEST]: pendingRequest,
     [YOUR_COLOR]: your_color,
   } = useSelector((state) => state.game);
 
