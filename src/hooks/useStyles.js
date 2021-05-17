@@ -119,6 +119,7 @@ const useStyles = makeStyles(
         margin: 20,
         width: 750,
       },
+      minWidth: 350,
       display: "flex",
       flexDirection: "row",
       justifyContent: "space-evenly",
@@ -235,6 +236,7 @@ const useStyles = makeStyles(
       [theme.breakpoints.up(850)]: {
         margin: 20,
       },
+      minWidth: 350,
     },
     InfoCardChild: {
       margin: 10,
