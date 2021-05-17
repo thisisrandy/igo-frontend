@@ -112,7 +112,7 @@ const useStyles = makeStyles(
       padding: 10,
       [theme.breakpoints.down(850)]: {
         margin: 10,
-        width: "84vw",
+        width: "80vw",
         flexWrap: "wrap",
       },
       [theme.breakpoints.up(850)]: {
