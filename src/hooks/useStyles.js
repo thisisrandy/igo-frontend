@@ -46,13 +46,14 @@ const useStyles = makeStyles(
       justifyContent: "center",
     },
     BoardContainer: {
-      padding: 10,
       [theme.breakpoints.down(850)]: {
+        padding: 5,
         margin: 10,
         height: "95vw",
         width: "95vw",
       },
       [theme.breakpoints.up(850)]: {
+        padding: 10,
         margin: 20,
         height: 800,
         width: 800,
