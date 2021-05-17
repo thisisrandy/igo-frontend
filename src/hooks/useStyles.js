@@ -61,7 +61,7 @@ const useStyles = makeStyles(
       justifyItems: "center",
       alignItems: "center",
       borderColor: theme.palette.grey[700],
-      borderWidth: 5,
+      borderWidth: 3,
     },
     BoardContainerMyTurn: {
       borderColor: theme.palette.primary.main,
@@ -181,7 +181,7 @@ const useStyles = makeStyles(
         margin: "20px 10px",
       },
       padding: 10,
-      borderWidth: 5,
+      borderWidth: 3,
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
