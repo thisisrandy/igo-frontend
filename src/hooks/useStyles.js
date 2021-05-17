@@ -166,13 +166,26 @@ const useStyles = makeStyles(
     ChatCard: {
       minWidth: 350,
       minHeight: 350,
-      padding: 10,
       [theme.breakpoints.down(850)]: {
         margin: 10,
       },
       [theme.breakpoints.up(850)]: {
         margin: "20px 10px",
       },
+      display: "flex",
+      flexDirection: "column",
+    },
+    ChatDisplayContainer: {
+      display: "flex",
+      flexGrow: 1,
+      paddingTop: 0,
+      paddingBottom: 0,
+    },
+    ChatInput: {
+      flexGrow: 1,
+    },
+    ChatButton: {
+      marginLeft: 16,
     },
     PlayerCardContainer: {
       minWidth: 350,
