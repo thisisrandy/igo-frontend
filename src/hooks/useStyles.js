@@ -46,13 +46,14 @@ const useStyles = makeStyles(
       justifyContent: "center",
     },
     BoardContainer: {
-      margin: 20,
       padding: 10,
       [theme.breakpoints.down(850)]: {
+        margin: 10,
         height: "90vw",
         width: "90vw",
       },
       [theme.breakpoints.up(850)]: {
+        margin: 20,
         height: 800,
         width: 800,
       },
@@ -102,13 +103,14 @@ const useStyles = makeStyles(
       backgroundColor: "rgba(0, 0, 0, 0.4)",
     },
     GameControlsContainer: {
-      margin: 20,
       padding: 10,
       [theme.breakpoints.down(850)]: {
+        margin: 10,
         width: "84vw",
         flexWrap: "wrap",
       },
       [theme.breakpoints.up(850)]: {
+        margin: 20,
         width: 750,
       },
       display: "flex",
@@ -146,7 +148,12 @@ const useStyles = makeStyles(
     },
     PlayerCardContainer: {
       minWidth: 350,
-      margin: 20,
+      [theme.breakpoints.down(850)]: {
+        margin: 10,
+      },
+      [theme.breakpoints.up(850)]: {
+        margin: "20px 10px",
+      },
       padding: 10,
       borderWidth: 5,
       display: "flex",
@@ -191,12 +198,15 @@ const useStyles = makeStyles(
       minHeight: 45,
     },
     InfoCard: {
-      margin: 20,
       display: "flex",
       justifyContent: "space-evenly",
       [theme.breakpoints.down(850)]: {
+        margin: 10,
         width: "80vw",
         flexWrap: "wrap",
+      },
+      [theme.breakpoints.up(850)]: {
+        margin: 20,
       },
     },
     InfoCardChild: {
