@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { BOARD } from "../constants/StateKeys";
 import Point from "./Point";
 import { POINTS, SIZE } from "../constants/BoardKeys";
+import clsx from "clsx";
 
 function Board({ myTurn, playing, endGame }) {
   const classes = useStyles();
@@ -45,11 +46,15 @@ function Board({ myTurn, playing, endGame }) {
 
   return (
     <Paper
-      className={classes.BoardContainer}
+      className={clsx(
+        classes.BoardContainer,
+        myTurn && classes.BoardContainerMyTurn
+      )}
       style={{
         gridTemplateColumns: gridTemplateStyling,
         gridTemplateRows: gridTemplateStyling,
       }}
+      variant="outlined"
     >
       <img src={board} alt="go board" className={classes.BoardImage} />
       {Array.from(points.entries(), ([i, row]) =>

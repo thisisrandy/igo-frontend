@@ -60,6 +60,11 @@ const useStyles = makeStyles(
       display: "grid",
       justifyItems: "center",
       alignItems: "center",
+      borderColor: theme.palette.grey[700],
+      borderWidth: 5,
+    },
+    BoardContainerMyTurn: {
+      borderColor: theme.palette.primary.main,
     },
     BoardImage: {
       gridColumn: "1 / -1",
