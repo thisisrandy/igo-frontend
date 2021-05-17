@@ -6,3 +6,4 @@ export const SIZE = "size";
 export const KOMI = "komi";
 export const ACTION_TYPE = "action_type";
 export const COORDS = "coords";
+export const MESSAGE = "message";

@@ -14,6 +14,7 @@ export const TERRITORY = "territory";
 export const PENDING_REQUEST = "pendingRequest";
 export const RESULT = "result";
 export const TIME_PLAYED = "timePlayed";
+export const CHAT_MESSAGES = "chatMessages";
 export const OPPONENT_CONNECTED = "opponentConnected";
 
 // message display keys
