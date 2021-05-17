@@ -49,8 +49,8 @@ const useStyles = makeStyles(
       padding: 10,
       [theme.breakpoints.down(850)]: {
         margin: 10,
-        height: "90vw",
-        width: "90vw",
+        height: "95vw",
+        width: "95vw",
       },
       [theme.breakpoints.up(850)]: {
         margin: 20,
