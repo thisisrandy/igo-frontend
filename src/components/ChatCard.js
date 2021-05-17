@@ -1,4 +1,5 @@
 import { send } from "@giantmachines/redux-websocket/dist";
+import { Paper } from "@material-ui/core";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { KEY, MESSAGE, TYPE } from "../constants/OutgoingMessageKeys";
@@ -29,7 +30,7 @@ function ChatCard({ joinedToGame }) {
     }
   };
 
-  return null;
+  return <Paper className={classes.ChatCard}></Paper>;
 }
 
 export default ChatCard;

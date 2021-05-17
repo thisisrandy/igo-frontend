@@ -146,6 +146,27 @@ const useStyles = makeStyles(
     KomiTextField: {
       width: "50%",
     },
+    CentralContainer: {
+      display: "flex",
+      flexWrap: "wrap",
+      justifyContent: "center",
+    },
+    CentralSubContainer: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+    },
+    ChatCard: {
+      minWidth: 350,
+      minHeight: 350,
+      padding: 10,
+      [theme.breakpoints.down(850)]: {
+        margin: 10,
+      },
+      [theme.breakpoints.up(850)]: {
+        margin: "20px 10px",
+      },
+    },
     PlayerCardContainer: {
       minWidth: 350,
       [theme.breakpoints.down(850)]: {

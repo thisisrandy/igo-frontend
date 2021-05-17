@@ -1,6 +1,5 @@
 import Board from "./Board";
 import GameControls from "./GameControls";
-import PlayerCard from "./PlayerCard";
 import InfoCard from "./InfoCard";
 import { useStyles } from "../hooks/useStyles";
 import Message from "./Message";
@@ -10,7 +9,6 @@ import RequestResponsePendingAlert from "./RequestResponsePendingAlert";
 import ConnectionAlert from "./ConnectionAlert";
 import GameRejoiner from "./GameRejoiner";
 import ConnectionManager from "./ConnectionManager";
-import { BLACK, WHITE } from "../constants/Colors";
 import { ALERT_ZINDEX_BASE } from "../constants/AlertZindex";
 import EndgameHelpMessage from "./EndgameHelpMessage";
 import TopBar from "./TopBar";
@@ -23,6 +21,7 @@ import {
 import { CssBaseline } from "@material-ui/core";
 import { useStateWithLocalStorage } from "../hooks/useStateWithLocalStorage";
 import { DARK_MODE } from "../constants/LocalStorageKeys";
+import CentralContainer from "./CentralContainer";
 
 function App() {
   const classes = useStyles();
@@ -53,8 +52,7 @@ function App() {
         <div className={classes.StatusControlsContainer}>
           <GameStatusProvider>
             <GameControls />
-            <PlayerCard color={BLACK} />
-            <PlayerCard color={WHITE} />
+            <CentralContainer />
           </GameStatusProvider>
           <InfoCard />
         </div>
