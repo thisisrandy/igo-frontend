@@ -72,7 +72,7 @@ const useStyles = makeStyles(
       gridRow: "1 / -1",
       display: "block",
       height: "100%",
-      width: "auto",
+      width: "100%",
     },
     ImageCell: {
       height: "100%",
