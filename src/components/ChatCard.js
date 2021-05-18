@@ -45,7 +45,7 @@ function ChatCard({ joinedToGame }) {
       <CardContent className={classes.ChatDisplayContainer}>
         <ChatDisplay />
       </CardContent>
-      <CardActions disableSpacing={true} style={{ padding: 16 }}>
+      <CardActions disableSpacing={true} className={classes.ChatCardActions}>
         <OutlinedInput
           variant="outlined"
           multiline

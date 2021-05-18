@@ -163,14 +163,35 @@ const useStyles = makeStyles(
       flexDirection: "column",
       alignItems: "center",
     },
+    // all of the chat styling is super fragile, and I hate it, but I don't know
+    // how else to keep ChatDisplay from growing the box once the chat thread
+    // gets longer than the initial height can fit, so we have to specify exact
+    // heights at all the responsive breakpoints. everything here goes to shit
+    // if margins/breakpoints/sizes/anything elsewhere get changed, so be
+    // warned.
+    //
+    // explanation of the numbers:
+    // 755: the point >= to which chat and player cards are side-by-side. flex
+    // wrap kicks in below this point
+    // 482: the size of two stacked player cards with larger (20px) margins
+    // separating them
+    // 462: the size of two player cards with small (10px) margins
     ChatCard: {
-      minWidth: 350,
+      width: 350,
       minHeight: 350,
+      [theme.breakpoints.down(755)]: {
+        maxHeight: 350,
+        margin: 10,
+      },
+      [theme.breakpoints.up(755)]: {
+        maxHeight: 462,
+      },
       [theme.breakpoints.down(850)]: {
         margin: 10,
       },
       [theme.breakpoints.up(850)]: {
         margin: "20px 10px",
+        maxHeight: 482,
       },
       display: "flex",
       flexDirection: "column",
@@ -178,8 +199,69 @@ const useStyles = makeStyles(
     ChatDisplayContainer: {
       display: "flex",
       flexGrow: 1,
+      overflow: "hidden",
+      // broken on old iPhone, of course. maxHeight fixes at the expense of
+      // robustness. 160 is the height of the chat display in a card of height
+      // 350 with input and header considered
+      [theme.breakpoints.down(755)]: {
+        maxHeight: 160,
+      },
       paddingTop: 0,
       paddingBottom: 0,
+    },
+    ChatCardActions: {
+      padding: 16,
+    },
+    ChatMessages: {
+      flex: 1,
+      lineHeight: 1.3,
+      overflow: "auto",
+    },
+    ChatMessage: {
+      margin: "5px 0",
+      display: "flex",
+    },
+    ChatMessageNoAvatar: {
+      marginLeft: 38,
+    },
+    ChatMessageWithAvatar: {
+      display: "flex",
+      marginTop: 10,
+    },
+    Avatar: {
+      width: 30,
+      height: 30,
+      borderRadius: 3,
+      backgroundSize: "cover",
+      backgroundPosition: "center center",
+    },
+    Author: {
+      marginLeft: 8,
+    },
+    UserName: {
+      fontWeight: "bold",
+      fontSize: "90%",
+    },
+    TimeStamp: {
+      color: "#999",
+      fontSize: "80%",
+    },
+    MessageContent: {
+      // absent in source
+    },
+    Day: {
+      display: "flex",
+      alignItems: "center",
+    },
+    DayLine: {
+      flex: 1,
+      height: 1,
+      background: "#ccc",
+    },
+    DayText: {
+      fontWeight: "bold",
+      padding: 10,
+      fontSize: "80%",
     },
     ChatInput: {
       flexGrow: 1,

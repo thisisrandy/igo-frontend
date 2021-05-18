@@ -1,38 +1,131 @@
-import { OutlinedInput } from "@material-ui/core";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { CHAT_MESSAGES } from "../constants/StateKeys";
 import { useStyles } from "../hooks/useStyles";
+import { format, isSameDay } from "date-fns";
+import { COLOR, ID, MESSAGE, TIMESTAMP } from "../constants/ChatMessageKeys";
+import blackAvatar from "../images/black-avatar.png";
+import whiteAvatar from "../images/white-avatar.png";
+import { BLACK } from "../constants/Colors";
+import { capitalizeFirstLetter } from "../utils";
+import clsx from "clsx";
 
 function ChatDisplay() {
   const classes = useStyles();
   const { [CHAT_MESSAGES]: chatMessages } = useSelector((state) => state.game);
 
-  // TODO: do this as a div following the react chat example you have squirreled
-  // away
+  return (
+    // TODO: this needs some sort of border to visually distinguish it
+    // TODO: a custom scrollbar might be purty
+    <ChatScroller className={classes.ChatMessages}>
+      {chatMessages &&
+        chatMessages.map((message, index) => {
+          const previous = chatMessages[index - 1];
+          const showDay = shouldShowDay(previous, message);
+
+          return shouldShowAvatar(previous, message) ? (
+            <FirstMessageFromUser
+              key={message[ID]}
+              {...{ message, showDay, classes }}
+            />
+          ) : (
+            <SubsequentMessage key={message[ID]} {...{ message, classes }} />
+          );
+        })}
+    </ChatScroller>
+  );
+}
+
+function SubsequentMessage({ message, classes }) {
+  return (
+    <div>
+      <div className={clsx(classes.ChatMessage, classes.ChatMessageNoAvatar)}>
+        <div className="MessageContent">{message[MESSAGE]}</div>
+      </div>
+    </div>
+  );
+}
+
+function FirstMessageFromUser({ message, showDay, classes }) {
+  const author = message[COLOR];
 
   return (
-    <OutlinedInput
-      variant="outlined"
-      multiline
-      className={classes.ChatInput}
-      style={{
-        width: "100%",
-        // this actually goes on input props, and it's unclear if there's a way
-        // to use the theme color
-        "& .MuiInputBase-root.Mui-disabled": {
-          color: "rgba(0, 0, 0, 0.0)",
-        },
-      }}
-      value={
-        chatMessages ? chatMessages.map((cm) => cm.message).join("\n") : ""
-      }
-      inputProps={{
-        style: { overflowY: "scroll", color: "currentColor" },
-      }}
-      disabled={true}
-    />
+    <div>
+      {showDay && (
+        <div className={classes.Day}>
+          <div className={classes.DayLine} />
+          <div className={classes.DayText}>
+            {format(message[TIMESTAMP] * 1000, "PP")}
+          </div>
+          <div className={classes.DayLine} />
+        </div>
+      )}
+      <div className={clsx(classes.ChatMessage, classes.ChatMessageWithAvatar)}>
+        <div
+          className={classes.Avatar}
+          style={{
+            backgroundImage: `url(${
+              author === BLACK ? blackAvatar : whiteAvatar
+            })`,
+          }}
+        />
+        <div className={classes.Author}>
+          <div>
+            <span className={classes.UserName}>
+              {capitalizeFirstLetter(author)}
+            </span>{" "}
+            <span className={classes.TimeStamp}>
+              {format(message[TIMESTAMP] * 1000, "h:mm a")}
+            </span>
+          </div>
+          <div className={classes.MessageContent}>{message[MESSAGE]}</div>
+        </div>
+      </div>
+    </div>
   );
+}
+
+function shouldShowAvatar(previous, message) {
+  // is this the first message of the game?
+  if (!previous) return true;
+
+  // is this message written by a different user than the previous one?
+  if (previous[COLOR] !== message[COLOR]) return true;
+
+  // has it been longer than five minutes?
+  return message[TIMESTAMP] - previous[TIMESTAMP] > 300;
+}
+
+function shouldShowDay(previous, message) {
+  // is this the first message of the game?
+  if (!previous) return true;
+
+  // otherwise only show when the day changes
+  return !isSameDay(previous[TIMESTAMP] * 1000, message[TIMESTAMP] * 1000);
+}
+
+function ChatScroller(props) {
+  // use ref to access the DOM node for the returned div below. we can then
+  // check whenever the box is scrolled if it is at the bottom. if so, when the
+  // component rerenders, we can auto-scroll to the bottom, and if not, we stay
+  // where we are
+  const ref = useRef();
+  const shouldScrollRef = useRef(true);
+
+  useEffect(() => {
+    if (shouldScrollRef.current) {
+      const node = ref.current;
+      node.scrollTop = node.scrollHeight;
+    }
+  });
+
+  const handleScroll = () => {
+    const node = ref.current;
+    const { clientHeight, scrollTop, scrollHeight } = node;
+    shouldScrollRef.current = clientHeight + scrollTop === scrollHeight;
+  };
+
+  return <div {...props} ref={ref} onScroll={handleScroll} />;
 }
 
 export default ChatDisplay;
