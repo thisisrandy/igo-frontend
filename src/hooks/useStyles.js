@@ -1,4 +1,4 @@
-import { red } from "@material-ui/core/colors";
+import { grey, red } from "@material-ui/core/colors";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(
@@ -216,6 +216,12 @@ const useStyles = makeStyles(
       flex: 1,
       lineHeight: 1.3,
       overflow: "auto",
+      borderStyle: "solid",
+      border: 1,
+      // TODO: scroll default  bar goes outside of this. figure out a fix
+      borderRadius: theme.spacing(0.5),
+      borderColor: grey[500],
+      paddingLeft: 10,
     },
     ChatMessage: {
       margin: "5px 0",

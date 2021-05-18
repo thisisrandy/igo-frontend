@@ -16,7 +16,6 @@ function ChatDisplay() {
   const { [CHAT_MESSAGES]: chatMessages } = useSelector((state) => state.game);
 
   return (
-    // TODO: this needs some sort of border to visually distinguish it
     // TODO: a custom scrollbar might be purty
     <ChatScroller className={classes.ChatMessages}>
       {chatMessages &&
