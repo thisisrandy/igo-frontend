@@ -241,13 +241,11 @@ const useStyles = makeStyles(
     UserName: {
       fontWeight: "bold",
       fontSize: "90%",
+      paddingRight: 4,
     },
     TimeStamp: {
       color: "#999",
       fontSize: "80%",
-    },
-    MessageContent: {
-      // absent in source
     },
     Day: {
       display: "flex",

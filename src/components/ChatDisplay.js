@@ -9,6 +9,7 @@ import whiteAvatar from "../images/white-avatar.png";
 import { BLACK } from "../constants/Colors";
 import { capitalizeFirstLetter } from "../utils";
 import clsx from "clsx";
+import { Typography } from "@material-ui/core";
 
 function ChatDisplay() {
   const classes = useStyles();
@@ -40,7 +41,7 @@ function SubsequentMessage({ message, classes }) {
   return (
     <div>
       <div className={clsx(classes.ChatMessage, classes.ChatMessageNoAvatar)}>
-        <div className="MessageContent">{message[MESSAGE]}</div>
+        <Typography variant="body2">{message[MESSAGE]}</Typography>
       </div>
     </div>
   );
@@ -54,9 +55,9 @@ function FirstMessageFromUser({ message, showDay, classes }) {
       {showDay && (
         <div className={classes.Day}>
           <div className={classes.DayLine} />
-          <div className={classes.DayText}>
+          <Typography className={classes.DayText}>
             {format(message[TIMESTAMP] * 1000, "PP")}
-          </div>
+          </Typography>
           <div className={classes.DayLine} />
         </div>
       )}
@@ -70,15 +71,15 @@ function FirstMessageFromUser({ message, showDay, classes }) {
           }}
         />
         <div className={classes.Author}>
-          <div>
-            <span className={classes.UserName}>
-              {capitalizeFirstLetter(author)}
-            </span>{" "}
-            <span className={classes.TimeStamp}>
+          <div style={{ display: "flex", alignItems: "flex-end" }}>
+            <Typography className={classes.UserName}>
+              {capitalizeFirstLetter(author)}{" "}
+            </Typography>
+            <Typography className={classes.TimeStamp}>
               {format(message[TIMESTAMP] * 1000, "h:mm a")}
-            </span>
+            </Typography>
           </div>
-          <div className={classes.MessageContent}>{message[MESSAGE]}</div>
+          <Typography variant="body2">{message[MESSAGE]}</Typography>
         </div>
       </div>
     </div>
