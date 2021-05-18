@@ -57,8 +57,8 @@ function Board({ myTurn, playing, endGame }) {
       variant="outlined"
     >
       <img src={board} alt="go board" className={classes.BoardImage} />
-      {Array.from(points.entries(), ([i, row]) =>
-        Array.from(row.entries(), ([j, point]) => (
+      {points.map((row, i) =>
+        row.map((point, j) => (
           <Point
             key={`${i},${j}`}
             {...{ i, j, point, myTurn, playing, endGame, stoneHeightWidth }}
