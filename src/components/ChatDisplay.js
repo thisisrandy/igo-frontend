@@ -11,6 +11,9 @@ import { capitalizeFirstLetter } from "../utils";
 import clsx from "clsx";
 import { Typography } from "@material-ui/core";
 
+// TODO: wrap long words. there's probably some nice text wrapping util
+// online somewhere
+
 function ChatDisplay() {
   const classes = useStyles();
   const { [CHAT_MESSAGES]: chatMessages } = useSelector((state) => state.game);
