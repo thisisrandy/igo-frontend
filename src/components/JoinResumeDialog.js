@@ -23,6 +23,11 @@ function JoinResumeDialog({ joinResumeDialogOpen, setJoinResumeDialogOpen }) {
   const { [CONNECTED]: connected } = useSelector((state) => state.game);
   const dispatch = useDispatch();
 
+  // TODO: it'd be neat to have this auto-complete (w/dropdown) games played
+  // before and persist them to local storage along with last played, which is
+  // probably the last time the user received a status message about them and is
+  // also the key by which they are sorted in the dropdown (descending)
+
   const [joinResumeKey, setJoinResumeKey] = useState("");
   const joinResumeSubmitClick = () => {
     setJoinResumeDialogOpen(false);
