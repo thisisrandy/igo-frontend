@@ -181,7 +181,6 @@ const useStyles = makeStyles(
       minHeight: 350,
       [theme.breakpoints.down(755)]: {
         maxHeight: 350,
-        margin: 10,
       },
       [theme.breakpoints.up(755)]: {
         maxHeight: 462,
