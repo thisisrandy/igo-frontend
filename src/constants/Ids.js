@@ -14,3 +14,6 @@ export const JOIN_RESUME_KEY_FIELD = "join-resume-key-field";
 export const TITLE_ID = "draggable-dialog-title";
 export const ACTIONS_ID = "draggable-dialog-actions";
 export const GENERIC_DRAGGABLE_ID = "draggable-generic-id";
+
+// chat
+export const CHAT_MESSAGE_FIELD = "chat-message-field";

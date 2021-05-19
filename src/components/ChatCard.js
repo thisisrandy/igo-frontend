@@ -9,6 +9,7 @@ import {
 } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { CHAT_MESSAGE_FIELD } from "../constants/Ids";
 import { KEY, MESSAGE, TYPE } from "../constants/OutgoingMessageKeys";
 import { CHAT_MESSAGE } from "../constants/OutgoingMessageTypes";
 import { KEYS, YOUR_COLOR } from "../constants/StateKeys";
@@ -47,6 +48,10 @@ function ChatCard({ joinedToGame }) {
       </CardContent>
       <CardActions disableSpacing={true} className={classes.ChatCardActions}>
         <TextField
+          // NOTE: we use an id here because it is necessary as something for
+          // the label "for" attribute to point to. ARIA (and testing) breaks
+          // otherwise
+          id={CHAT_MESSAGE_FIELD}
           label="Chat message"
           variant="outlined"
           multiline
