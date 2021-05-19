@@ -143,7 +143,12 @@ function ChatScroller(props) {
   // this thus far have failed. it may be that a css only option is the best.
   // see https://css-tricks.com/the-current-state-of-styling-scrollbars/ for
   // options
-  return <SimpleBar {...props} ref={ref} onScroll={handleScroll} />;
+  return (
+    <SimpleBar
+      {...props}
+      scrollableNodeProps={{ ref: ref, onScroll: handleScroll }}
+    />
+  );
 }
 
 export default ChatDisplay;
