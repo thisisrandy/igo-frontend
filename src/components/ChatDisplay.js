@@ -139,6 +139,10 @@ function ChatScroller(props) {
     shouldScrollRef.current = clientHeight + scrollTop === scrollHeight;
   };
 
+  // FIXME: simple bar creates a double scrollbar on iOS. all attempts to fix
+  // this thus far have failed. it may be that a css only option is the best.
+  // see https://css-tricks.com/the-current-state-of-styling-scrollbars/ for
+  // options
   return <SimpleBar {...props} ref={ref} onScroll={handleScroll} />;
 }
 
