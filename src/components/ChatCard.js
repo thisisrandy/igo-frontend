@@ -5,7 +5,7 @@ import {
   CardActions,
   CardContent,
   CardHeader,
-  OutlinedInput,
+  TextField,
 } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -46,7 +46,8 @@ function ChatCard({ joinedToGame }) {
         <ChatDisplay />
       </CardContent>
       <CardActions disableSpacing={true} className={classes.ChatCardActions}>
-        <OutlinedInput
+        <TextField
+          label="Chat message"
           variant="outlined"
           multiline
           rows={3}
@@ -60,7 +61,7 @@ function ChatCard({ joinedToGame }) {
               sendMessageHandler();
             }
           }}
-        ></OutlinedInput>
+        />
         <Button
           variant="contained"
           className={classes.ChatButton}
