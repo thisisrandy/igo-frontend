@@ -10,9 +10,15 @@ import { BLACK } from "../constants/Colors";
 import { capitalizeFirstLetter } from "../utils";
 import clsx from "clsx";
 import { Typography } from "@material-ui/core";
+import { breakLongWords } from "../utils";
 
-// TODO: wrap long words. there's probably some nice text wrapping util
-// online somewhere
+// NOTE: we're not dealing with a fixed-width font, so obviously the "correct"
+// line width varies depending on the characters involved, but for e.g. a string
+// of O's, 26 is a good length. certainly there are some cases where the dashed
+// portion will appear next to its suffix, but I don't care enough to find a
+// better solution. this fixes horizontal scrolling/avatar squashing, which is
+// the main point
+const formatMessage = (text) => breakLongWords(text, 26);
 
 function ChatDisplay() {
   const classes = useStyles();
@@ -43,7 +49,9 @@ function SubsequentMessage({ message, classes }) {
   return (
     <div>
       <div className={clsx(classes.ChatMessage, classes.ChatMessageNoAvatar)}>
-        <Typography variant="body2">{message[MESSAGE]}</Typography>
+        <Typography variant="body2">
+          {formatMessage(message[MESSAGE])}
+        </Typography>
       </div>
     </div>
   );
@@ -81,7 +89,9 @@ function FirstMessageFromUser({ message, showDay, classes }) {
               {format(message[TIMESTAMP] * 1000, "h:mm a")}
             </Typography>
           </div>
-          <Typography variant="body2">{message[MESSAGE]}</Typography>
+          <Typography variant="body2">
+            {formatMessage(message[MESSAGE])}
+          </Typography>
         </div>
       </div>
     </div>
