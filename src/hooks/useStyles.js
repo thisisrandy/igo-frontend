@@ -236,6 +236,9 @@ const useStyles = makeStyles(
     },
     Avatar: {
       width: 30,
+      // for some reason multi-line messages squash the avatar. adding minWidth
+      // prevents this from happening
+      minWidth: 30,
       height: 30,
       borderRadius: 3,
       backgroundSize: "cover",
