@@ -11,6 +11,8 @@ import { capitalizeFirstLetter } from "../utils";
 import clsx from "clsx";
 import { Typography } from "@material-ui/core";
 import { breakLongWords } from "../utils";
+import SimpleBar from "simplebar-react";
+import "simplebar/dist/simplebar.min.css";
 
 // NOTE: we're not dealing with a fixed-width font, so obviously the "correct"
 // line width varies depending on the characters involved, but for e.g. a string
@@ -25,7 +27,6 @@ function ChatDisplay() {
   const { [CHAT_MESSAGES]: chatMessages } = useSelector((state) => state.game);
 
   return (
-    // TODO: a custom scrollbar might be purty
     <ChatScroller className={classes.ChatMessages}>
       {chatMessages &&
         chatMessages.map((message, index) => {
@@ -138,7 +139,7 @@ function ChatScroller(props) {
     shouldScrollRef.current = clientHeight + scrollTop === scrollHeight;
   };
 
-  return <div {...props} ref={ref} onScroll={handleScroll} />;
+  return <SimpleBar {...props} ref={ref} onScroll={handleScroll} />;
 }
 
 export default ChatDisplay;
