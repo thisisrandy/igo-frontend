@@ -205,6 +205,17 @@ const useStyles = makeStyles(
       [theme.breakpoints.down(755)]: {
         maxHeight: 160,
       },
+      // also broken on old iPad. 272 is the chat display height with small
+      // margins
+      [theme.breakpoints.up(755)]: {
+        maxHeight: 272,
+      },
+      // and 292 is height with large margins. probably this isn't necessary,
+      // but might as well lock everything in exactly in case there are other
+      // affected devices
+      [theme.breakpoints.up(850)]: {
+        maxHeight: 292,
+      },
       paddingTop: 0,
       paddingBottom: 0,
     },
