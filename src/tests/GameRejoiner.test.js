@@ -1,5 +1,10 @@
 import { BLACK, WHITE } from "../constants/Colors";
-import { YOUR_COLOR, KEYS, REJOIN_NEEDED } from "../constants/StateKeys";
+import {
+  YOUR_COLOR,
+  KEYS,
+  REJOIN_NEEDED,
+  CONNECTED,
+} from "../constants/StateKeys";
 import createMockStore from "redux-mock-store";
 import { render } from "@testing-library/react";
 import { Provider } from "react-redux";
@@ -15,6 +20,7 @@ const initialState = {
     [KEYS]: { [WHITE]: keyW, [BLACK]: keyB },
     [YOUR_COLOR]: BLACK,
     [REJOIN_NEEDED]: true,
+    [CONNECTED]: true,
   },
 };
 
@@ -33,7 +39,20 @@ test("dispatches nothing when no rejoin needed", () => {
   expect(store.getActions().length).toBe(0);
 });
 
-test("dispatches correct actions when rejoin needed", () => {
+test("dispatches nothing when not connected", () => {
+  const state = JSON.parse(JSON.stringify(initialState));
+  state.game[CONNECTED] = false;
+  const store = mockStore(state);
+  render(
+    <Provider store={store}>
+      <GameRejoiner />
+    </Provider>
+  );
+
+  expect(store.getActions().length).toBe(0);
+});
+
+test("dispatches correct actions when rejoin needed and connected", () => {
   const store = mockStore(initialState);
   render(
     <Provider store={store}>
