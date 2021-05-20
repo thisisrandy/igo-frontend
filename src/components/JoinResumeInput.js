@@ -7,6 +7,7 @@ import { useStyles } from "../hooks/useStyles";
 import { useSelector } from "react-redux";
 import { PLAYER_KEY_LENGTH } from "../constants/PlayerKeyInfo";
 import { JOIN_RESUME_KEY_FIELD } from "../constants/Ids";
+import { getDaysSince } from "../utils";
 
 const filter = createFilterOptions();
 
@@ -80,16 +81,14 @@ function JoinResumeInput({
           return "(not yet played)";
         }
 
-        const daysSince = (Date.now() - option.lastPlayed) / 86400000;
-        // TODO: obviously "today" and "last 24 hours" are not the same
-        // thing. be more principled
-        if (daysSince <= 1.0) {
+        const daysSince = getDaysSince(option.lastPlayed);
+        if (daysSince === 0) {
           return "Today";
-        } else if (daysSince <= 2.0) {
+        } else if (daysSince === 1) {
           return "Yesterday";
-        } else if (daysSince <= 7.0) {
+        } else if (daysSince <= 7) {
           return "This week";
-        } else if (daysSince <= 14.0) {
+        } else if (daysSince <= 14) {
           return "Last week";
         } else {
           return "Older";
