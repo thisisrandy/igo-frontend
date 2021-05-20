@@ -153,6 +153,19 @@ const useStyles = makeStyles(
     KomiTextField: {
       width: "50%",
     },
+    JoinResumeInput: {
+      [theme.breakpoints.down(450)]: {
+        width: 250,
+      },
+      [theme.breakpoints.up(450)]: {
+        width: 300,
+      },
+    },
+    JoinResumeDropdownItemContainer: {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+    },
     CentralContainer: {
       display: "flex",
       flexWrap: "wrap",

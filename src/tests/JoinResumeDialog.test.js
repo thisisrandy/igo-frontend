@@ -33,7 +33,9 @@ test("dispatches correct action and set closed when submit clicked", () => {
   expect(input).toBeInTheDocument();
   // NOTE: we need userEvent here because fireEvent doesn't seem to trigger
   // onInput, which we rely on in the component to record text changes
-  userEvent.type(input, "0123456789");
+  // NOTE: arrowdown and enter below are needed to properly interact with the
+  // auto-complete menu
+  userEvent.type(input, "0123456789{arrowdown}{enter}");
   const submit = screen.getByRole("button", { name: "Submit" });
   expect(submit).toBeInTheDocument();
   act(() => {
