@@ -29,6 +29,15 @@ function JoinResumeInput({
     { lastPlayed: 1621468203847, key: "074be6c3a3" },
   ]);
 
+  // FIXME: this doesn't drag with the dialog. the problem is moot when using a
+  // mouse, as the input closes when we click away from it, which we of course
+  // must in order to drag. however, it seems that it stays open on touch
+  // screens, at the very least on iPads, which means that it disconnects from
+  // the dialog until it is rerendered. moreover, the cursor no longer drags,
+  // either, instead just staying floating on the screen where the textfield
+  // used to be. may need to file a bug
+  //
+  // See https://stackoverflow.com/q/67643960/12162258
   return (
     <AutoComplete
       id={JOIN_RESUME_KEY_FIELD}
