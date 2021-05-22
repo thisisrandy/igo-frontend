@@ -52,7 +52,12 @@ function JoinResumeDialog({ joinResumeDialogOpen, setJoinResumeDialogOpen }) {
           To join a new game, ask the player who created the game for the{" "}
           {PLAYER_KEY_LENGTH}-digit player key for their opponent. If resuming,
           enter the same key that was previously assigned to you. If you want to
-          view a past game, enter your player key from that game.
+          view a past game, enter your player key from that game.{" "}
+          <em>
+            Hint: All of the keys that you have used successfully on this
+            computer in the past are available from an autocomplete menu. Start
+            typing or click on the input box to see them
+          </em>
         </DialogContentText>
         <JoinResumeInput
           {...{
