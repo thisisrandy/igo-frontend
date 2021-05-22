@@ -16,10 +16,11 @@ import { CONNECTED } from "../constants/StateKeys";
 import { DraggableDialogTitle, DraggablePaper } from "./DraggablePaper";
 import { PLAYER_KEY_LENGTH } from "../constants/PlayerKeyInfo";
 import JoinResumeInput from "./JoinResumeInput";
+import { GAME } from "../constants/ReducerKeys";
 
 function JoinResumeDialog({ joinResumeDialogOpen, setJoinResumeDialogOpen }) {
   const classes = useStyles();
-  const { [CONNECTED]: connected } = useSelector((state) => state.game);
+  const { [CONNECTED]: connected } = useSelector((state) => state[GAME]);
   const dispatch = useDispatch();
 
   const [joinResumeKey, setJoinResumeKey] = useState("");

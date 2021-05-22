@@ -16,6 +16,7 @@ import { useStyles } from "../hooks/useStyles";
 import black from "../images/black.png";
 import white from "../images/white.png";
 import StarIcon from "@material-ui/icons/Star";
+import { GAME } from "../constants/ReducerKeys";
 
 function PlayerCard({ color, joinedToGame, playing }) {
   const classes = useStyles();
@@ -27,7 +28,7 @@ function PlayerCard({ color, joinedToGame, playing }) {
     [KEYS]: keys,
     [OPPONENT_CONNECTED]: opponentConnected,
     [TURN]: turn,
-  } = useSelector((state) => state.game);
+  } = useSelector((state) => state[GAME]);
 
   const isThisMe = useCallback(() => {
     return color === yourColor;

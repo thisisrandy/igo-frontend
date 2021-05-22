@@ -14,6 +14,7 @@ import RequestResponseDialog from "../components/RequestResponseDialog";
 import { INITIATOR, REQUEST_TYPE } from "../constants/RequestKeys";
 import { ACTION_TYPE } from "../constants/OutgoingMessageKeys";
 import { ACCEPT, REJECT } from "../constants/GameActionTypes";
+import { GAME } from "../constants/ReducerKeys";
 
 const keyW = "0123456789";
 const keyB = "9876543210";
@@ -39,16 +40,16 @@ function setUp(state = initialState) {
 }
 
 test("not open when no request pending", () => {
-  setUp({ game: { ...initialState.game, [STATUS]: ENDGAME } });
+  setUp({ game: { ...initialState[GAME], [STATUS]: ENDGAME } });
   expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
 });
 
 test("not open when pending request is made by current player", () => {
   setUp({
     game: {
-      ...initialState.game,
+      ...initialState[GAME],
       [PENDING_REQUEST]: {
-        ...initialState.game[PENDING_REQUEST],
+        ...initialState[GAME][PENDING_REQUEST],
         [INITIATOR]: BLACK,
       },
     },

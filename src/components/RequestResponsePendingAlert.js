@@ -6,13 +6,14 @@ import { useSelector } from "react-redux";
 import { INITIATOR, REQUEST_TYPE } from "../constants/RequestKeys";
 import { MARK_DEAD, DRAW, TALLY_SCORE } from "../constants/RequestType";
 import dedent from "dedent-js";
+import { GAME } from "../constants/ReducerKeys";
 
 function RequestResponsePendingAlert({ zIndex }) {
   const {
     [STATUS]: gameStatus,
     [PENDING_REQUEST]: pendingRequest,
     [YOUR_COLOR]: yourColor,
-  } = useSelector((state) => state.game);
+  } = useSelector((state) => state[GAME]);
 
   const getOpen = useCallback(() => {
     if (gameStatus !== REQUEST_PENDING) return false;

@@ -9,11 +9,12 @@ import * as resultTypes from "../constants/ResultType";
 import { RESULT_TYPE, WINNER } from "../constants/ResultKeys";
 import { BLACK, WHITE } from "../constants/Colors";
 import { capitalizeFirstLetter } from "../utils";
+import { GAME } from "../constants/ReducerKeys";
 
 function InfoCard() {
   const classes = useStyles();
   const { [STATUS]: gameStatus, [RESULT]: gameResult } = useSelector(
-    (state) => state.game
+    (state) => state[GAME]
   );
 
   const prettyStatus = useCallback(() => {

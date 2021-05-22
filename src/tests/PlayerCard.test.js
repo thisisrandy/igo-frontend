@@ -12,6 +12,7 @@ import {
   TURN,
 } from "../constants/StateKeys";
 import PlayerCard from "../components/PlayerCard";
+import { GAME } from "../constants/ReducerKeys";
 
 const keyW = "0123456789";
 const keyB = "9876543210";
@@ -87,7 +88,7 @@ test("values displayed correctly for connected opponent", () => {
 
 test("not connected opponent displays as such", () => {
   const store = mockStore({
-    game: { ...state.game, [OPPONENT_CONNECTED]: false },
+    game: { ...state[GAME], [OPPONENT_CONNECTED]: false },
   });
   render(
     <Provider store={store}>

@@ -9,6 +9,7 @@ import { PLAYER_KEY_LENGTH } from "../constants/PlayerKeyInfo";
 import { JOIN_RESUME_KEY_FIELD } from "../constants/Ids";
 import { getDaysSince } from "../utils";
 import { PAST_GAMES } from "../constants/StateKeys";
+import { GAME } from "../constants/ReducerKeys";
 
 const filter = createFilterOptions();
 
@@ -19,7 +20,7 @@ function JoinResumeInput({
   joinResumeSubmitClick,
 }) {
   const classes = useStyles();
-  const { [PAST_GAMES]: pastGames } = useSelector((state) => state.game);
+  const { [PAST_GAMES]: pastGames } = useSelector((state) => state[GAME]);
 
   // FIXME: this doesn't drag with the dialog. the problem is moot when using a
   // mouse, as the input closes when we click away from it, which we of course

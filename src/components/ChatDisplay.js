@@ -13,6 +13,7 @@ import { Typography } from "@material-ui/core";
 import { breakLongWords } from "../utils";
 import SimpleBar from "simplebar-react";
 import "simplebar/dist/simplebar.min.css";
+import { GAME } from "../constants/ReducerKeys";
 
 // NOTE: we're not dealing with a fixed-width font, so obviously the "correct"
 // line width varies depending on the characters involved, but for e.g. a string
@@ -24,7 +25,7 @@ const formatMessage = (text) => breakLongWords(text, 26);
 
 function ChatDisplay() {
   const classes = useStyles();
-  const { [CHAT_MESSAGES]: chatMessages } = useSelector((state) => state.game);
+  const { [CHAT_MESSAGES]: chatMessages } = useSelector((state) => state[GAME]);
 
   return (
     <ChatScroller className={classes.ChatMessages}>

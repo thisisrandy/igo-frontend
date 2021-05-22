@@ -9,6 +9,7 @@ import {
   REJOIN_NEEDED,
   YOUR_COLOR,
 } from "../constants/StateKeys";
+import { GAME } from "../constants/ReducerKeys";
 
 /**
  * Logic-only component to rejoin game on reconnect
@@ -19,7 +20,7 @@ function GameRejoiner() {
     [YOUR_COLOR]: yourColor,
     [REJOIN_NEEDED]: rejoinNeeded,
     [CONNECTED]: connected,
-  } = useSelector((state) => state.game);
+  } = useSelector((state) => state[GAME]);
   const dispatch = useDispatch();
 
   if (connected && rejoinNeeded) {

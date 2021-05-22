@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { connect } from "@giantmachines/redux-websocket";
 import { RECONNECT_INTERVAL_MS, SERVER_URI } from "../constants/ServerInfo";
 import { CONNECTED } from "../constants/StateKeys";
+import { GAME } from "../constants/ReducerKeys";
 
 function ConnectionManager() {
-  const { [CONNECTED]: connected } = useSelector((state) => state.game);
+  const { [CONNECTED]: connected } = useSelector((state) => state[GAME]);
   const dispatch = useDispatch();
 
   // NOTE: as noted in middleware setup, redux-websocket for doesn't attempt to

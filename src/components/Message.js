@@ -12,10 +12,11 @@ import { clearMessage } from "../actions";
 import { MESSAGE } from "../constants/StateKeys";
 import { useStyles } from "../hooks/useStyles";
 import { DraggablePaper, DraggableDialogTitle } from "./DraggablePaper";
+import { GAME } from "../constants/ReducerKeys";
 
 function Message({ zIndex }) {
   const classes = useStyles();
-  const { [MESSAGE]: message } = useSelector((state) => state.game);
+  const { [MESSAGE]: message } = useSelector((state) => state[GAME]);
   const dispatch = useDispatch();
 
   const clickHandler = () => dispatch(clearMessage());

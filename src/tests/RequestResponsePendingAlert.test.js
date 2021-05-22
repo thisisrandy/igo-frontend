@@ -1,3 +1,4 @@
+import { GAME } from "../constants/ReducerKeys";
 import {
   KEYS,
   PENDING_REQUEST,
@@ -37,16 +38,16 @@ function setUp(state = initialState) {
 }
 
 test("not open when no request pending", () => {
-  setUp({ game: { ...initialState.game, [STATUS]: ENDGAME } });
+  setUp({ game: { ...initialState[GAME], [STATUS]: ENDGAME } });
   expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
 });
 
 test("not open when pending request is made by other player", () => {
   setUp({
     game: {
-      ...initialState.game,
+      ...initialState[GAME],
       [PENDING_REQUEST]: {
-        ...initialState.game[PENDING_REQUEST],
+        ...initialState[GAME][PENDING_REQUEST],
         [INITIATOR]: WHITE,
       },
     },

@@ -13,10 +13,11 @@ import { STATUS } from "../constants/StateKeys";
 import { useStyles } from "../hooks/useStyles";
 import { DraggablePaper, DraggableDialogTitle } from "./DraggablePaper";
 import dedent from "dedent-js";
+import { GAME } from "../constants/ReducerKeys";
 
 function EndgameHelpMessage({ zIndex }) {
   const classes = useStyles();
-  const { [STATUS]: status } = useSelector((state) => state.game);
+  const { [STATUS]: status } = useSelector((state) => state[GAME]);
 
   // the goal here is to display this message whenever we transition to the
   // endgame from play. in order to accomplish this, we keep track of when we

@@ -16,6 +16,7 @@ import { MARK_DEAD, DRAW, TALLY_SCORE } from "../constants/RequestType";
 import { REQUEST_PENDING } from "../constants/GameStatus";
 import { capitalizeFirstLetter } from "../utils";
 import YesNoDialog from "./YesNoDialog";
+import { GAME } from "../constants/ReducerKeys";
 
 function RequestResponseDialog({ zIndex }) {
   const {
@@ -23,7 +24,7 @@ function RequestResponseDialog({ zIndex }) {
     [PENDING_REQUEST]: pendingRequest,
     [YOUR_COLOR]: yourColor,
     [KEYS]: keys,
-  } = useSelector((state) => state.game);
+  } = useSelector((state) => state[GAME]);
   const dispatch = useDispatch();
 
   const getDialogOpen = useCallback(() => {

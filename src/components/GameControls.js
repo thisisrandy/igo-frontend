@@ -16,6 +16,7 @@ import JoinResumeDialog from "./JoinResumeDialog";
 import NewGameDialog from "./NewGameDialog";
 import YesNoDialog from "./YesNoDialog";
 import { ALERT_ZINDEX_BASE } from "../constants/AlertZindex";
+import { GAME } from "../constants/ReducerKeys";
 
 function GameControls({ playing, endGame, gameInProgress, myTurn }) {
   const classes = useStyles();
@@ -23,7 +24,7 @@ function GameControls({ playing, endGame, gameInProgress, myTurn }) {
     [YOUR_COLOR]: yourColor,
     [KEYS]: keys,
     [CONNECTED]: connected,
-  } = useSelector((state) => state.game);
+  } = useSelector((state) => state[GAME]);
   const dispatch = useDispatch();
 
   const [newGameDialogOpen, setNewGameDialogOpen] = useState(false);

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { CONNECTED, STATUS, TURN, YOUR_COLOR } from "../constants/StateKeys";
 import { COMPLETE, ENDGAME, PLAY } from "../constants/GameStatus";
+import { GAME } from "../constants/ReducerKeys";
 
 /**
  * Wrapper to provide joinedToGame, playing, endGame, gameInProgress, and myTurn
@@ -13,7 +14,7 @@ function GameStatusProvider({ children }) {
     [STATUS]: status,
     [TURN]: turn,
     [YOUR_COLOR]: yourColor,
-  } = useSelector((state) => state.game);
+  } = useSelector((state) => state[GAME]);
 
   const [joinedToGame, setJoinedToGame] = useState(false);
   useEffect(() => {

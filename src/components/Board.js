@@ -9,11 +9,12 @@ import { BOARD } from "../constants/StateKeys";
 import Point from "./Point";
 import { POINTS, SIZE } from "../constants/BoardKeys";
 import clsx from "clsx";
+import { GAME } from "../constants/ReducerKeys";
 
 function Board({ myTurn, playing, endGame }) {
   const classes = useStyles();
   const { [SIZE]: size, [POINTS]: points } = useSelector(
-    (state) => state.game[BOARD]
+    (state) => state[GAME][BOARD]
   );
 
   let board = null;

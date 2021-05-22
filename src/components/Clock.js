@@ -4,11 +4,12 @@ import { useSelector } from "react-redux";
 import { TIME_PLAYED, STATUS } from "../constants/StateKeys";
 import { useStyles } from "../hooks/useStyles";
 import { COMPLETE } from "../constants/GameStatus";
+import { GAME } from "../constants/ReducerKeys";
 
 function Clock() {
   const classes = useStyles();
   const { [TIME_PLAYED]: serverTimePlayed, [STATUS]: gameStatus } = useSelector(
-    (state) => state.game
+    (state) => state[GAME]
   );
 
   // server time is only updated when a game action is taken to avoid writing to

@@ -15,11 +15,12 @@ import { CHAT_MESSAGE } from "../constants/OutgoingMessageTypes";
 import { KEYS, YOUR_COLOR } from "../constants/StateKeys";
 import { useStyles } from "../hooks/useStyles";
 import ChatDisplay from "./ChatDisplay";
+import { GAME } from "../constants/ReducerKeys";
 
 function ChatCard({ joinedToGame }) {
   const classes = useStyles();
   const { [YOUR_COLOR]: yourColor, [KEYS]: keys } = useSelector(
-    (state) => state.game
+    (state) => state[GAME]
   );
   const dispatch = useDispatch();
 

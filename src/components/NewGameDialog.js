@@ -33,10 +33,11 @@ import {
   COLOR_SELECT,
   BOARD_SIZE_SELECT,
 } from "../constants/Ids";
+import { GAME } from "../constants/ReducerKeys";
 
 function NewGameDialog({ newGameDialogOpen, setNewGameDialogOpen }) {
   const classes = useStyles();
-  const { [CONNECTED]: connected } = useSelector((state) => state.game);
+  const { [CONNECTED]: connected } = useSelector((state) => state[GAME]);
   const dispatch = useDispatch();
 
   const [vs, setVs] = useState(HUMAN);

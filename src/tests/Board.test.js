@@ -14,6 +14,7 @@ import { MARK_DEAD, PLACE_STONE } from "../constants/GameActionTypes";
 import { render, act, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { WS_SEND } from "../constants/ActionTypes";
+import { GAME } from "../constants/ReducerKeys";
 
 const keyW = "0123456789";
 const keyB = "9876543210";
@@ -49,7 +50,7 @@ test("renders empty Board", () => {
 
 test("renders Board with white stone", () => {
   const board = JSON.parse(JSON.stringify(emptyBoard));
-  board.game[BOARD][POINTS][0][0][0] = "w";
+  board[GAME][BOARD][POINTS][0][0][0] = "w";
   render(
     <Provider store={mockStore(board)}>
       <Board myTurn={true} playing={true} endGame={false} />
@@ -64,7 +65,7 @@ test("renders Board with white stone", () => {
 
 test("renders Board with black stone", () => {
   const board = JSON.parse(JSON.stringify(emptyBoard));
-  board.game[BOARD][POINTS][0][0][0] = "b";
+  board[GAME][BOARD][POINTS][0][0][0] = "b";
   render(
     <Provider store={mockStore(board)}>
       <Board myTurn={true} playing={true} endGame={false} />
@@ -79,11 +80,11 @@ test("renders Board with black stone", () => {
 
 test("renders Board with several stones", () => {
   const board = JSON.parse(JSON.stringify(emptyBoard));
-  board.game[BOARD][POINTS][0][0][0] = "b";
-  board.game[BOARD][POINTS][0][1][0] = "b";
-  board.game[BOARD][POINTS][1][0][0] = "b";
-  board.game[BOARD][POINTS][0][5][0] = "w";
-  board.game[BOARD][POINTS][0][6][0] = "w";
+  board[GAME][BOARD][POINTS][0][0][0] = "b";
+  board[GAME][BOARD][POINTS][0][1][0] = "b";
+  board[GAME][BOARD][POINTS][1][0][0] = "b";
+  board[GAME][BOARD][POINTS][0][5][0] = "w";
+  board[GAME][BOARD][POINTS][0][6][0] = "w";
   render(
     <Provider store={mockStore(board)}>
       <Board myTurn={true} playing={true} endGame={false} />
@@ -119,8 +120,8 @@ test("board size is correct", () => {
 
 test("board button labels are correct during play on my turn", () => {
   const board = JSON.parse(JSON.stringify(emptyBoard));
-  board.game[BOARD][POINTS][0][0][0] = "b";
-  board.game[BOARD][POINTS][0][1][0] = "w";
+  board[GAME][BOARD][POINTS][0][0][0] = "b";
+  board[GAME][BOARD][POINTS][0][1][0] = "w";
   render(
     <Provider store={mockStore(board)}>
       <Board myTurn={true} playing={true} endGame={false} />
@@ -156,7 +157,7 @@ test("board button labels are correct during play on my opponent's turn", () => 
 
 test("board button labels are correct during the endgame", () => {
   const board = JSON.parse(JSON.stringify(emptyBoard));
-  board.game[BOARD][POINTS][0][0][0] = "b";
+  board[GAME][BOARD][POINTS][0][0][0] = "b";
   render(
     <Provider store={mockStore(board)}>
       <Board myTurn={true} playing={false} endGame={true} />
@@ -198,7 +199,7 @@ test("clicks dispatch correct actions during play", () => {
 
 test("clicks dispatch correct actions during endgame", () => {
   const board = JSON.parse(JSON.stringify(emptyBoard));
-  board.game[BOARD][POINTS][0][0][0] = "b";
+  board[GAME][BOARD][POINTS][0][0][0] = "b";
   const store = mockStore(board);
   render(
     <Provider store={store}>
@@ -223,8 +224,8 @@ test("clicks dispatch correct actions during endgame", () => {
 
 test("marked dead stones display correctly", () => {
   const board = JSON.parse(JSON.stringify(emptyBoard));
-  board.game[BOARD][POINTS][0][0][0] = "b";
-  board.game[BOARD][POINTS][0][0][1] = true;
+  board[GAME][BOARD][POINTS][0][0][0] = "b";
+  board[GAME][BOARD][POINTS][0][0][1] = true;
   const store = mockStore(board);
   render(
     <Provider store={store}>
@@ -238,10 +239,10 @@ test("marked dead stones display correctly", () => {
 
 test("counted points display correctly", () => {
   const board = JSON.parse(JSON.stringify(emptyBoard));
-  board.game[BOARD][POINTS][0][0] = ["b", false, false, ""];
-  board.game[BOARD][POINTS][0][1] = ["", false, true, "b"];
-  board.game[BOARD][POINTS][1][0] = ["", false, true, "w"];
-  board.game[BOARD][POINTS][1][1] = ["", false, true, ""];
+  board[GAME][BOARD][POINTS][0][0] = ["b", false, false, ""];
+  board[GAME][BOARD][POINTS][0][1] = ["", false, true, "b"];
+  board[GAME][BOARD][POINTS][1][0] = ["", false, true, "w"];
+  board[GAME][BOARD][POINTS][1][1] = ["", false, true, ""];
   const store = mockStore(board);
   render(
     <Provider store={store}>

@@ -5,9 +5,10 @@ import { useSelector } from "react-redux";
 import { SERVER_URI } from "../constants/ServerInfo";
 import dedent from "dedent-js";
 import { CONNECTION_ALERT_DELAY_MS } from "../constants/ConnectionAlertDelay";
+import { GAME } from "../constants/ReducerKeys";
 
 function ConnectionAlert({ zIndex }) {
-  const { [CONNECTED]: connected } = useSelector((state) => state.game);
+  const { [CONNECTED]: connected } = useSelector((state) => state[GAME]);
 
   // We don't want this popping up immediately before the initial connection
   // under normal circumstances, so give it a small delay

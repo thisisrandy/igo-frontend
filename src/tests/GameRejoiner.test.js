@@ -12,6 +12,7 @@ import GameRejoiner from "../components/GameRejoiner";
 import { CLEAR_REJOIN_NEEDED, WS_SEND } from "../constants/ActionTypes";
 import { TYPE } from "../constants/OutgoingMessageKeys";
 import { JOIN_GAME } from "../constants/OutgoingMessageTypes";
+import { GAME } from "../constants/ReducerKeys";
 
 const keyW = "0123456789";
 const keyB = "9876543210";
@@ -28,7 +29,7 @@ const mockStore = createMockStore([]);
 
 test("dispatches nothing when no rejoin needed", () => {
   const state = JSON.parse(JSON.stringify(initialState));
-  state.game[REJOIN_NEEDED] = false;
+  state[GAME][REJOIN_NEEDED] = false;
   const store = mockStore(state);
   render(
     <Provider store={store}>
@@ -41,7 +42,7 @@ test("dispatches nothing when no rejoin needed", () => {
 
 test("dispatches nothing when not connected", () => {
   const state = JSON.parse(JSON.stringify(initialState));
-  state.game[CONNECTED] = false;
+  state[GAME][CONNECTED] = false;
   const store = mockStore(state);
   render(
     <Provider store={store}>

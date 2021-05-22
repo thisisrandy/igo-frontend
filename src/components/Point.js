@@ -16,6 +16,7 @@ import { CONNECTED, KEYS, YOUR_COLOR } from "../constants/StateKeys";
 import clsx from "clsx";
 import ClearIcon from "@material-ui/icons/Clear";
 import { BLACK, WHITE } from "../constants/Colors";
+import { GAME } from "../constants/ReducerKeys";
 
 function Point({ i, j, point, myTurn, playing, endGame, stoneHeightWidth }) {
   const classes = useStyles();
@@ -23,7 +24,7 @@ function Point({ i, j, point, myTurn, playing, endGame, stoneHeightWidth }) {
     [YOUR_COLOR]: yourColor,
     [KEYS]: keys,
     [CONNECTED]: connected,
-  } = useSelector((state) => state.game);
+  } = useSelector((state) => state[GAME]);
   const dispatch = useDispatch();
 
   const emptyPointClickHandler = (i, j) => () => {
