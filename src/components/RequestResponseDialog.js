@@ -41,9 +41,11 @@ function RequestResponseDialog({ zIndex }) {
           <Typography>
             {color} has marked a group as dead. Do you concur? If yes, the group
             will be removed and counted as prisoner(s). If no, you will be
-            returned to play to resolve the disagreement. Hint: If this dialog
-            is obscuring your view of the dead group, simply grab it by the top
-            and drag it out of the way
+            returned to play to resolve the disagreement.{" "}
+            <em>
+              Hint: If this dialog is obscuring your view of the dead group,
+              simply grab it by the top and drag it out of the way
+            </em>
           </Typography>
         );
       case DRAW:
