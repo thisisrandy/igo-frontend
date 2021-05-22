@@ -116,7 +116,7 @@ function JoinResumeInput({
           <div className={classes.JoinResumeDropdownItemContainer}>
             <Typography style={{ marginRight: 5 }}>{option.key}</Typography>
             {!isNaN(date) && (
-              <Typography variant="caption">{`Last played: ${date.toLocaleString()}`}</Typography>
+              <Typography variant="caption">{`Last viewed: ${date.toLocaleString()}`}</Typography>
             )}
           </div>
         );
