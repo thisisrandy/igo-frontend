@@ -23,6 +23,8 @@ import { GAME } from "../constants/ReducerKeys";
 // the main point
 const formatMessage = (text) => breakLongWords(text, 26);
 
+// TODO: add a snackbar for new chat messages from the other player
+
 function ChatDisplay() {
   const classes = useStyles();
   const { [CHAT_MESSAGES]: chatMessages } = useSelector((state) => state[GAME]);
