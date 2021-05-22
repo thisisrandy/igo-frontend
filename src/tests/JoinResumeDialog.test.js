@@ -1,4 +1,4 @@
-import { CONNECTED } from "../constants/StateKeys";
+import { CONNECTED, PAST_GAMES } from "../constants/StateKeys";
 import createMockStore from "redux-mock-store";
 import { act, render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
@@ -7,7 +7,7 @@ import { JOIN_GAME } from "../constants/OutgoingMessageTypes";
 import JoinResumeDialog from "../components/JoinResumeDialog";
 import userEvent from "@testing-library/user-event";
 
-const initialState = { game: { [CONNECTED]: true } };
+const initialState = { game: { [CONNECTED]: true, [PAST_GAMES]: {} } };
 
 const mockStore = createMockStore([]);
 

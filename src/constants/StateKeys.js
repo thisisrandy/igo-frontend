@@ -17,6 +17,9 @@ export const TIME_PLAYED = "timePlayed";
 export const CHAT_MESSAGES = "chatMessages";
 export const OPPONENT_CONNECTED = "opponentConnected";
 
+// local storage
+export const PAST_GAMES = "pastGames";
+
 // message display keys
 export const MESSAGE = "message";
 export const PERISTENT_ALERT = "peristent_alert";

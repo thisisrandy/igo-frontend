@@ -30,6 +30,7 @@ import {
   REJOIN_NEEDED,
   KEYS as KEYS_STATE,
   YOUR_COLOR as YOUR_COLOR_STATE,
+  PAST_GAMES,
 } from "../constants/StateKeys";
 
 const initialState = {
@@ -40,6 +41,7 @@ const initialState = {
     ),
   },
   [CONNECTED]: false,
+  [PAST_GAMES]: {},
 };
 
 export default function game(state = initialState, action) {
@@ -85,6 +87,10 @@ export default function game(state = initialState, action) {
           return {
             ...state,
             ...data,
+            [PAST_GAMES]: {
+              ...state[PAST_GAMES],
+              [state[KEYS_STATE][state[YOUR_COLOR_STATE]]]: Date.now(),
+            },
           };
         default:
           throw new TypeError(

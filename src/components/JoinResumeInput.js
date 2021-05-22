@@ -2,12 +2,13 @@ import { TextField, Typography } from "@material-ui/core";
 import AutoComplete, {
   createFilterOptions,
 } from "@material-ui/lab/Autocomplete";
-import React, { useState } from "react";
+import React from "react";
 import { useStyles } from "../hooks/useStyles";
 import { useSelector } from "react-redux";
 import { PLAYER_KEY_LENGTH } from "../constants/PlayerKeyInfo";
 import { JOIN_RESUME_KEY_FIELD } from "../constants/Ids";
 import { getDaysSince } from "../utils";
+import { PAST_GAMES } from "../constants/StateKeys";
 
 const filter = createFilterOptions();
 
@@ -18,16 +19,7 @@ function JoinResumeInput({
   joinResumeSubmitClick,
 }) {
   const classes = useStyles();
-  // const {} = useSelector((state) => state.game);
-
-  // TODO: this all belongs in redux state since I also need it, at the very
-  // least, in the new game dialog. POC here for now
-  const [pastGames, setPastGames] = useState([
-    { lastPlayed: 1601468000000, key: "5ea3927278" },
-    { lastPlayed: 1609444800000, key: "76ddfc3888" },
-    { lastPlayed: 1621468205847, key: "a865c7d0f1" },
-    { lastPlayed: 1621468203847, key: "074be6c3a3" },
-  ]);
+  const { [PAST_GAMES]: pastGames } = useSelector((state) => state.game);
 
   // FIXME: this doesn't drag with the dialog. the problem is moot when using a
   // mouse, as the input closes when we click away from it, which we of course
@@ -78,10 +70,12 @@ function JoinResumeInput({
 
         return filtered;
       }}
-      options={pastGames.sort((a, b) =>
-        // sort desc
-        a.lastPlayed < b.lastPlayed ? 1 : a.lastPlayed > b.lastPlayed ? -1 : 0
-      )}
+      options={Object.entries(pastGames)
+        .map(([key, lastPlayed]) => ({ key, lastPlayed }))
+        .sort((a, b) =>
+          // sort desc
+          a.lastPlayed < b.lastPlayed ? 1 : a.lastPlayed > b.lastPlayed ? -1 : 0
+        )}
       groupBy={(option) => {
         if (
           typeof option === "string" ||

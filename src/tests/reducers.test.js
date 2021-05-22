@@ -8,6 +8,7 @@ import {
   REJOIN_NEEDED,
   KEYS as KEYS_STATE,
   YOUR_COLOR as YOUR_COLOR_STATE,
+  PAST_GAMES,
 } from "../constants/StateKeys";
 import {
   EXPLANATION,
@@ -38,6 +39,7 @@ describe("game reducer", () => {
       ),
     },
     [CONNECTED]: false,
+    [PAST_GAMES]: {},
   };
 
   it("should return the initial state", () => {
@@ -227,8 +229,27 @@ describe("game reducer incoming message", () => {
       },
     },
   };
+  const myKey = keysState[WHITE];
+  const theirKey = keysState[BLACK];
+  const initStateWithKeys = {
+    [KEYS_STATE]: keysState,
+    [YOUR_COLOR_STATE]: WHITE,
+    [PAST_GAMES]: { [myKey]: 0, [theirKey]: 0 },
+  };
 
   it("should update the board", () => {
-    expect(gameReducer(undefined, gameStatus)).toMatchObject(updatedBoard);
+    expect(gameReducer(initStateWithKeys, gameStatus)).toEqual(
+      expect.objectContaining(updatedBoard)
+    );
+  });
+
+  it("should update past games", () => {
+    const newState = gameReducer(initStateWithKeys, gameStatus);
+    expect(newState[PAST_GAMES][myKey]).toBeGreaterThan(0);
+  });
+
+  it("should not blow away unrelated past games state", () => {
+    const newState = gameReducer(initStateWithKeys, gameStatus);
+    expect(newState[PAST_GAMES][theirKey]).toBe(0);
   });
 });

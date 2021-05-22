@@ -1,5 +1,10 @@
 import { BLACK, WHITE } from "../constants/Colors";
-import { YOUR_COLOR, KEYS, CONNECTED } from "../constants/StateKeys";
+import {
+  YOUR_COLOR,
+  KEYS,
+  CONNECTED,
+  PAST_GAMES,
+} from "../constants/StateKeys";
 import createMockStore from "redux-mock-store";
 import { ACTION_TYPE } from "../constants/OutgoingMessageKeys";
 import {
@@ -24,6 +29,7 @@ const initialState = {
     [YOUR_COLOR]: BLACK,
     [KEYS]: { [WHITE]: keyW, [BLACK]: keyB },
     [CONNECTED]: true,
+    [PAST_GAMES]: {},
   },
 };
 
