@@ -6,6 +6,8 @@ import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import rootReducer from "./reducers";
 import reduxWebsocket from "@giantmachines/redux-websocket";
+import { persistStore } from "redux-persist";
+import { PersistGate } from "redux-persist/integration/react";
 
 // NOTE: redux-websocket for doesn't attempt to reconnect if the first
 // connection attempt fails, instead opting to only reconnect a previously
@@ -22,11 +24,14 @@ const store = createStore(
   rootReducer,
   applyMiddleware(reduxWebsocketMiddleware)
 );
+const persistor = persistStore(store);
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <PersistGate loading={null} persistor={persistor}>
+        <App />
+      </PersistGate>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")
