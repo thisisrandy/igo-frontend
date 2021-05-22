@@ -12,7 +12,6 @@ import { PLAY, ENDGAME, COMPLETE } from "../constants/GameStatus";
 import { STATUS } from "../constants/StateKeys";
 import { useStyles } from "../hooks/useStyles";
 import { DraggablePaper, DraggableDialogTitle } from "./DraggablePaper";
-import dedent from "dedent-js";
 import { GAME } from "../constants/ReducerKeys";
 
 function EndgameHelpMessage({ zIndex }) {
@@ -49,14 +48,14 @@ function EndgameHelpMessage({ zIndex }) {
       <DraggableDialogTitle>Endgame</DraggableDialogTitle>
       <DialogContent className={classes.DialogContent}>
         <DialogContentText className={classes.MessageText}>
-          {dedent(`As both players have passed in succession, the endgame has
-            begun. Please click on any groups you believe to be dead to mark them
-            as such. Your opponent will be given the opportunity to accept or
-            reject any marks you make, and likewise you will be given the
-            opportunity to respond to any marks your opponent makes. When you are
-            satisfied that all dead stones have been removed from the board, click
-            the Request Tally Score button, or respond in the affirmative if your
-            opponent clicks it first.`)}
+          As both players have passed in succession, the endgame has begun.
+          Please click on any groups you believe to be dead to mark them as
+          such. Your opponent will be given the opportunity to accept or reject
+          any marks you make, and likewise you will be given the opportunity to
+          respond to any marks your opponent makes. When you are satisfied that
+          all dead stones have been removed from the board, click the Request
+          Tally Score button, or respond in the affirmative if your opponent
+          clicks it first.
         </DialogContentText>
       </DialogContent>
       <DialogActions

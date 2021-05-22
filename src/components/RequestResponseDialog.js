@@ -8,7 +8,6 @@ import {
   STATUS,
   YOUR_COLOR,
 } from "../constants/StateKeys";
-import dedent from "dedent-js";
 import { send } from "@giantmachines/redux-websocket";
 import { ACTION_TYPE, KEY, TYPE } from "../constants/OutgoingMessageKeys";
 import { GAME_ACTION } from "../constants/OutgoingMessageTypes";
@@ -17,6 +16,7 @@ import { REQUEST_PENDING } from "../constants/GameStatus";
 import { capitalizeFirstLetter } from "../utils";
 import YesNoDialog from "./YesNoDialog";
 import { GAME } from "../constants/ReducerKeys";
+import { Typography } from "@material-ui/core";
 
 function RequestResponseDialog({ zIndex }) {
   const {
@@ -37,18 +37,28 @@ function RequestResponseDialog({ zIndex }) {
     const color = capitalizeFirstLetter(pendingRequest[INITIATOR]);
     switch (pendingRequest[REQUEST_TYPE]) {
       case MARK_DEAD:
-        return dedent(`${color} has marked a group as dead. Do you concur? If
-          yes, the group will be removed and counted as prisoner(s). If no, you
-          will be returned to play to resolve the disagreement. (Hint: If this
-          dialog is obscuring your view of the dead group, simply grab it by the
-          top and drag it out of the way)`);
+        return (
+          <Typography>
+            {color} has marked a group as dead. Do you concur? If yes, the group
+            will be removed and counted as prisoner(s). If no, you will be
+            returned to play to resolve the disagreement. Hint: If this dialog
+            is obscuring your view of the dead group, simply grab it by the top
+            and drag it out of the way
+          </Typography>
+        );
       case DRAW:
-        return `${color} has requested a draw. Do you accept?`;
+        return (
+          <Typography>{color} has requested a draw. Do you accept?</Typography>
+        );
       case TALLY_SCORE:
-        return dedent(`${color} has indicated that they are ready to tally
-          the score. Do you concur? If yes, territory will be calculated and
-          the game will end. If no, you will be returned to the endgame to
-          resolve the disagreement.`);
+        return (
+          <Typography>
+            {color} has indicated that they are ready to tally the score. Do you
+            concur? If yes, territory will be calculated and the game will end.
+            If no, you will be returned to the endgame to resolve the
+            disagreement
+          </Typography>
+        );
       default:
         throw new TypeError(
           `Unknown request type ${pendingRequest[REQUEST_TYPE]} encountered`

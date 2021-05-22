@@ -3,9 +3,9 @@ import PersistentAlert from "./PersistentAlert";
 import { CONNECTED } from "../constants/StateKeys";
 import { useSelector } from "react-redux";
 import { SERVER_URI } from "../constants/ServerInfo";
-import dedent from "dedent-js";
 import { CONNECTION_ALERT_DELAY_MS } from "../constants/ConnectionAlertDelay";
 import { GAME } from "../constants/ReducerKeys";
+import { Typography } from "@material-ui/core";
 
 function ConnectionAlert({ zIndex }) {
   const { [CONNECTED]: connected } = useSelector((state) => state[GAME]);
@@ -29,10 +29,12 @@ function ConnectionAlert({ zIndex }) {
     <PersistentAlert
       zIndex={zIndex}
       open={!hidden && !connected}
-      message={dedent(
-        `Connection to the game server (${SERVER_URI}) either lost or not
-        previously established. Attempting to (re)connect...`
-      )}
+      message={
+        <Typography>
+          Connection to the game server ({SERVER_URI}) either lost or not
+          previously established. Attempting to (re)connect...
+        </Typography>
+      }
     />
   );
 }
