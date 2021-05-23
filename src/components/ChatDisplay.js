@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
-import { CHAT_MESSAGES } from "../constants/StateKeys";
+import { CHAT_MESSAGES, YOUR_COLOR } from "../constants/StateKeys";
 import { useStyles } from "../hooks/useStyles";
 import { format, isSameDay } from "date-fns";
 import { COLOR, ID, MESSAGE, TIMESTAMP } from "../constants/ChatMessageKeys";
@@ -9,7 +9,8 @@ import whiteAvatar from "../images/white-avatar.png";
 import { BLACK } from "../constants/Colors";
 import { capitalizeFirstLetter } from "../utils";
 import clsx from "clsx";
-import { Typography } from "@material-ui/core";
+import { IconButton, Snackbar, Typography, Zoom } from "@material-ui/core";
+import CloseIcon from "@material-ui/icons/Close";
 import { breakLongWords } from "../utils";
 import SimpleBar from "simplebar-react";
 import "simplebar/dist/simplebar.min.css";
@@ -22,30 +23,90 @@ import { GAME } from "../constants/ReducerKeys";
 // better solution. this fixes horizontal scrolling/avatar squashing, which is
 // the main point
 const formatMessage = (text) => breakLongWords(text, 26);
-
-// TODO: add a snackbar for new chat messages from the other player
+const snackBarDuration = 5000;
+const snackBarMaxTextLength = 25;
 
 function ChatDisplay() {
   const classes = useStyles();
-  const { [CHAT_MESSAGES]: chatMessages } = useSelector((state) => state[GAME]);
+  const { [CHAT_MESSAGES]: chatMessages, [YOUR_COLOR]: yourColor } =
+    useSelector((state) => state[GAME]);
+
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMsg, setSnackbarMsg] = useState("");
+  const [prevMsgId, setPrevMsgId] = useState(null);
+  const handleClose = () => {
+    setSnackbarOpen(false);
+  };
+  useEffect(() => {
+    // we display a snackbar iff there are any messages and the last one has the
+    // following properties: we haven't seen it before in this session, it is
+    // from the other player, and it was recently sent
+    if (chatMessages) {
+      const {
+        [ID]: id,
+        [TIMESTAMP]: timestamp,
+        [COLOR]: color,
+        [MESSAGE]: message,
+      } = chatMessages[chatMessages.length - 1];
+      if (id !== prevMsgId) {
+        setPrevMsgId(id);
+        if (
+          color !== yourColor &&
+          // note that server time is in seconds and javascript time is
+          // millseconds. note also that this breaks if client and server time
+          // are far out of sync, but that seems unlikely on any modern auto
+          // internet time syncing device
+          Date.now() - timestamp * 1000 <= snackBarDuration
+        ) {
+          setSnackbarMsg(
+            `${capitalizeFirstLetter(color)} says: "${message.slice(
+              0,
+              snackBarMaxTextLength
+            )}${message.length > snackBarMaxTextLength ? "..." : ""}"`
+          );
+          setSnackbarOpen(true);
+        }
+      }
+    }
+  }, [chatMessages, prevMsgId, yourColor]);
 
   return (
-    <ChatScroller className={classes.ChatMessages}>
-      {chatMessages &&
-        chatMessages.map((message, index) => {
-          const previous = chatMessages[index - 1];
-          const showDay = shouldShowDay(previous, message);
+    <React.Fragment>
+      <Snackbar
+        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+        open={snackbarOpen}
+        autoHideDuration={snackBarDuration}
+        onClose={handleClose}
+        message={snackbarMsg}
+        action={
+          <IconButton
+            size="small"
+            aria-label="close"
+            color="inherit"
+            onClick={handleClose}
+          >
+            <CloseIcon fontSize="small" />
+          </IconButton>
+        }
+        TransitionComponent={Zoom}
+      />
+      <ChatScroller className={classes.ChatMessages}>
+        {chatMessages &&
+          chatMessages.map((message, index) => {
+            const previous = chatMessages[index - 1];
+            const showDay = shouldShowDay(previous, message);
 
-          return shouldShowAvatar(previous, message) ? (
-            <FirstMessageFromUser
-              key={message[ID]}
-              {...{ message, showDay, classes }}
-            />
-          ) : (
-            <SubsequentMessage key={message[ID]} {...{ message, classes }} />
-          );
-        })}
-    </ChatScroller>
+            return shouldShowAvatar(previous, message) ? (
+              <FirstMessageFromUser
+                key={message[ID]}
+                {...{ message, showDay, classes }}
+              />
+            ) : (
+              <SubsequentMessage key={message[ID]} {...{ message, classes }} />
+            );
+          })}
+      </ChatScroller>
+    </React.Fragment>
   );
 }
 
