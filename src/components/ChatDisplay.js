@@ -7,7 +7,7 @@ import { COLOR, ID, MESSAGE, TIMESTAMP } from "../constants/ChatMessageKeys";
 import blackAvatar from "../images/black-avatar.png";
 import whiteAvatar from "../images/white-avatar.png";
 import { BLACK } from "../constants/Colors";
-import { capitalizeFirstLetter } from "../utils";
+import { capitalizeFirstLetter, truncate } from "../utils";
 import clsx from "clsx";
 import { IconButton, Snackbar, Typography, Zoom } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
@@ -59,10 +59,10 @@ function ChatDisplay() {
           Date.now() - timestamp * 1000 <= snackBarDuration
         ) {
           setSnackbarMsg(
-            `${capitalizeFirstLetter(color)} says: "${message.slice(
-              0,
+            `${capitalizeFirstLetter(color)} says: ${truncate(
+              message,
               snackBarMaxTextLength
-            )}${message.length > snackBarMaxTextLength ? "..." : ""}"`
+            )}`
           );
           setSnackbarOpen(true);
         }
