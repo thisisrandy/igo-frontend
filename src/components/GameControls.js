@@ -109,10 +109,11 @@ function GameControls({ playing, endGame, gameInProgress, myTurn }) {
             zIndex={ALERT_ZINDEX_BASE}
             open={resignationConfirmationOpen}
             title="Confirmation"
-            text="You elected to resign. Are you certain?"
             yesHandler={resignHandler(true)}
             noHandler={resignHandler(false)}
-          />
+          >
+            You elected to resign. Are you certain?
+          </YesNoDialog>
           <Button
             variant="contained"
             className={classes.Button}

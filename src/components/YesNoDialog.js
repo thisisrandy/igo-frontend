@@ -10,7 +10,7 @@ import React from "react";
 import { useStyles } from "../hooks/useStyles";
 import { DraggableDialogTitle, DraggablePaper } from "./DraggablePaper";
 
-function YesNoDialog({ zIndex, open, title, text, yesHandler, noHandler }) {
+function YesNoDialog({ zIndex, open, title, yesHandler, noHandler, children }) {
   const classes = useStyles();
 
   return (
@@ -23,7 +23,7 @@ function YesNoDialog({ zIndex, open, title, text, yesHandler, noHandler }) {
       <DraggableDialogTitle>{title}</DraggableDialogTitle>
       <DialogContent className={classes.DialogContent}>
         <DialogContentText className={classes.MessageText}>
-          {text}
+          {children}
         </DialogContentText>
       </DialogContent>
       <DialogActions

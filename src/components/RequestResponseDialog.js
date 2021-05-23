@@ -92,10 +92,11 @@ function RequestResponseDialog({ zIndex }) {
       zIndex={zIndex}
       open={getDialogOpen()}
       title="Request"
-      text={getRequestText()}
       yesHandler={accept}
       noHandler={reject}
-    />
+    >
+      {getRequestText()}
+    </YesNoDialog>
   );
 }
 
