@@ -9,7 +9,7 @@ import {
 } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { CHAT_MESSAGE_FIELD } from "../constants/Ids";
+import { CHAT_CARD, CHAT_MESSAGE_FIELD } from "../constants/Ids";
 import { KEY, MESSAGE, TYPE } from "../constants/OutgoingMessageKeys";
 import { CHAT_MESSAGE } from "../constants/OutgoingMessageTypes";
 import { KEYS, YOUR_COLOR } from "../constants/StateKeys";
@@ -42,7 +42,7 @@ function ChatCard({ joinedToGame }) {
   }, [joinedToGame, message]);
 
   return (
-    <Card className={classes.ChatCard}>
+    <Card id={`${CHAT_CARD}`} className={classes.ChatCard}>
       <CardHeader title="Chat" titleTypographyProps={{ variant: "h5" }} />
       <CardContent className={classes.ChatDisplayContainer}>
         <ChatDisplay />

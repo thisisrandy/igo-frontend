@@ -9,12 +9,19 @@ import whiteAvatar from "../images/white-avatar.png";
 import { BLACK } from "../constants/Colors";
 import { capitalizeFirstLetter, truncate } from "../utils";
 import clsx from "clsx";
-import { IconButton, Snackbar, Typography, Zoom } from "@material-ui/core";
+import {
+  Button,
+  IconButton,
+  Snackbar,
+  Typography,
+  Zoom,
+} from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import { breakLongWords } from "../utils";
 import SimpleBar from "simplebar-react";
 import "simplebar/dist/simplebar.min.css";
 import { GAME } from "../constants/ReducerKeys";
+import { CHAT_CARD } from "../constants/Ids";
 
 // NOTE: we're not dealing with a fixed-width font, so obviously the "correct"
 // line width varies depending on the characters involved, but for e.g. a string
@@ -24,7 +31,7 @@ import { GAME } from "../constants/ReducerKeys";
 // the main point
 const formatMessage = (text) => breakLongWords(text, 26);
 const snackBarDuration = 5000;
-const snackBarMaxTextLength = 25;
+const snackBarMaxTextLength = 20;
 
 function ChatDisplay() {
   const classes = useStyles();
@@ -79,14 +86,19 @@ function ChatDisplay() {
         onClose={handleClose}
         message={snackbarMsg}
         action={
-          <IconButton
-            size="small"
-            aria-label="close"
-            color="inherit"
-            onClick={handleClose}
-          >
-            <CloseIcon fontSize="small" />
-          </IconButton>
+          <React.Fragment>
+            <Button color="secondary" size="small" href={`#${CHAT_CARD}`}>
+              Go to chat
+            </Button>
+            <IconButton
+              size="small"
+              aria-label="close"
+              color="inherit"
+              onClick={handleClose}
+            >
+              <CloseIcon fontSize="small" />
+            </IconButton>
+          </React.Fragment>
         }
         TransitionComponent={Zoom}
       />

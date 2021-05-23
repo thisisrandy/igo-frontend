@@ -17,3 +17,4 @@ export const GENERIC_DRAGGABLE_ID = "draggable-generic-id";
 
 // chat
 export const CHAT_MESSAGE_FIELD = "chat-message-field";
+export const CHAT_CARD = "chat-card";
