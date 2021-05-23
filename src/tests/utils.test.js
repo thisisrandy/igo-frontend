@@ -1,4 +1,9 @@
-import { breakLongWords, capitalizeFirstLetter, getDaysSince } from "../utils";
+import {
+  breakLongWords,
+  capitalizeFirstLetter,
+  getDaysSince,
+  truncate,
+} from "../utils";
 
 describe("test capitalizeFirstLetter", () => {
   test("capitalizes the first letter", () => {
@@ -57,5 +62,16 @@ describe("test daysSince", () => {
         new Date("12/2/20 10:00:00 AM").valueOf()
       )
     ).toBe(31);
+  });
+});
+
+describe("test truncate", () => {
+  test("returns original string if less than or equal to maxLength", () => {
+    expect(truncate("foobar", 6, false)).toBe("foobar");
+    expect(truncate("foobar", 7, false)).toBe("foobar");
+  });
+
+  test("add ellipsis when string is too long", () => {
+    expect(truncate("foobar", 5)).toBe("fo...");
   });
 });

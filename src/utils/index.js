@@ -60,3 +60,17 @@ export function getDaysSince(time, now = Date.now()) {
   // 24 * 60 * 60 * 1000 = 86400000
   return Math.floor((midnight(now) - midnight(time)) / 86400000);
 }
+
+/**
+ * Truncate string to a maximum length of maxLength and add an ellipsis if any
+ * text was truncated. maxLength must be at least 4 to allow for one character
+ * plus an ellipsis
+ */
+export function truncate(string, maxLength) {
+  if (maxLength < 4)
+    throw new RangeError(`maxLength (${maxLength}) must be >= 4`);
+
+  return string.length <= maxLength
+    ? string
+    : `${string.slice(0, maxLength - 3)}...`;
+}
