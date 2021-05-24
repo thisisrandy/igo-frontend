@@ -17,7 +17,7 @@ import {
  * This is a display component which should be wrapped with logic to determine a
  * message and openness
  */
-function PersistentAlert({ message, zIndex, open }) {
+function PersistentAlert({ children, zIndex, open }) {
   const classes = useStyles();
 
   return (
@@ -30,7 +30,7 @@ function PersistentAlert({ message, zIndex, open }) {
       >
         <DraggableDialogTitle>Alert</DraggableDialogTitle>
         <DialogContent className={classes.DialogContent}>
-          <DialogContentText>{message}</DialogContentText>
+          <DialogContentText>{children}</DialogContentText>
         </DialogContent>
         <DraggableDialogActions className={classes.AlertProgressContainer}>
           <CircularProgress className={classes.AlertProgress} />

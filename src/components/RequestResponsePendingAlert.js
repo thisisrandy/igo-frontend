@@ -55,7 +55,9 @@ function RequestResponsePendingAlert({ zIndex }) {
   }, [gameStatus, pendingRequest]);
 
   return (
-    <PersistentAlert zIndex={zIndex} open={getOpen()} message={getText()} />
+    <PersistentAlert zIndex={zIndex} open={getOpen()}>
+      {getText()}
+    </PersistentAlert>
   );
 }
 
