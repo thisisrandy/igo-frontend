@@ -1,25 +1,10 @@
-import Board from "../components/Board";
-import { POINTS, SIZE } from "../constants/BoardKeys";
 import { BLACK, WHITE } from "../constants/Colors";
-import {
-  BOARD,
-  YOUR_COLOR,
-  KEYS,
-  CONNECTED,
-  CHAT_MESSAGES,
-} from "../constants/StateKeys";
+import { YOUR_COLOR, KEYS, CHAT_MESSAGES } from "../constants/StateKeys";
 import createMockStore from "redux-mock-store";
-import {
-  ACTION_TYPE,
-  COORDS,
-  KEY,
-  TYPE,
-} from "../constants/OutgoingMessageKeys";
-import { CHAT_MESSAGE, GAME_ACTION } from "../constants/OutgoingMessageTypes";
-import { MARK_DEAD, PLACE_STONE } from "../constants/GameActionTypes";
+import { TYPE } from "../constants/OutgoingMessageKeys";
+import { CHAT_MESSAGE } from "../constants/OutgoingMessageTypes";
 import { render, act, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
-import { WS_SEND } from "../constants/ActionTypes";
 import ChatCard from "../components/ChatCard";
 import { ID, COLOR, MESSAGE, TIMESTAMP } from "../constants/ChatMessageKeys";
 import userEvent from "@testing-library/user-event";
