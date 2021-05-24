@@ -47,7 +47,7 @@ function EndgameHelpMessage({ zIndex }) {
     >
       <DraggableDialogTitle>Endgame</DraggableDialogTitle>
       <DialogContent className={classes.DialogContent}>
-        <DialogContentText className={classes.MessageText}>
+        <DialogContentText>
           As both players have passed in succession, the endgame has begun.
           Please click on any groups you believe to be dead to mark them as
           such. Your opponent will be given the opportunity to accept or reject

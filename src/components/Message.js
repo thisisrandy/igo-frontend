@@ -40,9 +40,7 @@ function Message({ zIndex }) {
     >
       <DraggableDialogTitle>Message</DraggableDialogTitle>
       <DialogContent className={classes.DialogContent}>
-        <DialogContentText className={classes.MessageText}>
-          {message}
-        </DialogContentText>
+        <DialogContentText>{message}</DialogContentText>
       </DialogContent>
       <DialogActions
         disableSpacing={true}

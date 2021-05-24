@@ -30,9 +30,7 @@ function PersistentAlert({ message, zIndex, open }) {
       >
         <DraggableDialogTitle>Alert</DraggableDialogTitle>
         <DialogContent className={classes.DialogContent}>
-          <DialogContentText className={classes.MessageText}>
-            {message}
-          </DialogContentText>
+          <DialogContentText>{message}</DialogContentText>
         </DialogContent>
         <DraggableDialogActions className={classes.AlertProgressContainer}>
           <CircularProgress className={classes.AlertProgress} />

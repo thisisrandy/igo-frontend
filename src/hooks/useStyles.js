@@ -26,9 +26,6 @@ const useStyles = makeStyles(
     AlertProgress: {
       marginBottom: 10,
     },
-    MessageText: {
-      margin: 0,
-    },
     MessageButtonContainer: {
       display: "flex",
       alignItems: "center",

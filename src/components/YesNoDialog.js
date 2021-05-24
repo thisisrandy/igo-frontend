@@ -22,9 +22,7 @@ function YesNoDialog({ zIndex, open, title, yesHandler, noHandler, children }) {
     >
       <DraggableDialogTitle>{title}</DraggableDialogTitle>
       <DialogContent className={classes.DialogContent}>
-        <DialogContentText className={classes.MessageText}>
-          {children}
-        </DialogContentText>
+        <DialogContentText>{children}</DialogContentText>
       </DialogContent>
       <DialogActions
         disableSpacing={true}
