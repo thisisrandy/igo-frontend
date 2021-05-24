@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 import { INITIATOR, REQUEST_TYPE } from "../constants/RequestKeys";
 import { MARK_DEAD, DRAW, TALLY_SCORE } from "../constants/RequestType";
 import { GAME } from "../constants/ReducerKeys";
-import { Typography } from "@material-ui/core";
 
 function RequestResponsePendingAlert({ zIndex }) {
   const {
@@ -25,27 +24,27 @@ function RequestResponsePendingAlert({ zIndex }) {
     switch (pendingRequest[REQUEST_TYPE]) {
       case MARK_DEAD:
         return (
-          <Typography>
+          <React.Fragment>
             You marked a group as dead. If your opponent accepts, the group will
             be removed and counted as prisoner(s). Otherwise, you will be
             returned to play to resolve the disagreement. Awaiting their
             response...
-          </Typography>
+          </React.Fragment>
         );
       case DRAW:
         return (
-          <Typography>
+          <React.Fragment>
             You requested a draw. Awaiting your opponent's response...
-          </Typography>
+          </React.Fragment>
         );
       case TALLY_SCORE:
         return (
-          <Typography>
+          <React.Fragment>
             You indicated that you are ready to tally the score. If your
             opponent agrees, territory will be calculated and the game will end.
             Otherwise, you will be returned to the endgame to resolve the
             disagreement. Awaiting their response...
-          </Typography>
+          </React.Fragment>
         );
       default:
         throw new TypeError(

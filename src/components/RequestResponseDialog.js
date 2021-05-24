@@ -16,7 +16,6 @@ import { REQUEST_PENDING } from "../constants/GameStatus";
 import { capitalizeFirstLetter } from "../utils";
 import YesNoDialog from "./YesNoDialog";
 import { GAME } from "../constants/ReducerKeys";
-import { Typography } from "@material-ui/core";
 
 function RequestResponseDialog({ zIndex }) {
   const {
@@ -38,7 +37,7 @@ function RequestResponseDialog({ zIndex }) {
     switch (pendingRequest[REQUEST_TYPE]) {
       case MARK_DEAD:
         return (
-          <Typography>
+          <React.Fragment>
             {color} has marked a group as dead. Do you concur? If yes, the group
             will be removed and counted as prisoner(s). If no, you will be
             returned to play to resolve the disagreement.{" "}
@@ -46,20 +45,22 @@ function RequestResponseDialog({ zIndex }) {
               Hint: If this dialog is obscuring your view of the dead group,
               simply grab it by the top and drag it out of the way
             </em>
-          </Typography>
+          </React.Fragment>
         );
       case DRAW:
         return (
-          <Typography>{color} has requested a draw. Do you accept?</Typography>
+          <React.Fragment>
+            {color} has requested a draw. Do you accept?
+          </React.Fragment>
         );
       case TALLY_SCORE:
         return (
-          <Typography>
+          <React.Fragment>
             {color} has indicated that they are ready to tally the score. Do you
             concur? If yes, territory will be calculated and the game will end.
             If no, you will be returned to the endgame to resolve the
             disagreement
-          </Typography>
+          </React.Fragment>
         );
       default:
         throw new TypeError(
