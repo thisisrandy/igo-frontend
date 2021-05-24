@@ -87,7 +87,12 @@ function ChatDisplay() {
         message={snackbarMsg}
         action={
           <React.Fragment>
-            <Button color="secondary" size="small" href={`#${CHAT_CARD}`}>
+            <Button
+              color="secondary"
+              size="small"
+              href={`#${CHAT_CARD}`}
+              onClick={handleClose}
+            >
               Go to chat
             </Button>
             <IconButton
