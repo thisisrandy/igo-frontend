@@ -7,9 +7,9 @@ import {
   CardHeader,
   TextField,
 } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { CHAT_CARD, CHAT_MESSAGE_FIELD } from "../constants/Ids";
+import { CHAT_MESSAGE_FIELD } from "../constants/Ids";
 import { KEY, MESSAGE, TYPE } from "../constants/OutgoingMessageKeys";
 import { CHAT_MESSAGE } from "../constants/OutgoingMessageTypes";
 import { KEYS, YOUR_COLOR } from "../constants/StateKeys";
@@ -41,11 +41,14 @@ function ChatCard({ joinedToGame }) {
     setCanSend(joinedToGame && !!message);
   }, [joinedToGame, message]);
 
+  const inputRef = useRef();
+  const focusInput = () => inputRef.current.focus();
+
   return (
-    <Card id={`${CHAT_CARD}`} className={classes.ChatCard}>
+    <Card className={classes.ChatCard}>
       <CardHeader title="Chat" titleTypographyProps={{ variant: "h5" }} />
       <CardContent className={classes.ChatDisplayContainer}>
-        <ChatDisplay />
+        <ChatDisplay {...{ focusInput }} />
       </CardContent>
       <CardActions disableSpacing={true} className={classes.ChatCardActions}>
         <TextField
@@ -67,6 +70,7 @@ function ChatCard({ joinedToGame }) {
               sendMessageHandler();
             }
           }}
+          inputRef={inputRef}
         />
         <Button
           variant="contained"

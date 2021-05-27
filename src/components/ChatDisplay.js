@@ -21,7 +21,6 @@ import { breakLongWords } from "../utils";
 import SimpleBar from "simplebar-react";
 import "simplebar/dist/simplebar.min.css";
 import { GAME } from "../constants/ReducerKeys";
-import { CHAT_CARD } from "../constants/Ids";
 
 // NOTE: we're not dealing with a fixed-width font, so obviously the "correct"
 // line width varies depending on the characters involved, but for e.g. a string
@@ -33,7 +32,7 @@ const formatMessage = (text) => breakLongWords(text, 26);
 const snackBarDuration = 5000;
 const snackBarMaxTextLength = 20;
 
-function ChatDisplay() {
+function ChatDisplay({ focusInput }) {
   const classes = useStyles();
   const { [CHAT_MESSAGES]: chatMessages, [YOUR_COLOR]: yourColor } =
     useSelector((state) => state[GAME]);
@@ -90,10 +89,12 @@ function ChatDisplay() {
             <Button
               color="secondary"
               size="small"
-              href={`#${CHAT_CARD}`}
-              onClick={handleClose}
+              onClick={() => {
+                handleClose();
+                focusInput();
+              }}
             >
-              Go to chat
+              Reply
             </Button>
             <IconButton
               size="small"
