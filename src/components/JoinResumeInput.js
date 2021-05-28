@@ -14,7 +14,6 @@ import { GAME } from "../constants/ReducerKeys";
 const filter = createFilterOptions();
 
 function JoinResumeInput({
-  joinResumeKey,
   setJoinResumeKey,
   canSubmit,
   joinResumeSubmitClick,

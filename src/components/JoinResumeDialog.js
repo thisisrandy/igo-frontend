@@ -71,7 +71,6 @@ function JoinResumeDialog({ joinResumeDialogOpen, setJoinResumeDialogOpen }) {
         </DialogContentText>
         <JoinResumeInput
           {...{
-            joinResumeKey,
             setJoinResumeKey,
             canSubmit,
             joinResumeSubmitClick,
