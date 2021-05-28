@@ -6,7 +6,7 @@ import {
   DialogActions,
   Zoom,
 } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useStyles } from "../hooks/useStyles";
 import { useDispatch, useSelector } from "react-redux";
 import { send } from "@giantmachines/redux-websocket";
@@ -39,11 +39,21 @@ function JoinResumeDialog({ joinResumeDialogOpen, setJoinResumeDialogOpen }) {
     setCanSubmit(joinResumeKey.length === PLAYER_KEY_LENGTH && connected);
   }, [joinResumeKey.length, connected]);
 
+  // On iOS and iPadOS, possibly elsewhere as well, the input field does not
+  // blur automatically on drag, which causes some weird behavior (see
+  // https://stackoverflow.com/q/67643960/12162258). We can patch that bug by
+  // explicitly bluring the input on drag
+  const inputRef = useRef();
+  const onDrag = () => {
+    inputRef.current.blur();
+  };
+
   return (
     <Dialog
       open={joinResumeDialogOpen}
       onClose={() => setJoinResumeDialogOpen(false)}
       PaperComponent={DraggablePaper}
+      PaperProps={{ onDrag }}
       TransitionComponent={Zoom}
     >
       <DraggableDialogTitle>Join/Resume Game</DraggableDialogTitle>
@@ -65,6 +75,7 @@ function JoinResumeDialog({ joinResumeDialogOpen, setJoinResumeDialogOpen }) {
             setJoinResumeKey,
             canSubmit,
             joinResumeSubmitClick,
+            inputRef,
           }}
         />
       </DialogContent>

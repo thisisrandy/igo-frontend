@@ -16,7 +16,7 @@ const draggableStyle = { cursor: "move" };
  * currently possible to pass props into custom child components per
  * https://github.com/mui-org/material-ui/issues/23043, hence the hard-coding
  */
-function DraggablePaper(props) {
+function DraggablePaper({ onDrag, ...props }) {
   // This is to quiet strict mode warnings about findDOMNode usage. See
   // https://stackoverflow.com/a/63603903/12162258 for details
   const nodeRef = React.useRef(null);
@@ -26,6 +26,7 @@ function DraggablePaper(props) {
       handle={`#${titleId},#${actionsId},#${genericDraggableId}`}
       cancel={'[class*="MuiDialogContent-root"]'}
       nodeRef={nodeRef}
+      onDrag={onDrag}
     >
       <Paper ref={nodeRef} {...props} />
     </Draggable>

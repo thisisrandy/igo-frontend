@@ -14,7 +14,7 @@ import {
   Tooltip,
   Input,
 } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useStyles } from "../hooks/useStyles";
 import { useDispatch, useSelector } from "react-redux";
 import { send } from "@giantmachines/redux-websocket";
@@ -100,11 +100,18 @@ function NewGameDialog({ newGameDialogOpen, setNewGameDialogOpen }) {
 
   const getRadio = () => <Radio color="primary" />;
 
+  // See the comment above similar code in JoinResumeDialog
+  const komiInputRef = useRef();
+  const onDrag = () => {
+    komiInputRef.current.blur();
+  };
+
   return (
     <Dialog
       open={newGameDialogOpen}
       onClose={dialogClose}
       PaperComponent={DraggablePaper}
+      PaperProps={{ onDrag }}
       TransitionComponent={Zoom}
     >
       <DraggableDialogTitle>New Game</DraggableDialogTitle>
@@ -192,6 +199,7 @@ function NewGameDialog({ newGameDialogOpen, setNewGameDialogOpen }) {
                     submit();
                   }
                 }}
+                inputRef={komiInputRef}
               />
             </div>
           </FormControl>
