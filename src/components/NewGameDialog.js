@@ -100,9 +100,8 @@ function NewGameDialog({ newGameDialogOpen, setNewGameDialogOpen }) {
 
   const getRadio = () => <Radio color="primary" />;
 
-  // See the comment above similar code in JoinResumeDialog
   const komiInputRef = useRef();
-  const onDrag = () => {
+  const onStart = () => {
     komiInputRef.current.blur();
   };
 
@@ -111,7 +110,7 @@ function NewGameDialog({ newGameDialogOpen, setNewGameDialogOpen }) {
       open={newGameDialogOpen}
       onClose={dialogClose}
       PaperComponent={DraggablePaper}
-      PaperProps={{ onDrag }}
+      PaperProps={{ onStart }}
       TransitionComponent={Zoom}
     >
       <DraggableDialogTitle>New Game</DraggableDialogTitle>

@@ -16,9 +16,16 @@ const draggableStyle = { cursor: "move" };
  * cancel selector (see
  * https://github.com/react-grid-layout/react-draggable#draggable-api). Note
  * that props must be supplied via PaperProps on the containing Dialog component
+ *
+ * Regarding `onStart`, on touch devices, the input field does not blur
+ * automatically on drag, which causes some weird behavior (see
+ * https://stackoverflow.com/q/67643960/12162258). We can patch that bug by
+ * explicitly bluring the input on drag start (see
+ * https://stackoverflow.com/a/67745873/12162258 for details). There is also an
+ * issue open here: https://github.com/mui-org/material-ui/issues/26494
  */
 function DraggablePaper({
-  onDrag,
+  onStart,
   handleIds = [titleId, actionsId],
   cancelSelector = '[class*="MuiDialogContent-root"]',
   ...props
@@ -32,7 +39,7 @@ function DraggablePaper({
       handle={handleIds.map((id) => `#${id}`).join(",")}
       cancel={cancelSelector}
       nodeRef={nodeRef}
-      onDrag={onDrag}
+      onStart={onStart}
     >
       <Paper ref={nodeRef} {...props} />
     </Draggable>
