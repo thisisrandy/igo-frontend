@@ -2,29 +2,35 @@ import React from "react";
 import Paper from "@material-ui/core/Paper";
 import Draggable from "react-draggable";
 import { DialogTitle } from "@material-ui/core";
-import { ACTIONS_ID, GENERIC_DRAGGABLE_ID, TITLE_ID } from "../constants/Ids";
+import { ACTIONS_ID, TITLE_ID } from "../constants/Ids";
 
 const titleId = TITLE_ID;
 const actionsId = ACTIONS_ID;
-const genericDraggableId = GENERIC_DRAGGABLE_ID;
 const draggableStyle = { cursor: "move" };
 
 /**
- * IMPORTANT NOTE: this will only work as the `PaperComponent` prop of a
- * `Dialog` where said dialog has at least one child with id `titleId`,
- * `actionsId`, or `genericId`, e.g. `DraggableTitle` below. Note that it isn't
- * currently possible to pass props into custom child components per
- * https://github.com/mui-org/material-ui/issues/23043, hence the hard-coding
+ * Using default arguments, this is intended to be used in conjunction with
+ * DraggableDialogTitle and DraggableDialogActions in a draggable MUI dialog as
+ * described at https://material-ui.com/components/dialogs/#draggable-dialog.
+ * You may, however, provide a list of custom element ids as well as a custom
+ * cancel selector (see
+ * https://github.com/react-grid-layout/react-draggable#draggable-api). Note
+ * that props must be supplied via PaperProps on the containing Dialog component
  */
-function DraggablePaper({ onDrag, ...props }) {
+function DraggablePaper({
+  onDrag,
+  handleIds = [titleId, actionsId],
+  cancelSelector = '[class*="MuiDialogContent-root"]',
+  ...props
+}) {
   // This is to quiet strict mode warnings about findDOMNode usage. See
   // https://stackoverflow.com/a/63603903/12162258 for details
   const nodeRef = React.useRef(null);
 
   return (
     <Draggable
-      handle={`#${titleId},#${actionsId},#${genericDraggableId}`}
-      cancel={'[class*="MuiDialogContent-root"]'}
+      handle={handleIds.map((id) => `#${id}`).join(",")}
+      cancel={cancelSelector}
       nodeRef={nodeRef}
       onDrag={onDrag}
     >
@@ -33,39 +39,24 @@ function DraggablePaper({ onDrag, ...props }) {
   );
 }
 
-/**
- * IMPORTANT NOTE: as this component has a hard-coded id, it should not be used
- * more than once in any particular DOM. As we don't generally display more than
- * one `Dialog` at a time, this isn't likely to be an issue
- */
-function DraggableDialogTitle(props) {
+function DraggableDialogTitle({ id = titleId, ...props }) {
   return (
-    <DialogTitle {...props} style={draggableStyle} id={titleId}>
+    <DialogTitle {...props} style={draggableStyle} id={id}>
       {props.children}
     </DialogTitle>
   );
 }
 
 /**
- * IMPORTANT NOTE: as this component has a hard-coded id, it should not be used
- * more than once in any particular DOM. As we don't generally display more than
- * one `Dialog` at a time, this isn't likely to be an issue.
- *
- * Additionally, note that using this component with clickable children, e.g.
- * buttons, breaks said children on touch screens
+ * IMPORTANT NOTE: using this component with clickable children, e.g. buttons,
+ * breaks said children on touch devices. use only with non-interactive children
  */
-function DraggableDialogActions(props) {
+function DraggableDialogActions({ id = actionsId, ...props }) {
   return (
-    <DialogTitle {...props} style={draggableStyle} id={actionsId}>
+    <DialogTitle {...props} style={draggableStyle} id={id}>
       {props.children}
     </DialogTitle>
   );
 }
 
-export {
-  DraggablePaper,
-  DraggableDialogTitle,
-  DraggableDialogActions,
-  genericDraggableId,
-  draggableStyle,
-};
+export { DraggablePaper, DraggableDialogTitle, DraggableDialogActions };
