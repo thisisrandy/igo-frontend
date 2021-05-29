@@ -47,7 +47,11 @@ function ChatDisplay({ focusInput }) {
     // we display a snackbar iff there are any messages and the last one has the
     // following properties: we haven't seen it before in this session, it is
     // from the other player, and it was recently sent
-    if (chatMessages) {
+    //
+    // NOTE: [] is not falsey, despite the fact that [] == false (see
+    // https://stackoverflow.com/a/33567406/12162258 for why), so we have to
+    // explicitly check length
+    if (chatMessages && chatMessages.length) {
       const {
         [ID]: id,
         [TIMESTAMP]: timestamp,
