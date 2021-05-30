@@ -229,6 +229,9 @@ function ChatScroller(props) {
   // this thus far have failed. it may be that a css only option is the best.
   // see https://css-tricks.com/the-current-state-of-styling-scrollbars/ for
   // options
+  //
+  // A bug has been filed against simplebar here:
+  // https://github.com/Grsmto/simplebar/issues/568
   return (
     <SimpleBar
       {...props}
