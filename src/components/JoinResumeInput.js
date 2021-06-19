@@ -39,13 +39,13 @@ function JoinResumeInput({
       onChange={(_, newValue) => {
         if (typeof newValue === "string") {
           // normal typing (auto-complete ignored)
-          setJoinResumeKey(newValue.toLowerCase());
+          setJoinResumeKey(newValue.trim());
         } else if (newValue && newValue.inputValue) {
           // a new value was typed and then selected from the dropdown menu
-          setJoinResumeKey(newValue.inputValue.toLowerCase());
+          setJoinResumeKey(newValue.inputValue.trim());
         } else if (newValue != null) {
           // an existing value was selected from the dropdown
-          setJoinResumeKey(newValue.key.toLowerCase());
+          setJoinResumeKey(newValue.key.trim());
         }
       }}
       filterOptions={(options, params) => {
