@@ -18,10 +18,12 @@ import {
   MESSAGE_TYPE,
 } from "../constants/IncomingMessagePayloadKeys";
 import {
+  CHAT,
   GAME_ACTION_RESPONSE,
   GAME_STATUS,
   JOIN_GAME_RESPONSE,
   NEW_GAME_RESPONSE,
+  OPPONENT_CONNECTED,
 } from "../constants/IncomingMessageTypes";
 import {
   MESSAGE,
@@ -31,6 +33,7 @@ import {
   KEYS as KEYS_STATE,
   YOUR_COLOR as YOUR_COLOR_STATE,
   PAST_GAMES,
+  CHAT_MESSAGES,
 } from "../constants/StateKeys";
 
 const initialState = {
@@ -91,6 +94,17 @@ export default function game(state = initialState, action) {
               ...state[PAST_GAMES],
               [state[KEYS_STATE][state[YOUR_COLOR_STATE]]]: Date.now(),
             },
+          };
+        case CHAT:
+          return {
+            ...state,
+            [CHAT_MESSAGES]:
+              CHAT_MESSAGES in state ? state[CHAT_MESSAGES].concat(data) : data,
+          };
+        case OPPONENT_CONNECTED:
+          return {
+            ...state,
+            ...data,
           };
         default:
           throw new TypeError(
