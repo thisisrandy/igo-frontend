@@ -23,7 +23,7 @@ import {
   GAME_STATUS,
   JOIN_GAME_RESPONSE,
   NEW_GAME_RESPONSE,
-  OPPONENT_CONNECTED,
+  OPPONENT_CONNECTED as OPPONENT_CONNECTED_TYPE,
 } from "../constants/IncomingMessageTypes";
 import {
   MESSAGE,
@@ -34,6 +34,7 @@ import {
   YOUR_COLOR as YOUR_COLOR_STATE,
   PAST_GAMES,
   CHAT_MESSAGES,
+  OPPONENT_CONNECTED as OPPONENT_CONNECTED_STATE,
 } from "../constants/StateKeys";
 
 const initialState = {
@@ -75,6 +76,16 @@ export default function game(state = initialState, action) {
               ? data[YOUR_COLOR_MSG]
               : state[YOUR_COLOR_STATE],
             [MESSAGE]: data[EXPLANATION],
+            // chat is sent in terms of updates and not complete state, so we
+            // need to make sure to blow it away when starting a new/joining a
+            // game. additionally, while game status will always be sent after a
+            // successful new/join game action, chat and opponent connected will
+            // only be sent after joining an existing game. as such, we reset
+            // both here
+            [CHAT_MESSAGES]: data[SUCCESS] ? [] : state[CHAT_MESSAGES],
+            [OPPONENT_CONNECTED_STATE]: data[SUCCESS]
+              ? false
+              : state[OPPONENT_CONNECTED_STATE],
           };
         case GAME_ACTION_RESPONSE:
           // there's no reason to alert the player after a successful game
@@ -101,7 +112,7 @@ export default function game(state = initialState, action) {
             [CHAT_MESSAGES]:
               CHAT_MESSAGES in state ? state[CHAT_MESSAGES].concat(data) : data,
           };
-        case OPPONENT_CONNECTED:
+        case OPPONENT_CONNECTED_TYPE:
           return {
             ...state,
             ...data,

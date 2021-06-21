@@ -9,6 +9,8 @@ import {
   KEYS as KEYS_STATE,
   YOUR_COLOR as YOUR_COLOR_STATE,
   PAST_GAMES,
+  OPPONENT_CONNECTED,
+  CHAT_MESSAGES,
 } from "../constants/StateKeys";
 import {
   EXPLANATION,
@@ -108,6 +110,8 @@ describe("game reducer incoming message", () => {
       [KEYS_STATE]: keysResponse,
       [YOUR_COLOR_STATE]: WHITE,
       [MESSAGE]: msgSuccess,
+      [CHAT_MESSAGES]: [],
+      [OPPONENT_CONNECTED]: false,
     });
   });
 
@@ -151,6 +155,8 @@ describe("game reducer incoming message", () => {
       [KEYS_STATE]: keysResponse,
       [YOUR_COLOR_STATE]: WHITE,
       [MESSAGE]: msgSuccess,
+      [CHAT_MESSAGES]: [],
+      [OPPONENT_CONNECTED]: false,
     });
   });
 
