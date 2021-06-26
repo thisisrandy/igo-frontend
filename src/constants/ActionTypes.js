@@ -17,3 +17,4 @@ export const WS_CONNECT = `${DEFAULT_PREFIX}::${WEBSOCKET_CONNECT}`;
 // internal actions
 export const CLEAR_MESSAGE = "CLEAR_MESSAGE";
 export const CLEAR_REJOIN_NEEDED = "CLEAR_REJOIN_NEEDED";
+export const CLEAR_ERROR = "CLEAR_ERROR";

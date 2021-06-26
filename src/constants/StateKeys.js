@@ -23,3 +23,4 @@ export const PAST_GAMES = "pastGames";
 // message display keys
 export const MESSAGE = "message";
 export const PERISTENT_ALERT = "peristentAlert";
+export const ERROR_MESSAGE = "errorMessage";

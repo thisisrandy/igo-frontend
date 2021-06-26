@@ -9,6 +9,7 @@ import RequestResponsePendingAlert from "./RequestResponsePendingAlert";
 import ConnectionAlert from "./ConnectionAlert";
 import GameRejoiner from "./GameRejoiner";
 import ConnectionManager from "./ConnectionManager";
+import ErrorMessage from "./ErrorMessage";
 import { ALERT_ZINDEX_BASE } from "../constants/AlertZindex";
 import EndgameHelpMessage from "./EndgameHelpMessage";
 import TopBar from "./TopBar";
@@ -45,6 +46,7 @@ function App() {
         <EndgameHelpMessage zIndex={ALERT_ZINDEX_BASE + 1} />
         <Message zIndex={ALERT_ZINDEX_BASE + 2} />
         <ConnectionAlert zIndex={ALERT_ZINDEX_BASE + 3} />
+        <ErrorMessage zIndex={ALERT_ZINDEX_BASE + 4} />
         <TopBar {...{ darkMode, setDarkMode }} />
         <GameStatusProvider>
           <Board />

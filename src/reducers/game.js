@@ -1,6 +1,7 @@
 import {
   CLEAR_MESSAGE,
   CLEAR_REJOIN_NEEDED,
+  CLEAR_ERROR,
   WS_CLOSED,
   WS_MESSAGE,
   WS_OPEN,
@@ -20,6 +21,7 @@ import {
 } from "../constants/IncomingMessagePayloadKeys";
 import {
   CHAT,
+  ERROR,
   GAME_ACTION_RESPONSE,
   GAME_STATUS,
   JOIN_GAME_RESPONSE,
@@ -35,6 +37,7 @@ import {
   YOUR_COLOR as YOUR_COLOR_STATE,
   PAST_GAMES,
   CHAT_MESSAGES,
+  ERROR_MESSAGE,
 } from "../constants/StateKeys";
 
 const initialState = {
@@ -59,6 +62,11 @@ export default function game(state = initialState, action) {
       return {
         ...state,
         [REJOIN_NEEDED]: false,
+      };
+    case CLEAR_ERROR:
+      return {
+        ...state,
+        [ERROR_MESSAGE]: "",
       };
     case WS_MESSAGE:
       const msg = action.payload[PAYLOAD_MESSAGE];
@@ -105,6 +113,11 @@ export default function game(state = initialState, action) {
                 : state[CHAT_MESSAGES].concat(data[THREAD]),
           };
         case OPPONENT_CONNECTED:
+          return {
+            ...state,
+            ...data,
+          };
+        case ERROR:
           return {
             ...state,
             ...data,
