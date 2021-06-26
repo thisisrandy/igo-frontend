@@ -4,7 +4,7 @@ export const REJOIN_NEEDED = "rejoinNeeded";
 
 // game keys
 export const KEYS = "keys";
-export const YOUR_COLOR = "your_color";
+export const YOUR_COLOR = "yourColor";
 export const BOARD = "board";
 export const STATUS = "status";
 export const KOMI = "komi";
@@ -22,4 +22,4 @@ export const PAST_GAMES = "pastGames";
 
 // message display keys
 export const MESSAGE = "message";
-export const PERISTENT_ALERT = "peristent_alert";
+export const PERISTENT_ALERT = "peristentAlert";

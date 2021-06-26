@@ -3,4 +3,4 @@ export const MESSAGE = "message";
 
 // next level down below the key above
 export const DATA = "data";
-export const MESSAGE_TYPE = "message_type";
+export const MESSAGE_TYPE = "messageType";

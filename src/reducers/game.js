@@ -111,7 +111,7 @@ export default function game(state = initialState, action) {
           };
         default:
           throw new TypeError(
-            `Unknown incoming message type ${msg.message_type} encountered`
+            `Unknown incoming message type ${msg[MESSAGE_TYPE]} encountered`
           );
       }
     case WS_OPEN:
