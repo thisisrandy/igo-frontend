@@ -4,8 +4,8 @@
 
 This is the frontend (user interface) code for a browser-based
 [igo](<https://en.wikipedia.org/wiki/Go_(game)>) (囲碁, go) application, which you
-can play [here](#). The backend (game server) code is
-[here](https://github.com/thisisrandy/igo-backend).
+can play [here](https://playigo.herokuapp.com/). The backend (game server) code
+is [here](https://github.com/thisisrandy/igo-backend).
 
 ### Installation
 
