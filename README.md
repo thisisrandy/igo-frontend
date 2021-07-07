@@ -28,7 +28,6 @@ to play with other machines on the local network, change the address in
 - [clsx](https://github.com/lukeed/clsx) for constructing `className` strings
   conditionally
 - [date-fns](https://github.com/date-fns/date-fns) for date munging
-- [Jest](https://jestjs.io/) and [Testing Library](https://testing-library.com/) for UI testing
 - [Material-UI](https://material-ui.com/) for a high-quality [Material
   Design](https://material.io/design) framework built in React
 - [React](https://reactjs.org/) for UI building
@@ -45,4 +44,6 @@ to play with other machines on the local network, change the address in
 
 #### Development
 
+- [Jest](https://jestjs.io/) and [Testing Library](https://testing-library.com/)
+  for UI testing
 - [Prettier](https://prettier.io/) for formatting
