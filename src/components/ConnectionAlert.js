@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { SERVER_URI } from "../constants/ServerInfo";
 import { CONNECTION_ALERT_DELAY_MS } from "../constants/ConnectionAlertDelay";
 import { GAME } from "../constants/ReducerKeys";
+import { breakLongWords } from "../utils";
 
 function ConnectionAlert({ zIndex }) {
   const { [CONNECTED]: connected } = useSelector((state) => state[GAME]);
@@ -26,8 +27,13 @@ function ConnectionAlert({ zIndex }) {
 
   return (
     <PersistentAlert zIndex={zIndex} open={!hidden && !connected}>
-      Connection to the game server ({SERVER_URI}) either lost or not previously
-      established. Attempting to (re)connect...
+      Connection to the game server (
+      {/* On small screens, a long websocket string can cause ugly horizontal
+          scrolling, so break it up if need be */}
+      {document.documentElement.clientWidth >= 500
+        ? SERVER_URI
+        : breakLongWords(SERVER_URI, 30)}
+      ) either lost or not previously established. Attempting to (re)connect...
     </PersistentAlert>
   );
 }
