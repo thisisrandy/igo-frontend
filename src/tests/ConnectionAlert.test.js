@@ -3,7 +3,7 @@ import createMockStore from "redux-mock-store";
 import { Provider } from "react-redux";
 import { CONNECTED } from "../constants/StateKeys";
 import ConnectionAlert from "../components/ConnectionAlert";
-import { CONNECTION_ALERT_DELAY_MS } from "../constants/ConnectionAlertDelay";
+import { CONNECTION_ALERT_DELAY_MS } from "../constants/ConnectionSettings";
 
 const mockStore = createMockStore([]);
 const queryExpr = /Connection to the game server.*lost/;

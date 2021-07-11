@@ -3,7 +3,7 @@ import { Provider } from "react-redux";
 import createMockStore from "redux-mock-store";
 import ConnectionManager from "../components/ConnectionManager";
 import { WS_CONNECT } from "../constants/ActionTypes";
-import { RECONNECT_INTERVAL_MS } from "../constants/ServerInfo";
+import { RECONNECT_INTERVAL_MS } from "../constants/ConnectionSettings";
 import { CONNECTED } from "../constants/StateKeys";
 
 const mockStore = createMockStore([]);
