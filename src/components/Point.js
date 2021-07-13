@@ -18,7 +18,16 @@ import ClearIcon from "@material-ui/icons/Clear";
 import { BLACK, WHITE } from "../constants/Colors";
 import { GAME } from "../constants/ReducerKeys";
 
-function Point({ i, j, point, myTurn, playing, endGame, stoneHeightWidth }) {
+function Point({
+  i,
+  j,
+  point,
+  myTurn,
+  playing,
+  endGame,
+  stoneHeightWidth,
+  wasLastMove,
+}) {
   const classes = useStyles();
   const {
     [YOUR_COLOR]: yourColor,
@@ -68,7 +77,7 @@ function Point({ i, j, point, myTurn, playing, endGame, stoneHeightWidth }) {
       {/* the images are wrapped in a div for compatibility with some older
       devices. see https://stackoverflow.com/a/67527395/12162258 */}
       <div
-        className={classes.ImageCell}
+        className={clsx(classes.ImageCell, wasLastMove && classes.LastMove)}
         style={{
           gridRow: i + 2,
           gridColumn: j + 2,
@@ -114,7 +123,9 @@ function Point({ i, j, point, myTurn, playing, endGame, stoneHeightWidth }) {
                 point[3] === "w" ? WHITE : point[3] === "b" ? BLACK : "no one"
               }`
             : ""
-        } at coordinates (${i}, ${j})`}
+        } at coordinates (${i}, ${j})${
+          playing && wasLastMove ? ", which was the last move" : ""
+        }`}
         role="button"
       />
     </React.Fragment>

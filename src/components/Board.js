@@ -5,7 +5,7 @@ import board_13x13 from "../images/board_13x13.png";
 import board_19x19 from "../images/board_19x19.png";
 import { Paper } from "@material-ui/core";
 import { useSelector } from "react-redux";
-import { BOARD } from "../constants/StateKeys";
+import { BOARD, LAST_MOVE } from "../constants/StateKeys";
 import Point from "./Point";
 import { POINTS, SIZE } from "../constants/BoardKeys";
 import clsx from "clsx";
@@ -16,6 +16,7 @@ function Board({ myTurn, playing, endGame }) {
   const { [SIZE]: size, [POINTS]: points } = useSelector(
     (state) => state[GAME][BOARD]
   );
+  const lastMove = useSelector((state) => state[GAME][LAST_MOVE]);
 
   let board = null;
   let borderDim = null;
@@ -59,12 +60,25 @@ function Board({ myTurn, playing, endGame }) {
     >
       <img src={board} alt="go board" className={classes.BoardImage} />
       {points.map((row, i) =>
-        row.map((point, j) => (
-          <Point
-            key={`${i},${j}`}
-            {...{ i, j, point, myTurn, playing, endGame, stoneHeightWidth }}
-          />
-        ))
+        row.map((point, j) => {
+          const wasLastMove =
+            lastMove && lastMove[0] === i && lastMove[1] === j;
+          return (
+            <Point
+              key={`${i},${j}`}
+              {...{
+                i,
+                j,
+                point,
+                myTurn,
+                playing,
+                endGame,
+                stoneHeightWidth,
+                wasLastMove,
+              }}
+            />
+          );
+        })
       )}
     </Paper>
   );

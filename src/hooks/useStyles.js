@@ -105,6 +105,9 @@ const useStyles = makeStyles(
     CountedBlack: {
       backgroundColor: "rgba(0, 0, 0, 0.4)",
     },
+    LastMove: {
+      backgroundColor: "rgba(0, 0, 0, 0.3)",
+    },
     GameControlsContainer: {
       padding: 10,
       [theme.breakpoints.down(850)]: {

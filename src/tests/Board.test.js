@@ -1,7 +1,13 @@
 import Board from "../components/Board";
 import { POINTS, SIZE } from "../constants/BoardKeys";
 import { BLACK, WHITE } from "../constants/Colors";
-import { BOARD, YOUR_COLOR, KEYS, CONNECTED } from "../constants/StateKeys";
+import {
+  BOARD,
+  YOUR_COLOR,
+  KEYS,
+  CONNECTED,
+  LAST_MOVE,
+} from "../constants/StateKeys";
 import createMockStore from "redux-mock-store";
 import {
   ACTION_TYPE,
@@ -258,4 +264,19 @@ test("counted points display correctly", () => {
   expect(countedWhite).toBeInTheDocument();
   const countedNoOne = screen.queryByLabelText(/counted for no one.*\(1, 1\)/);
   expect(countedNoOne).toBeInTheDocument();
+});
+
+test("last stone placed is correctly highlighted", () => {
+  const board = JSON.parse(JSON.stringify(emptyBoard));
+  board[GAME][BOARD][POINTS][0][0][0] = "b";
+  board[GAME][LAST_MOVE] = [0, 0];
+  const store = mockStore(board);
+  render(
+    <Provider store={store}>
+      <Board myTurn={false} playing={true} endGame={false} />
+    </Provider>
+  );
+
+  const deadMark = screen.getByLabelText(/\(0, 0\), which was the last move/);
+  expect(deadMark).toBeInTheDocument();
 });
