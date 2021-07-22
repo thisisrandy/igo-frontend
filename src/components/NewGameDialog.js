@@ -126,12 +126,16 @@ function NewGameDialog({ newGameDialogOpen, setNewGameDialogOpen }) {
                 control={getRadio()}
                 label={HUMAN}
               />
-              <Tooltip title="Not yet supported. Please check back later">
+              <Tooltip
+                title={
+                  "Note that the computer player only plays randomly at the moment." +
+                  " Check back later for more"
+                }
+              >
                 <FormControlLabel
                   value={COMPUTER}
                   control={getRadio()}
                   label={COMPUTER}
-                  disabled
                 />
               </Tooltip>
             </RadioGroup>
